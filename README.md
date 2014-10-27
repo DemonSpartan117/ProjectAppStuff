@@ -54,3 +54,45 @@ Code Structure:
         
         
 That is it for now. More to be added by me and as a group. I have a good start here organizing information in a more usable manner with descriptions (almost like user stories except it's not).
+
+________________________________________________
+
+User Stories:
+________________________________________________
+
+User Friendliness & Practicality
+
+As a product owner, I want users to have the capability of viewing applications by category.
+
+As a product owner, I want my application pages to include the developer-provided descriptions.
+
+As a product owner, I want users to be able to have public discussions (for apps?).
+
+As a product owner, I want ProjectAppStuff to include applications of various platforms (e.g. Apple, Droid, Windows, Google…).
+
+As a product owner, I want to provide users with customized filtration for their searches (e.g. what platforms they want to see, price range, ratings, popularity, etc.).
+
+As a product owner, I want users to request additions to the database, and I want to require that they provide a link to their requested application’s download page.
+
+As a product owner, I want ProjectAppStuff’s interface to be as simple & sleek as possible (adhering to common style & user interface guidelines).
+__________________________________________________
+
+Security & Efficiency
+
+As a product owner, I want there to be a consistent search bar on every page that does a string sort on all of the applications’ respective fields. 
+
+As a product owner, I want to provide administrators with an “Outstanding Request” page - allowing them to view, approve/reject, and/or comment on users’ addition requests.
+
+As a product owner, I want to require users to login before contributing to forums.
+
+As a product owner, I want to provide a “Moderator” role that bears the power to delete posts from forums.  Administrators can also be moderators, and both can also be users.
+
+As a product owner, I want the backend of the repository and user login information to be implemented in a database.
+___________________________________________________
+
+Accessibility
+
+As a product owner, I want to provide a way for users to be redirected to application download pages.
+
+As a product owner, I need ProjectAppStuff to work on desktop & mobile.
+___________________________________________________
