@@ -55,6 +55,7 @@ Code Structure:
         
 That is it for now. More to be added by me and as a group. I have a good start here organizing information in a more usable manner with descriptions (almost like user stories except it's not).
 
+________________________________________________
 
 User Stories:
 ________________________________________________
