@@ -4,6 +4,7 @@ public class App {
 	String name;
 	String developer;
 	String description;
+	String[] platforms;
 	String version;
 	String link;
 	Forum forum;
