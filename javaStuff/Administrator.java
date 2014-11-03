@@ -1,9 +1,16 @@
 
-public class Administrator extends User{
+public class Administrator extends Moderator {
 
-	public Administrator(String name, String password) {
+	public static Administrator getInstance(String name, String password) {
+		return new Administrator(name, password);
+	}	
+
+	protected Administrator(String name, String password) {
 		super(name, password);
-		// TODO Add in things important for Adminstrators
+	}
+
+	private Administrator() {
+		super(root, root); // This is 'root' user
 	}
 
 }
