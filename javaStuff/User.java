@@ -6,7 +6,7 @@ import javax.crypto.Cipher;
 
 public abstract class User {
 
-
+	//TODO: please add in some notes for those of us unfamiliar with Java encryption
 	private static KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
 	private static KeyPair rsaPair = keyGen.generateKeyPair();
 	private static Cipher cipher = Cipher.getInstance("RSA");
@@ -39,5 +39,8 @@ public abstract class User {
 	protected String getPassword() {
 		return User.decrypt(password);
 	}
-
+	/*methods for the Users
+	 * post (all User objects except for Guests can do this)
+	 * request app (all Users except Guest and possibly Administrator can do this)
+	 * List to be continued*/
 }
