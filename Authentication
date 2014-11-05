@@ -1,0 +1,30 @@
+
+public void authenticateInfo() throws Exception {
+    final WebClient webClient = new WebClient();
+
+    // Get the first page
+    final HtmlPage page1 = webClient.getPage("http://some_url");
+
+    // Get the form that we are dealing with and within that form, 
+    // find the User ID and the Password that we want to validate.
+    final HtmlForm form = page1.getFormByName("some_form");
+
+    final HtmlSubmitInput button = form.getInputByName("submitbutton");
+    final HtmlPasswordInput textField = form.getInputByName("password");
+    final HtmlUserID textField = form.getInputByName("userid");
+
+    // Verify credentials with SQL Database
+    // -> insert code here <-
+    
+    // <---Begin (if/else)--->
+
+    // If the provided credentials check out, execute...
+    final HtmlPage page2 = button.click();
+    
+    // If the provided credentials are rejected, execute...
+    final HtmlPage pageBack = webClient.getPage("http://login_page");
+    
+    // <---End (if/else)--->
+
+    webClient.closeAllWindows();
+}

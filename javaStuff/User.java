@@ -53,6 +53,16 @@ public abstract class User {
 	protected String getPassword() {
 		return User.decrypt(password);
 	}
+
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setPassword(String password) {
+		this.password = User.encrypt(password);
+	}
+
 	/*methods for the Users
 	 * post (all User objects except for Guests can do this)
 	 * request app (all Users except Guest and possibly Administrator can do this)
