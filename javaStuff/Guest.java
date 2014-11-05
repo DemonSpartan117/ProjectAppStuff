@@ -9,7 +9,7 @@ public class Guest extends User {
 	
 	protected Guest() {
 		super(null, null);
-		// TODO add in anything that is important for the guest class
+		// TODO add in a createUser method for the Guest so they can create an account
 	}
 
 }
