@@ -11,8 +11,9 @@ public class App {
 	double rating;/*this will most likely become an array
 	of doubles instead of just a double and a method will
 	be used to return the average rating*/
+	boolean accepted;
 	
-	public App(String name, String developer, String description, String[] platforms, String version, String link, Forum forum, double rating) {
+	public App(String name, String developer, String description, String[] platforms, String version, String link, Forum forum, double rating, boolean accepted) {
 		this.name = name;
 		this.developer = developer;
 		this.description = description;
@@ -21,6 +22,7 @@ public class App {
 		this.link = link;
 		this.forum = forum;
 		this.rating = rating;
+		this.accepted = accepted;
 	}
 	
 	public String getName(){
@@ -55,35 +57,11 @@ public class App {
 		return rating;
 	}
 	
-	public void setName(String name){
-		this.name = name;
+	public boolean getAccepted(){
+		return accepted;
 	}
 	
-	public void setDeveloper(String developer){
-		this.developer= developer;
-	}
-	
-	public void setDescription(String description){
-		this.description = description;
-	}
-	
-	public void setPlatforms(String[] platforms){
-		this.platforms = platforms;
-	}
-	
-	public void setVersion(String version){
-		this.version = version;
-	}
-	
-	public void setLink(String link){
-		this.link = link;
-	}
-	
-	public void setForum(Forum forum){
-		this.forum = forum;
-	}
-	
-	public void setRating(double rating){
-		this.rating = rating;
+	public void setAccepted(boolean accepted){
+		this.accepted = accepted;
 	}
 }
