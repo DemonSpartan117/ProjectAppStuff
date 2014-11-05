@@ -26,10 +26,24 @@ public abstract class User {
 
 	private String name;
 	private String password;
+	private boolean admin;
+	
 
-	protected User(String name, String password) {
+	//constructor for guests only.
+	protected User() {
+		this.name = Guest;
+		this.password = "";
+		this.admin = false;
+	}
+
+	protected User(String name, String password, boolean admin){
 		this.name = name;
 		this.password = User.encrypt(password);
+		this.admin = admin;
+	}
+
+	public String getAdmin(){
+		return boolean admin;
 	}
 
 	public String getName() {
