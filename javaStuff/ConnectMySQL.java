@@ -13,7 +13,7 @@ public class ConnectMySQL {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Driver found");
 		} catch (Exception e) {
-			System.out.println("FUCK");
+			System.out.println("FUCK");//prints when connection failed
 		}
 		String url = "jdbc:mysql://localhost/test";
 		String id = "root";
