@@ -39,5 +39,13 @@ public abstract class User {
 	protected String getPassword() {
 		return User.decrypt(password);
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setPassword(String password) {
+		this.password = User.encrypt(password);
+	}
 
 }
