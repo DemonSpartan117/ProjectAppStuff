@@ -13,11 +13,11 @@ public class ConnectMySQL {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Driver found");
 		} catch (Exception e) {
-			System.out.println("FUCK");//prints when connection failed
+			System.out.println("Driver failed.");//prints when connection failed
 		}
 		String url = "jdbc:mysql://localhost/test";
-		String id = "root";
-		String password = "fe8029AFC10";
+		String id = "**";
+		String password = "**";
 		java.sql.Connection con;
 		try {
 			con = DriverManager.getConnection(url, id, password);
