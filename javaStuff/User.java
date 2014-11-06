@@ -42,8 +42,8 @@ public abstract class User {
 		this.admin = admin;
 	}
 
-	public String getAdmin(){
-		return boolean admin;
+	public boolean isAdmin() {
+		return this.admin;
 	}
 
 	public String getName() {
@@ -59,7 +59,10 @@ public abstract class User {
 		this.name = name;
 	}
 	
-	public void setPassword(String password) {
+	public void setPassword(String password, String currentPassword) {
+		if (! User.decrypt(this.password).equals(currentPassword)) {
+			throw new IllegalArgumentException("Authentication failed");
+		}
 		this.password = User.encrypt(password);
 	}
 
