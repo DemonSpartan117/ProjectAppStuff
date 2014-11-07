@@ -15,9 +15,9 @@ public class ConnectMySQL {
 		} catch (Exception e) {
 			System.out.println("Driver failed.");//prints when connection failed
 		}
-		String url = "jdbc:mysql://localhost/test";
-		String id = "**";
-		String password = "**";
+		String url = "jdbc:mysql://localhost/test"; // DB URL and Schema
+		String id = "**"; // Where DB master ID comes here
+		String password = "**"; // Where DB master password comes here
 		java.sql.Connection con;
 		try {
 			con = DriverManager.getConnection(url, id, password);
