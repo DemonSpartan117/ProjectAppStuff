@@ -1,45 +1,26 @@
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.util.Arrays;
-
-import javax.crypto.Cipher;
+package com.others;
 
 public abstract class User {
-
-	//TODO: please add in some notes for those of us unfamiliar with Java encryption
-	private static KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-	private static KeyPair rsaPair = keyGen.generateKeyPair();
-	private static Cipher cipher = Cipher.getInstance("RSA");
-
-	private static String encrypt(String password) {
-		cipher.init(Cipher.ENCRYPT_MODE, rsaPair.getPublic());
-		byte[] encryptedBytes = cipher.doFinal(password.getBytes());
-		return new String(encryptedBytes);
-	}
-
-	private static String decrypt(String password) {
-		cipher.init(Cipher.DECRYPT_MODE, rsaPair.getPrivate());
-		byte[] decryptedBytes = cipher.doFinal(password);
-		return new String(decryptedBytes);
-	}
 
 
 	private String name;
 	private String password;
-	private boolean admin;
+	private final boolean admin;
+        private boolean moderator;
 	
 
 	//constructor for guests only.
-	protected User() {
-		this.name = Guest;
+	public User() {
+		this.name = "Guest";
 		this.password = "";
 		this.admin = false;
 	}
 
-	protected User(String name, String password, boolean admin){
+	protected User(String name, String password, boolean admin, boolean moderator){
 		this.name = name;
-		this.password = User.encrypt(password);
+		this.password = password;
 		this.admin = admin;
+                this.moderator = moderator;
 	}
 
 	public boolean isAdmin() {
@@ -47,11 +28,11 @@ public abstract class User {
 	}
 
 	public String getName() {
-		return new String(name);
+		return name;
 	}
 
-	protected String getPassword() {
-		return User.decrypt(password);
+	public String getPassword() {
+		return password;
 	}
 
 	
@@ -60,11 +41,15 @@ public abstract class User {
 	}
 	
 	public void setPassword(String password, String currentPassword) {
-		if (! User.decrypt(this.password).equals(currentPassword)) {
+		if (!(this.password).equals(currentPassword)) {
 			throw new IllegalArgumentException("Authentication failed");
 		}
-		this.password = User.encrypt(password);
+		this.password = password;
 	}
+        
+        public boolean isModerator() {
+            return moderator;
+        }
 
 	/*methods for the Users
 	 * post (all User objects except for Guests can do this)

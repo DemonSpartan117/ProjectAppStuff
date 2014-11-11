@@ -1,12 +1,14 @@
+package com.others;
+//has the second constructor I made
 
 public class App {
 
-	String name;
-	String developer;
-	String description;
-	String[] platforms;
-	String version;
-	String link;
+	private String name;
+	private String developer;
+	private String description;
+	private String[] platforms;
+	private String version;
+	private String link;
 	Forum forum;
 	double rating;/*this will most likely become an array
 	of doubles instead of just a double and a method will
@@ -25,6 +27,18 @@ public class App {
 		this.accepted = accepted;
 	}
 	
+        public App(String name, String developer, String description, String[] platforms, String link) {
+            this.name = name;
+            this.developer = developer;
+            this.description = description;
+            this.platforms = platforms;
+            this.version = "1";
+            this.link = link;
+            this.forum = new Forum();
+            this.rating = 0;
+            this.accepted = false;
+        }
+        
 	public String getName(){
 		return name;
 	}
