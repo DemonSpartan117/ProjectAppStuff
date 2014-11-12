@@ -1,0 +1,43 @@
+<%-- 
+    Document   : index
+    Created on : Nov 11, 2014, 2:37:14 PM
+    Author     : ducketdw
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="SearchBoxStyle.css">
+        <title>The First Step</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <!-- start code for the search bar -->
+        <div id="tfheader">
+            <form id="tfnewsearch" method="get" action="steppingStone.jsp">
+                <input type="text" class="tftextinput" name="searchKeyword" size="21" maxlength="120">
+                
+                <input type="submit" value="search" class="tfbutton">
+                
+            </form>
+
+            <div class="tfclear"></div>
+        </div>
+        <!-- end code for the search bar -->
+
+        <h1>YOLO</h1>
+        <form name="Name Input Form" action="nameResponse.jsp">
+            Type in your name dear sir or madam: 
+            <input type="text" name="name" /> <!-- name="name" makes it so that the variable made 
+                                              when the text is entered into the box is named "name" -->
+            <input type="submit" value="OK" /> <!-- "submit" type is a button -->
+        </form>
+        <form action="getResults" method="post">
+            <input type="submit" value="Search results the test" />
+        </form>
+        <div>content goes here apparently</div>
+    </body>
+</html>

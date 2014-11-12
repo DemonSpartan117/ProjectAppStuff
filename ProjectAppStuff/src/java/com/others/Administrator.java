@@ -1,3 +1,5 @@
+package com.others;
+//no difference
 
 public class Administrator extends Moderator {
 
@@ -10,7 +12,8 @@ public class Administrator extends Moderator {
 	}
 
 	private Administrator() {
-		super(root, root); // This is 'root' user
+		super("root", "root"); // This is 'root' user
+                //(take out the quotation marks once the 'root' user is actually defined
 	}
 	
 	/*methods to add to Administrator:
