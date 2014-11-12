@@ -17,7 +17,7 @@
         <servlet-name>SearchHandling</servlet-name>
         <url-pattern>/getResults</url-pattern>
         <url-pattern>/manageResults</url-pattern>
-        <url-pattern>/otherAction</url-pattern>
+        <url-pattern>/sortResults</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

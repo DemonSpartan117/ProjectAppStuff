@@ -7,6 +7,7 @@ package com.secure.userInfo;
 
 import com.others.App;
 import com.others.SearchesInfo;
+import com.others.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,13 +20,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ducketdw
  */
-@WebServlet(name = "SearchHandling", loadOnStartup = 1, urlPatterns = {"/getResults", "/manageResults", "/otherAction"})
+@WebServlet(name = "SearchHandling", loadOnStartup = 1, urlPatterns = {"/getResults", "/manageResults", "/sortResults"})
 public class SearchHandling extends HttpServlet {
 
     App[] appList = makeAppList();
 //need to make it so that this is recieved from somewhere else later
     int size = appList.length;
     SearchesInfo SearchObject = new SearchesInfo();
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -65,10 +67,16 @@ public class SearchHandling extends HttpServlet {
             /* insert the print statements that will paste the stuff for the SearchObject button here*/
             
             if (userPath.compareTo("/getResults") == 0) {
+                //appList = SearchObject.search();
+                /*commented out until the search method is properly implemented*/
                 addAppsToPage(appList, out);
             }
             else if(userPath.compareTo("/manageResults") == 0) {
-                appList = SearchObject.search();
+                appList = SearchObject.filterResults();
+                addAppsToPage(appList, out);
+            }
+            else if(userPath.compareTo("/sortResults") == 0) {
+                appList = SearchObject.sortResults();
                 addAppsToPage(appList, out);
             }
             

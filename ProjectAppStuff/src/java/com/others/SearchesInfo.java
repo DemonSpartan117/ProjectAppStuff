@@ -30,7 +30,7 @@ public class SearchesInfo {
     
     public static String searchKeyword = "Wolfgang";
     private String Keyword;
-    private static App[] searchResults;
+    private App[] searchResults;
     public static int sort;
     private String name;
     
@@ -96,7 +96,20 @@ public class SearchesInfo {
     public App[] search() {
         App[] results = new App[1];
         //TODO: create actual logic to make this method get stuff from database
+        searchResults = results;
         return results;
+    }
+    
+    public App[] filterResults() {
+        //TODO: add logic to change searchResults so that things are filtered
+        //according to the sortConstant variable
+        return searchResults;
+    }
+    
+    public App[] sortResults() {
+        //TODO: add logic to change searchResults so that things are sorted
+        //according to the sortConstant variable
+        return searchResults;
     }
     
     /*TODO: need to make a method that will sort all of the app objects in a specified way*/
