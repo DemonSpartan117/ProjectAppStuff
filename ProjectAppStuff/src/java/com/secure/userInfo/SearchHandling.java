@@ -10,6 +10,7 @@ import com.others.SearchesInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,12 +19,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ducketdw
  */
+@WebServlet(name = "SearchHandling", loadOnStartup = 1, urlPatterns = {"/getResults", "/manageResults", "/otherAction"})
 public class SearchHandling extends HttpServlet {
 
     App[] appList = makeAppList();
 //need to make it so that this is recieved from somewhere else later
     int size = appList.length;
-    SearchesInfo search = new SearchesInfo();
+    SearchesInfo SearchObject = new SearchesInfo();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,6 +39,9 @@ public class SearchHandling extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        String userPath = request.getServletPath();
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -46,42 +51,29 @@ public class SearchHandling extends HttpServlet {
             out.println("<title>A list of apps and whatnot</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<div id=\"tfheader\">\n" +
-"            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n" +
-"                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n" +
-"                \n" +
-"                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n" +
-"                \n" +
-"            </form>\n" +
-"\n" +
-"            <div class=\"tfclear\"></div>\n" +
-"        </div>");
-            
-            /* insert the print statements that will paste the stuff for the search button here*/
+            out.println("<div id=\"tfheader\">\n"
+                    + "            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n"
+                    + "                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n"
+                    + "                \n"
+                    + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
+                    + "                \n"
+                    + "            </form>\n"
+                    + "\n"
+                    + "            <div class=\"tfclear\"></div>\n"
+                    + "        </div>");
 
-            String appString;
-            /*
-             if(userPath.equals("/SearchResults")) {
-                
-             }
-             */
-            out.println("<ul type=\"circle\">");
-            for (int i = 0; i < size; i++) {
-                appString = appList[i].getName();
-                appString = appString + "   " + appList[i].getDeveloper();
-                appString = appString + "   " + appList[i].getVersion();
-                appString = appString + "   " + appList[i].getDescription();
-                appString = appString + "   " + appList[i].getLink();
-                out.println("<li>" + appString + "</li>");
+            /* insert the print statements that will paste the stuff for the SearchObject button here*/
+            
+            if (userPath.compareTo("/getResults") == 0) {
+                addAppsToPage(appList, out);
             }
-            out.println("</ul>");
-
-            out.println("<h1>" + search.getSearchKeyword() + "</h1>");
-            out.println("<jsp:useBean id=\"searchBean\" scope=\"session\" class=\"com.others.SearchesInfo\" />");
-            out.println("<h1>");
-            out.println("<jsp:getProperty name=\"searchBean\" property=\"Keyword\" />");
-            out.println("</h1>");
+            else if(userPath.compareTo("/manageResults") == 0) {
+                appList = SearchObject.search();
+                addAppsToPage(appList, out);
+            }
             
+            out.println("<h1>" + SearchObject.getSearchKeyword() + "</h1>");
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -101,8 +93,52 @@ public class SearchHandling extends HttpServlet {
         thisAppList[1] = new App("Trble Ap", "Christopher Scavongelli", "who cares", new String[1], "non existant");
         return thisAppList;
     }
-    
-    
+
+    private void addAppsToPage(App[] appList, PrintWriter out) {
+        out.println(" <table border=\"1\" cellpadding=\"5\">\n");
+
+        out.println("<thead>");
+        out.println("<th>App Name</th>");
+        out.println("<th>Developer</th>");
+        out.println("<th>Rating</th>");
+        out.println("<th>Description</th>");
+        out.println("<th>Link</th>");
+
+        for (int i = 0; i < appList.length; i++) {
+
+            if (i == 0) {
+                out.println("<tbody>");
+            }
+
+            out.println("<tr>");
+            for (int j = 0; j < 5; j++) {
+                out.println("<th>");
+                printInfo(j, appList, out, i);
+                out.println("</th>");
+            }//inner loop
+            out.println("</tr>");
+
+            if (i == 4) {
+                out.println("</tbody>");
+            }
+        }//outer loop
+    }//method end
+
+    private void printInfo(int i, App[] appList, PrintWriter out, int j) {
+        if (i == 0) {
+            out.println(appList[j].getName());
+        } else if (i == 1) {
+            out.println(appList[j].getDeveloper());
+        } else if (i == 2) {
+            out.println(appList[j].getRating());
+        } else if (i == 3) {
+            out.println(appList[j].getDescription());
+        } else if (i == 4) {
+            out.println("<a href=\"" + appList[j].getLink() + "\">Developer site</a>");
+        }
+
+        //TODO:add in the platforms and possibly take out the description for it
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -141,7 +177,8 @@ public class SearchHandling extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "This servlet deals with printing out the results of an app search"
-                + "and modifying other results";
+                + "and and thats it. The search results and other logic is in"
+                + " another class";
     }// </editor-fold>
 
 }
