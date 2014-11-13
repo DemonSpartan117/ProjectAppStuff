@@ -8,7 +8,7 @@ public class Guest extends User {
 
 	//additional instance variables go here
 	
-	protected Guest() {
+	public Guest() {
 		super();
 		// TODO add in a createUser method for the Guest so they can create an account
 	}

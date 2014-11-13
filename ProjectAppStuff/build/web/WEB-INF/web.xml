@@ -2,11 +2,15 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>teLogin</servlet-name>
-        <servlet-class>com.secure.userInfo.LoginHandling</servlet-class>
+        <servlet-class>helpers.servlets.LoginHandling</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchHandling</servlet-name>
-        <servlet-class>com.secure.userInfo.SearchHandling</servlet-class>
+        <servlet-class>helpers.servlets.SearchHandling</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>appPageMaker</servlet-name>
+        <servlet-class>helpers.servlets.appPageMaker</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>teLogin</servlet-name>
@@ -19,6 +23,12 @@
         <url-pattern>/getResults</url-pattern>
         <url-pattern>/manageResults</url-pattern>
         <url-pattern>/sortResults</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>appPageMaker</servlet-name>
+        <url-pattern>/viewAppPage</url-pattern>
+        <url-pattern>/commentOnForum</url-pattern>
+        <url-pattern>/rateApp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
