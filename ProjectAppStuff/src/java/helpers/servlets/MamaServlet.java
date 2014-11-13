@@ -6,27 +6,21 @@
 package helpers.servlets;
 
 import com.secure.userInfo.User;
-import helpers.AccountCreator;
-import helpers.UserInfoDump;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Damon Wolfgang Duckett
+ * @author ducketdw
  */
-@WebServlet(name = "SearchHandling", loadOnStartup = 1, urlPatterns = {"/login", "/failedLogin", "/accountCreation"})
-public class LoginHandling extends MamaServlet {
-    
-    AccountCreator creation = new AccountCreator();
-            UserInfoDump userInfo = new UserInfoDump();
-            User user = userInfo.getUser();
+@WebServlet(name = "MamaServlet", urlPatterns = {"/MamaServlet"})
+public class MamaServlet extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,31 +34,39 @@ public class LoginHandling extends MamaServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
-            makePageTop(out, user);
-            
-            String userPath = request.getServletPath();
-
-            if (userPath.compareTo("/accountCreation") == 0) {
-                if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
-                    out.println("<h2>So you want to be a moderator</h2>");
-                } else if (creation.getPassPhrase().compareTo(creation.ADMINISTRATOR_STRING) == 0) {
-                    out.println("<h2>So you want to be an administrator</h2>");
-                }
-                
-                out.println("need to put in something that will move user on to next page here");
-            }
-
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet MamaServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet MamaServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-
-    public static boolean Login(User u) {
-        //TODO: implement login logic here because it does not work for me
-        return false;
+    
+    protected void makePageTop(PrintWriter out, User user) {
+        out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<link rel=\"stylesheet\" href=\"SearchBoxStyle.css\">");
+            out.println("<title>account possibly created</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<div id=\"tfheader\">\n"
+                    + "            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n"
+                    + "                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n"
+                    + "                \n"
+                    + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
+                    + "                \n"
+                    + "            </form>\n"
+                    + "\n"
+                    + "            <div class=\"tfclear\"></div>\n"
+                    + "        </div>");
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

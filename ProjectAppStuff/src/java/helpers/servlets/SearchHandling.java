@@ -5,8 +5,7 @@
  */
 package helpers.servlets;
 
-import helpers.GUIinfoDump;
-import com.others.App;
+import helpers.UserInfoDump;
 import helpers.SearchesInfo;
 import com.others.*;
 import com.secure.userInfo.Administrator;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,14 +22,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author ducketdw
  */
 @WebServlet(name = "SearchHandling", loadOnStartup = 1, urlPatterns = {"/getResults", "/manageResults", "/sortResults"})
-public class SearchHandling extends HttpServlet {
+public class SearchHandling extends MamaServlet {
 
     App[] appList = makeAppList();
 //need to make it so that this is recieved from somewhere else later
     int size = appList.length;
     SearchesInfo SearchObject = new SearchesInfo();
-    GUIinfoDump info;
-    User user = new Administrator();
+    UserInfoDump info;
+    User user = info.getUser();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

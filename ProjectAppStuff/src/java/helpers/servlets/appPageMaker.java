@@ -5,10 +5,11 @@
  */
 package helpers.servlets;
 
+import com.secure.userInfo.User;
+import helpers.UserInfoDump;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ducketdw
  */
-public class appPageMaker extends HttpServlet {
-
+public class appPageMaker extends MamaServlet {
+    UserInfoDump userInfo = new UserInfoDump();
+    User user = userInfo.getUser();
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,13 +35,12 @@ public class appPageMaker extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet appPageMaker</title>");            
-            out.println("</head>");
-            out.println("<body>");
+            
+            makePageTop(out, user);
+            
+//TODO: add in the print statements needed to make the rest of the page below
+            
+            
             out.println("<h1>Servlet appPageMaker at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
