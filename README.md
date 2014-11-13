@@ -5,6 +5,9 @@ This is the CSE 201 group project. This is for team Snow (team name is subject t
 
 P.S. I am awesome
 
+Project Notes for operations:
+The ProjectAppStuff file is an actual NetBeans project file. What you should do is pull the most recent edition of the repository every time before you start working and then copy the file, replace the copy of the file you have in your NetBeans projects with it, do your work, then save everything in NetBeans, and copy the local Netbeans project with all the stuff you just edited anduse it to replace the file in the local repository. It sounds complicated but it is easy.
+
 So random notes below
 
 Database:
@@ -53,9 +56,7 @@ Code Structure:
         
       methods
         add an entry to the forum (this could be a method to put in the User objects (I think it should be an operator that is implemented by the original User class that chacks to see if the user is registered before allowing them to enter a post to add or this all could be taken care of by having the webpage form according to what type of user is currently browsing the site (like most sites do) (the only reason I am offering alternative possibilities is because I am not familiar with a lot of HTML right now and, as said before, less with databases so I don't know if these simple designs incorperated into most sites today are easy to implement or hard)))
-        
-        
-That is it for now. More to be added by me and as a group. I have a good start here organizing information in a more usable manner with descriptions (almost like user stories except it's not).
+
 
 ________________________________________________
 
