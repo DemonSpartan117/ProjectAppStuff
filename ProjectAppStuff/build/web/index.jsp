@@ -35,8 +35,8 @@
                                               when the text is entered into the box is named "name" -->
             <input type="submit" value="OK" /> <!-- "submit" type is a button -->
         </form>
-        <form action="getResults" method="post">
-            <input type="submit" value="Search results the test" />
+        <form action="createAccountPage.jsp" method="post">
+            <input type="submit" value="Create an account" />
         </form>
         <div>content goes here apparently</div>
     </body>

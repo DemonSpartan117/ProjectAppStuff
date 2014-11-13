@@ -114,10 +114,5 @@ public class SearchesInfo {
     
     /*TODO: need to make a method that will sort all of the app objects in a specified way*/
     
-    //TODO: you can also possibly create something that authenticates users
-    //and then logs them in
-    /*if this you do that in this class please let me know because I have many
-    things to work out with the servlets and HTML pages because of it. Although
-    the logic should probably be elsewhere in one of my servlet classes. Contact
-    me to get more info for where to put it*/
+    
 }

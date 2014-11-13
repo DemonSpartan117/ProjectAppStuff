@@ -12,6 +12,7 @@
         <servlet-name>teLogin</servlet-name>
         <url-pattern>/login</url-pattern>
         <url-pattern>/failedLogin</url-pattern>
+        <url-pattern>/accountCreation</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchHandling</servlet-name>

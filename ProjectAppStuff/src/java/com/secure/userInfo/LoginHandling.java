@@ -5,22 +5,24 @@
  */
 package com.secure.userInfo;
 
+import com.accounts.AccountCreator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ducketdw
+ * @author Damon Wolfgang Duckett
  */
+@WebServlet(name = "SearchHandling", loadOnStartup = 1, urlPatterns = {"/login", "/failedLogin", "/accountCreation"})
 public class LoginHandling extends HttpServlet {
-    
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,38 +36,49 @@ public class LoginHandling extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
+            AccountCreator creation = new AccountCreator();
+
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel=\"stylesheet\" href=\"SearchBoxStyle.css\">");
-            out.println("<title>A list of apps and whatnot</title>");
+            out.println("<title>account possibly created</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<div id=\"tfheader\">\n" +
-"            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n" +
-"                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n" +
-"                \n" +
-"                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n" +
-"                \n" +
-"            </form>\n" +
-"\n" +
-"            <div class=\"tfclear\"></div>\n" +
-"        </div>");
-            
+            out.println("<div id=\"tfheader\">\n"
+                    + "            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n"
+                    + "                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n"
+                    + "                \n"
+                    + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
+                    + "                \n"
+                    + "            </form>\n"
+                    + "\n"
+                    + "            <div class=\"tfclear\"></div>\n"
+                    + "        </div>");
 
-            
-            out.println("<h1>Servlet simpleServlet at " + request.getContextPath() + "</h1>");
+            String userPath = request.getServletPath();
+
+            if (userPath.compareTo("/accountCreation") == 0) {
+                if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
+                    out.println("<h2>So you want to be a moderator</h2>");
+                } else if (creation.getPassPhrase().compareTo(creation.ADMINISTRATOR_STRING) == 0) {
+                    out.println("<h2>So you want to be an administrator</h2>");
+                }
+                
+                out.println("need to put in something that will move user on to next page here");
+            }
+
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
+
     public static boolean Login(User u) {
-		//TODO: implement login logic here because it does not work for me
-		return false;
-	}
-    
+        //TODO: implement login logic here because it does not work for me
+        return false;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

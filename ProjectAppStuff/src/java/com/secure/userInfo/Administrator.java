@@ -11,14 +11,17 @@ public class Administrator extends Moderator {
 		super(name, password);
 	}
 
-	private Administrator() {
+	public Administrator() {
 		super("root", "root"); // This is 'root' user
                 //(take out the quotation marks once the 'root' user is actually defined
 	}
+        
+        
 	
 	/*methods to add to Administrator:
 	 * add app
 	 * possibly has ability to restrict users if our customer wants us to
-	 * allow this and if we have time*/
+	 * allow this and if we have time
+         * get list of suggested apps to add to the database*/
 
 }

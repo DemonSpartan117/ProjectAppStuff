@@ -27,6 +27,9 @@ public class SearchHandling extends HttpServlet {
 //need to make it so that this is recieved from somewhere else later
     int size = appList.length;
     SearchesInfo SearchObject = new SearchesInfo();
+    GUIinfoDump info;
+    User user = new Administrator();
+    
     
 
     /**
@@ -63,7 +66,10 @@ public class SearchHandling extends HttpServlet {
                     + "\n"
                     + "            <div class=\"tfclear\"></div>\n"
                     + "        </div>");
-
+            
+            /*add in the other things that need to be added in so that the
+            webpages created will allow Users to preform their various tasks
+            / the things they can do such as moderate and whatnot*/
             /* insert the print statements that will paste the stuff for the SearchObject button here*/
             
             if (userPath.compareTo("/getResults") == 0) {
