@@ -46,6 +46,20 @@ public class LoginHandling extends MamaServlet {
 
             String userPath = request.getServletPath();
 
+            if (userPath.compareTo("/accountLogin") == 0) {
+                if (userInfo.login()) {
+                    out.println("<h1>Hello there " + userInfo.getUsername() + "</h1>");
+                } else {
+                    out.println("<h1>Username or Passwrod is wrong.</h1>");
+                    out.println("<h2>Please try to login again.</h2>");
+                    makeLoginPage(out);
+                }
+            }
+
+            if (userPath.compareTo("/login") == 0) {
+                makeLoginPage(out);
+            }
+
             if (userPath.compareTo("/getCreateAccountInfo") == 0) {
                 makeGetAccountCreationInfoPage(out);
 
@@ -80,6 +94,14 @@ public class LoginHandling extends MamaServlet {
         }
     }
 
+    private void makeLoginPage(PrintWriter out) {
+        out.println("<form name=\"Login to existing account\" action=\"LoginSteppingStone.jsp\">\n"
+                + "            Username: <input type=\"text\" name=\"username\" /> <br/>\n"
+                + "            Password: <input type=\"password\" name=\"pass\" />\n"
+                + "            <input type=\"submit\" value=\"Login\" name=\"onward with the login\" />\n"
+                + "        </form>");
+    }
+
     private void makeGetAccountCreationInfoPage(PrintWriter out) {
         out.println("<h1>Account Creation</h1>\n"
                 + "        <h3>Please fill out the following information to create an account</h3>\n"
@@ -93,9 +115,7 @@ public class LoginHandling extends MamaServlet {
                 + "            code: <input name =\"passPhrase\"/>\n"
                 + "            just leave this blank if you were not given a special code\n"
                 + "            <input type= \"submit\" value = \"OK\"/>\n"
-                + "        </form>\n"
-                + "    </body>\n"
-                + "</html>");
+                + "        </form>\n");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

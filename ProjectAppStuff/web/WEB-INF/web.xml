@@ -19,6 +19,7 @@
         <url-pattern>/failedLogin</url-pattern>
         <url-pattern>/accountCreation</url-pattern>
         <url-pattern>/getCreateAccountInfo</url-pattern>
+        <url-pattern>/accountLogin</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>

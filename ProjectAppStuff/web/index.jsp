@@ -38,6 +38,9 @@
         <form action="getCreateAccountInfo" method="post">
             <input type="submit" value="Create an account" />
         </form>
+        <form name="go to login page" action="login">
+            <input type="submit" value="Or click here to login" name="onwards to the login page" />
+        </form>
         <div>content goes here apparently</div>
     </body>
 </html>

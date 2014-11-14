@@ -17,6 +17,11 @@ public class UserInfoDump {
 
     private User user; //NO! no final
     private static User staticUser;
+    
+    private String username;
+    private String pass;
+    private static String staticUsername;
+    private static String staticPass;
 
     App app;
 
@@ -27,11 +32,42 @@ public class UserInfoDump {
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getters and setters. Click on the + sign on the left to edit the code.">
     public User getUser() {
         return staticUser;
     }
+    
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return staticUsername;
+    }
 
-    public boolean login(String id, String pass) {
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+        staticUsername = username;
+    }
+
+    /**
+     * @return the pass
+     */
+    public String getPass() {
+        return staticPass;
+    }
+
+    /**
+     * @param pass the pass to set
+     */
+    public void setPass(String pass) {
+        this.pass = pass;
+        staticPass = pass;
+    }// </editor-fold>
+
+    public boolean login() {
         /*so the proposed username and password are passed in as parameters
          then you need to search the database for User object with this
          username. Afterwards, check the password and see if it is the same as
@@ -43,6 +79,8 @@ public class UserInfoDump {
 
         /*also set the staticUser variable equal to the user variable so I can
          get the right information in all the other classes*/
-        return false;
+        return true;
     }
+
+    
 }
