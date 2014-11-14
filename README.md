@@ -3,6 +3,11 @@ ProjectAppStuff
 
 This is the CSE 201 group project. This is for team Snow (team name is subject to change)
 
+P.S. I am awesome
+
+Project Notes for operations:
+The ProjectAppStuff file is an actual NetBeans project file. What you should do is pull the most recent edition of the repository every time before you start working and then copy the file, replace the copy of the file you have in your NetBeans projects with it, do your work, then save everything in NetBeans, and copy the local Netbeans project with all the stuff you just edited anduse it to replace the file in the local repository. It sounds complicated but it is easy.
+
 So random notes below
 
 Database:
@@ -51,6 +56,46 @@ Code Structure:
         
       methods
         add an entry to the forum (this could be a method to put in the User objects (I think it should be an operator that is implemented by the original User class that chacks to see if the user is registered before allowing them to enter a post to add or this all could be taken care of by having the webpage form according to what type of user is currently browsing the site (like most sites do) (the only reason I am offering alternative possibilities is because I am not familiar with a lot of HTML right now and, as said before, less with databases so I don't know if these simple designs incorperated into most sites today are easy to implement or hard)))
-        
-        
-That is it for now. More to be added by me and as a group. I have a good start here organizing information in a more usable manner with descriptions (almost like user stories except it's not).
+
+
+________________________________________________
+
+User Stories:
+________________________________________________
+
+User Friendliness & Practicality
+
+As a product owner, I want users to have the capability of viewing applications by category.
+
+As a product owner, I want my application pages to include the developer-provided descriptions.
+
+As a product owner, I want users to be able to have public discussions (for apps?).
+
+As a product owner, I want ProjectAppStuff to include applications of various platforms (e.g. Apple, Droid, Windows, Google…).
+
+As a product owner, I want to provide users with customized filtration for their searches (e.g. what platforms they want to see, price range, ratings, popularity, etc.).
+
+As a product owner, I want users to request additions to the database, and I want to require that they provide a link to their requested application’s download page.
+
+As a product owner, I want ProjectAppStuff’s interface to be as simple & sleek as possible (adhering to common style & user interface guidelines).
+__________________________________________________
+
+Security & Efficiency
+
+As a product owner, I want there to be a consistent search bar on every page that does a string sort on all of the applications’ respective fields. 
+
+As a product owner, I want to provide administrators with an “Outstanding Request” page - allowing them to view, approve/reject, and/or comment on users’ addition requests.
+
+As a product owner, I want to require users to login before contributing to forums.
+
+As a product owner, I want to provide a “Moderator” role that bears the power to delete posts from forums.  Administrators can also be moderators, and both can also be users.
+
+As a product owner, I want the backend of the repository and user login information to be implemented in a database.
+___________________________________________________
+
+Accessibility
+
+As a product owner, I want to provide a way for users to be redirected to application download pages.
+
+As a product owner, I need ProjectAppStuff to work on desktop & mobile.
+___________________________________________________
