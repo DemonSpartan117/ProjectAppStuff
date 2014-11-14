@@ -21,12 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Damon Wolfgang Duckett
  */
-
 public class LoginHandling extends MamaServlet {
 
     AccountCreator creation = new AccountCreator();
     UserInfoDump userInfo = new UserInfoDump();
-    User user = userInfo.getUser();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,16 +35,21 @@ public class LoginHandling extends MamaServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
+            User user = userInfo.getUser();
             makePageTop(out, user);
 
             String userPath = request.getServletPath();
+
+            if (userPath.compareTo("/getCreateAccountInfo") == 0) {
+                makeGetAccountCreationInfoPage(out);
+
+            }
 
             if (userPath.compareTo("/accountCreation") == 0) {
                 /*TAG: database stuff
@@ -54,11 +57,19 @@ public class LoginHandling extends MamaServlet {
                  * that will check to see if the account can be created and then
                  * returns a boolean so I can determine what needs to happen next
                  * in the HTML stuff*/
-                
-                if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
-                    out.println("<h2>So you want to be a moderator</h2>");
-                } else if (creation.getPassPhrase().compareTo(creation.ADMINISTRATOR_STRING) == 0) {
-                    out.println("<h2>So you want to be an administrator</h2>");
+
+                if (creation.canMake()) {
+
+                    if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
+                        out.println("<h2>So you want to be a moderator named "
+                                + creation.getUsername() + "</h2>");
+                    } else if (creation.getPassPhrase().compareTo(creation.ADMINISTRATOR_STRING) == 0) {
+                        out.println("<h2>So you want to be an administrator named "
+                                + creation.getUsername() + "</h2>");
+                    } else {
+                        out.println("<h2>So you would like to be called " + user.getName()
+                                + "</h2>");
+                    }
                 }
 
                 out.println("need to put in something that will move user on to next page here");
@@ -69,10 +80,22 @@ public class LoginHandling extends MamaServlet {
         }
     }
 
-    public static boolean Login(User u) {
-        /*TODO: implement login logic in the UserInfoDump class because we need
-         *to set the static User variable to be used in all other classes*/
-        return false;
+    private void makeGetAccountCreationInfoPage(PrintWriter out) {
+        out.println("<h1>Account Creation</h1>\n"
+                + "        <h3>Please fill out the following information to create an account</h3>\n"
+                + "        <form action = \"CreationSteppingStone.jsp\" method = \"get\"> \n"
+                + "            Username: <input name = \"username\" /><br/>\n"
+                + "            Password: <input type = \"password\" name = \"pass\"/><br/>\n"
+                + "            Confirm Password: <input type =\"password\" name =\"passConfirm\"/><br/>\n"
+                + "            <!-- put in something that will ask if the person is going to be\n"
+                + "            an administrator or not and then have them confirm it with their\n"
+                + "            super secret password or something -->\n"
+                + "            code: <input name =\"passPhrase\"/>\n"
+                + "            just leave this blank if you were not given a special code\n"
+                + "            <input type= \"submit\" value = \"OK\"/>\n"
+                + "        </form>\n"
+                + "    </body>\n"
+                + "</html>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
