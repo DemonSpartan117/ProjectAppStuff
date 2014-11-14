@@ -14,6 +14,7 @@ public class User {
 		this.name = "Guest";
 		this.password = "";
 		this.admin = false;
+                this.moderator = false;
 	}
 
 	protected User(String name, String password, boolean admin, boolean moderator){
@@ -22,7 +23,8 @@ public class User {
 		this.admin = admin;
                 this.moderator = moderator;
 	}
-
+        
+         // <editor-fold defaultstate="collapsed" desc="Getters and setters. Click on the + sign on the left to edit the code.">
 	public boolean isAdmin() {
 		return this.admin;
 	}
@@ -42,7 +44,7 @@ public class User {
 	}
 	
 	public void setPassword(String password, String currentPassword) {
-		if (!(this.password).equals(currentPassword)) {
+		if ((this.password).compareTo(currentPassword) != 0) {
 			throw new IllegalArgumentException("Authentication failed");
 		}
 		this.password = password;
@@ -50,7 +52,7 @@ public class User {
         
         public boolean isModerator() {
             return moderator;
-        }
+        }// </editor-fold>
 
 	/*methods for the Users
 	 * post (all User objects except for Guests can do this)

@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <jsp:useBean id="myBean" scope="session" class="com.others.SearchesInfo" />
+        <jsp:useBean id="myBean" scope="session" class="helpers.SearchesInfo" />
         <jsp:setProperty name="myBean" property="searchKeyword"/>
         
         <h1>Did you search for <jsp:getProperty name="myBean" property="searchKeyword" />?</h1>

@@ -5,7 +5,7 @@
  */
 package helpers.servlets;
 
-import com.secure.userInfo.User;
+import com.secure.userInfo.*;
 import helpers.AccountCreator;
 import helpers.UserInfoDump;
 import java.io.IOException;
@@ -21,12 +21,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Damon Wolfgang Duckett
  */
-@WebServlet(name = "SearchHandling", loadOnStartup = 1, urlPatterns = {"/login", "/failedLogin", "/accountCreation"})
+
 public class LoginHandling extends MamaServlet {
-    
+
     AccountCreator creation = new AccountCreator();
-            UserInfoDump userInfo = new UserInfoDump();
-            User user = userInfo.getUser();
+    UserInfoDump userInfo = new UserInfoDump();
+    User user = userInfo.getUser();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,22 +37,30 @@ public class LoginHandling extends MamaServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
             makePageTop(out, user);
-            
+
             String userPath = request.getServletPath();
 
             if (userPath.compareTo("/accountCreation") == 0) {
+                /*TAG: database stuff
+                 * you need to put in here a call to a method that is in AccountCreator
+                 * that will check to see if the account can be created and then
+                 * returns a boolean so I can determine what needs to happen next
+                 * in the HTML stuff*/
+                
                 if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
                     out.println("<h2>So you want to be a moderator</h2>");
                 } else if (creation.getPassPhrase().compareTo(creation.ADMINISTRATOR_STRING) == 0) {
                     out.println("<h2>So you want to be an administrator</h2>");
                 }
-                
+
                 out.println("need to put in something that will move user on to next page here");
             }
 
@@ -61,7 +70,8 @@ public class LoginHandling extends MamaServlet {
     }
 
     public static boolean Login(User u) {
-        //TODO: implement login logic here because it does not work for me
+        /*TODO: implement login logic in the UserInfoDump class because we need
+         *to set the static User variable to be used in all other classes*/
         return false;
     }
 

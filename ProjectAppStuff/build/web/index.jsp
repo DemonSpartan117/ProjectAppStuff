@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : Nov 11, 2014, 2:37:14 PM
-    Author     : ducketdw
+    Author     : Damon Wolfgang Duckett
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

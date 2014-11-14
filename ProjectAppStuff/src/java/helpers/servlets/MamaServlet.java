@@ -55,7 +55,16 @@ public class MamaServlet extends HttpServlet {
             out.println("<title>account possibly created</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<div id=\"tfheader\">\n"
+            
+            placeSearchBar(out);
+            
+            /*add in the other things that need to be added in so that the
+             webpages created will allow Users to preform their various tasks
+             / the things they can do such as moderate and whatnot*/
+    }
+    
+    private void placeSearchBar(PrintWriter out) {
+        out.println("<div id=\"tfheader\">\n"
                     + "            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n"
                     + "                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n"
                     + "                \n"

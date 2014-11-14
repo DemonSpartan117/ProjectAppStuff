@@ -29,7 +29,7 @@
 
         <h1>Account Creation</h1>
         <h3>Please fill out the following information to create an account</h3>
-        <form action = "CreationSteppingStone.jsp" method = "post"> 
+        <form action = "CreationSteppingStone.jsp" method = "get"> 
             Username: <input name = "username" /><br/>
             Password: <input type = "password" name = "pass"/><br/>
             Confirm Password: <input type ="password" name ="passConfirm"/><br/>

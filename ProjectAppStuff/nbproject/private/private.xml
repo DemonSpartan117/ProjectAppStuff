@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/SearchesInfo.java</file>
+            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/com/secure/userInfo/User.java</file>
+            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/web/index.jsp</file>
+            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/com/others/Forum.java</file>
+            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/appPageMaker.java</file>
+            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/web/nameResponse.jsp</file>
             <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/LoginHandling.java</file>
+            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/com/others/App.java</file>
             <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/SearchHandling.java</file>
         </group>
     </open-files>

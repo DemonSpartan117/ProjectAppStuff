@@ -7,17 +7,10 @@ package helpers;
 
 /**
  *
- * @author ducketdw
+ * @author Damon Wolfgang Duckett
  */
 public class AccountCreator {
 
-    /**
-     * @return the staticUsername
-     */
-    public static String getStaticUsername() {
-        return staticUsername;
-    }
-    
     public final String MODERATOR_PHRASE = "sugar, spice, and everything nice";
     public final String ADMINISTRATOR_STRING = "friendship is magic";
     
@@ -35,11 +28,13 @@ public class AccountCreator {
         //this is empty on purpose
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getter and setter methods. Click on the + sign on the left to edit the code.">
+    
     /**
      * @return the Username
      */
     public String getUsername() {
-        return Username;
+        return staticUsername;
     }
 
     /**
@@ -59,12 +54,51 @@ public class AccountCreator {
     }
 
     /**
+     * @return the staticUsername
+     */
+    public static String getStaticUsername() {
+        return staticUsername;
+    }
+    
+    /**
      * @param passConfirm the passConfirm to set
      */
     public void setPassConfirm(String passConfirm) {
         this.passConfirm = passConfirm;
         staticPassConfirm = passConfirm;
     }
+    
+
+    /**
+     * @return the passPhrase
+     */
+    public String getPassPhrase() {
+        return staticPassPhrase;
+    }
+
+    /**
+     * @param passPhrase the passPhrase to set
+     */
+    public void setPassPhrase(String passPhrase) {
+        this.passPhrase = passPhrase;
+        staticPassPhrase = passPhrase;
+    }
+    
+    /**
+     * @return the pass
+     */
+    public String getPass() {
+        return staticPass;
+    }
+
+    /**
+     * @return the passConfirm
+     */
+    public String getPassConfirm() {
+        return staticPassConfirm;
+    }
+
+// </editor-fold>
     
     public boolean createAccount() {
         /*TODO: implement the logic to create a new User account
@@ -86,18 +120,5 @@ public class AccountCreator {
         return true;
     }
 
-    /**
-     * @return the passPhrase
-     */
-    public String getPassPhrase() {
-        return staticPassPhrase;
-    }
-
-    /**
-     * @param passPhrase the passPhrase to set
-     */
-    public void setPassPhrase(String passPhrase) {
-        this.passPhrase = passPhrase;
-        staticPassPhrase = passPhrase;
-    }
+    
 }

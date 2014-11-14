@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>creating an account</title>
     </head>
     <body>
-        <jsp:useBean id="creationBean" scope="session" class="com.accounts.AccountCreator" />
+        <jsp:useBean id="creationBean" scope="session" class="helpers.AccountCreator" />
         <jsp:setProperty name="creationBean" property="*" />
         <h1>is <jsp:getProperty name="creationBean" property="username" /> the username you want?</h1>
         <form name="Try to Make a New Account" action="accountCreation" method="post">
