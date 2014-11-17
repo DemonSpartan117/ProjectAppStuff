@@ -50,7 +50,7 @@ public class SearchHandling extends MamaServlet {
 
         try (PrintWriter out = response.getWriter()) {
             
-            makePageTop(out, user);
+            makePageTop(out, user, userPath);
 
             if (userPath.compareTo("/getResults") == 0) {
                 //appList = SearchObject.search();

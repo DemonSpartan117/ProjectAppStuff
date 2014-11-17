@@ -47,12 +47,14 @@ public class MamaServlet extends HttpServlet {
         }
     }
     
-    protected void makePageTop(PrintWriter out, User user) {
+    protected void makePageTop(PrintWriter out, User user, String userPath) {
         out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel=\"stylesheet\" href=\"SearchBoxStyle.css\">");
-            out.println("<title>account possibly created</title>");
+            
+            setPageTitle(out, userPath);
+            
             out.println("</head>");
             out.println("<body>");
             
@@ -61,6 +63,33 @@ public class MamaServlet extends HttpServlet {
             /*add in the other things that need to be added in so that the
              webpages created will allow Users to preform their various tasks
              / the things they can do such as moderate and whatnot*/
+    }
+    
+    private void setPageTitle(PrintWriter out, String userPath) {
+        //out.println("<title>account possibly created</title>");
+        if(userPath.compareTo("/login") == 0) {
+            out.println("<title>Login Page</title>");
+        }
+        else if(userPath.compareTo("/accountCreation") == 0) {
+            out.println("<title>Acount Possibly Created</title>");
+        }
+        else if(userPath.compareTo("/getCreateAccountInfo") == 0) {
+            out.println("<title>Create Account</title>");
+        }
+        else if(userPath.compareTo("/accountLogin") == 0) {
+            out.println("<title>Logging in</title>");
+        }
+        else if(userPath.compareTo("/getResults") == 0 ||
+                userPath.compareTo("/manageResults") == 0 ||
+                userPath.compareTo("/sortResults") == 0) {
+            out.println("<title>App Search Results</title>");
+        }
+        else if(userPath.compareTo("/viewAppPage") == 0 ||
+                userPath.compareTo("/commentOnForum") == 0 ||
+                userPath.compareTo("/rateApp") == 0) {
+            out.println("<title>App Page</title>");
+        }
+        //TODO: make a title for every possible userPath in this method
     }
     
     private void placeSearchBar(PrintWriter out) {

@@ -41,10 +41,10 @@ public class LoginHandling extends MamaServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            User user = userInfo.getUser();
-            makePageTop(out, user);
-
             String userPath = request.getServletPath();
+            User user = userInfo.getUser();
+            makePageTop(out, user, userPath);
+            
 
             if (userPath.compareTo("/accountLogin") == 0) {
                 if (userInfo.login()) {
@@ -84,6 +84,9 @@ public class LoginHandling extends MamaServlet {
                         out.println("<h2>So you would like to be called " + user.getName()
                                 + "</h2>");
                     }
+                } else {
+                    out.println("<h3>That username is already taken. Please try a different username</h3>");
+                    makeGetAccountCreationInfoPage(out);
                 }
 
                 out.println("need to put in something that will move user on to next page here");

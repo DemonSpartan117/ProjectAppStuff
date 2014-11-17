@@ -37,9 +37,9 @@ public class appPageMaker extends MamaServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            makePageTop(out, user);
-            
             String userPath = request.getServletPath();
+            makePageTop(out, user, userPath);
+            
             
 //TODO: add in the print statements needed to make the rest of the page below
             

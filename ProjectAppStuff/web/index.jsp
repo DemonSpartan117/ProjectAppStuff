@@ -28,7 +28,7 @@
         </div>
         <!-- end code for the search bar -->
 
-        <h1>YOLO</h1>
+        <h1>Welcome</h1>
         <form name="Name Input Form" action="nameResponse.jsp">
             Type in your name dear sir or madam: 
             <input type="text" name="name" /> <!-- name="name" makes it so that the variable made 
