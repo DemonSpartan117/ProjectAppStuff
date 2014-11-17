@@ -74,9 +74,9 @@ public class LoginHandling extends HttpServlet {
         }
     }
 
-    public static boolean Login(User u) {
+    public static boolean Login(User u) throws Exception {
         //TODO: implement login logic here because it does not work for me
-        return false;
+        return helpers.DBHandling.Login(u);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

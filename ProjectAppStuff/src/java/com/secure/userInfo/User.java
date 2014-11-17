@@ -28,11 +28,11 @@ public class User {
 	}
 
 	public String getName() {
-		return name;
+		return new String(name);
 	}
 
 	public String getPassword() {
-		return password;
+		return new String(password);
 	}
 
 	
