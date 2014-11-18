@@ -39,8 +39,14 @@ public class DBHandling {
     public static boolean SignUp(User u) throws Exception {
         Connection con = DriverManager.getConnection(DBUrl, DBID, DBPW);
         Statement stmt = con.createStatement();
-        String statement = String.format("INSERT INTO USER VALUES ();");
-        return true;
+        String statement = String.format("INSERT INTO USER " + "VALUES ('%s', '%s', null);", u.getName(), u.getPassword());
+        try {
+            stmt.executeUpdate(statement);
+        } catch (SQLException e) {
+            return false; // SIGNUP FAILED
+        } finally {
+            return true; // SIGNUP SUCCESSFUL
+        }
     }
     
 }
