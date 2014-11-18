@@ -29,8 +29,7 @@ public class SearchHandling extends MamaServlet {
 //need to make it so that this is recieved from somewhere else later
     int size = appList.length;
     SearchesInfo SearchObject = new SearchesInfo();
-    UserInfoDump info;
-    User user = new Administrator(); //info.getUser();
+    UserInfoDump info = new UserInfoDump();
     /* WHY DOES THIS NEED TO BE A THING?!?!?!?!?!?*/
 
     /**
@@ -47,10 +46,11 @@ public class SearchHandling extends MamaServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        User user = info.getUser();
         String userPath = request.getServletPath();
 
         try (PrintWriter out = response.getWriter()) {
-            
+
             makePageTop(out, user, userPath);
 
             if (userPath.compareTo("/getResults") == 0) {
@@ -127,10 +127,10 @@ public class SearchHandling extends MamaServlet {
             out.println(appList[j].getRating());
         } else if (i == 3) {
             String[] platforms = appList[j].getPlatforms();
-                    for(int p = 0; p < platforms.length - 1; p ++) {
-                        out.print(platforms[j] + ", ");
-                    }
-                    out.print(platforms[platforms.length - 1]);
+            for (int p = 0; p < platforms.length - 1; p++) {
+                out.print(platforms[j] + ", ");
+            }
+            out.print(platforms[platforms.length - 1]);
         } else if (i == 4) {
             out.println("<a href=\"" + appList[j].getLink() + "\">Developer site</a>");
         }

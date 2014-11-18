@@ -15,7 +15,7 @@ import com.secure.userInfo.User;
  */
 public class UserInfoDump {
 
-    private User user; //NO! no final
+    private User user;
     private static User staticUser;
     
     private String username;
@@ -34,6 +34,7 @@ public class UserInfoDump {
             user = staticUser;
         }
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="Getters and setters. Click on the + sign on the left to edit the code.">
     public User getUser() {
