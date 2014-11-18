@@ -31,6 +31,7 @@ public class SearchHandling extends MamaServlet {
     SearchesInfo SearchObject = new SearchesInfo();
     UserInfoDump info;
     User user = new Administrator(); //info.getUser();
+    /* WHY DOES THIS NEED TO BE A THING?!?!?!?!?!?*/
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -64,7 +65,7 @@ public class SearchHandling extends MamaServlet {
                 addAppsToPage(appList, out);
             }
 
-            out.println("<h1>" + SearchObject.getSearchKeyword() + "</h1>");
+            out.println("<h1>" + SearchObject.getStaticKeyword() + "</h1>");
 
             out.println("</body>");
             out.println("</html>");
@@ -81,8 +82,9 @@ public class SearchHandling extends MamaServlet {
     private App[] makeAppList() {
         App[] thisAppList = new App[2];
         /*public App(String name, String developer, String description, String[] platforms, String link) {*/
-        thisAppList[0] = new App("Amazing App", "Damon Duckett", "this is awesome", new String[1], "www.awesome.com");
-        thisAppList[1] = new App("Trble Ap", "Christopher Scavongelli", "who cares", new String[1], "non existant");
+        String[] platforms = {"all of them"};
+        thisAppList[0] = new App("Amazing App", "Damon Duckett", "this is awesome", platforms, "www.awesome.com");
+        thisAppList[1] = new App("Trble Ap", "Christopher Scavongelli", "who cares", platforms, "non existant");
         return thisAppList;
     }
 
@@ -124,7 +126,11 @@ public class SearchHandling extends MamaServlet {
         } else if (i == 2) {
             out.println(appList[j].getRating());
         } else if (i == 3) {
-            out.println(appList[j].getDescription());
+            String[] platforms = appList[j].getPlatforms();
+                    for(int p = 0; p < platforms.length - 1; p ++) {
+                        out.print(platforms[j] + ", ");
+                    }
+                    out.print(platforms[platforms.length - 1]);
         } else if (i == 4) {
             out.println("<a href=\"" + appList[j].getLink() + "\">Developer site</a>");
         }

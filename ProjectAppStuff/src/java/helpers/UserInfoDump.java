@@ -28,7 +28,10 @@ public class UserInfoDump {
     public UserInfoDump() {
         user = new Guest();
         if(staticUser == null) {
-            staticUser = user;
+            setStaticUser(user);
+        }
+        else {
+            user = staticUser;
         }
     }
 
@@ -68,6 +71,8 @@ public class UserInfoDump {
     }// </editor-fold>
 
     public boolean login() {
+        boolean isAdmin = true;
+        boolean isMod = true;
         /*so the proposed username and password are passed in as parameters
          then you need to search the database for User object with this
          username. Afterwards, check the password and see if it is the same as
@@ -79,8 +84,17 @@ public class UserInfoDump {
 
         /*also set the staticUser variable equal to the user variable so I can
          get the right information in all the other classes*/
+        
+        setStaticUser(new User(staticUsername, staticPass, isMod, isAdmin));
         return true;
+        /*I set everything up the way it is now just for testing purposes and
+         * to give an illusion of functionality (so I can know what is not right
+         * (again, for testing)) set the User constructor I just called back to
+         * protected if you can when you are done here*/
     }
 
+    private static void setStaticUser(User userB) {
+        staticUser = userB;
+    }
     
 }

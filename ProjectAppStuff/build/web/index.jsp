@@ -14,11 +14,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-
+        
+        <h1 style="text-align:right">you are a person right?</h1>
+        
         <!-- start code for the search bar -->
         <div id="tfheader">
             <form id="tfnewsearch" method="get" action="steppingStone.jsp">
-                <input type="text" class="tftextinput" name="searchKeyword" size="21" maxlength="120">
+                <input type="text" class="tftextinput" name="keyword" size="21" maxlength="120">
                 
                 <input type="submit" value="search" class="tfbutton">
                 

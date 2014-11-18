@@ -1,5 +1,7 @@
 package com.secure.userInfo;
 
+import com.others.App;
+
 public class User {
 
 
@@ -17,7 +19,7 @@ public class User {
                 this.moderator = false;
 	}
 
-	protected User(String name, String password, boolean admin, boolean moderator){
+	public User(String name, String password, boolean admin, boolean moderator){
 		this.name = name;
 		this.password = password;
 		this.admin = admin;
@@ -53,7 +55,12 @@ public class User {
         public boolean isModerator() {
             return moderator;
         }// </editor-fold>
-
+        
+        public void postComment(App app) {
+            /* TODO: implement the logic to add a comment to the Forum object
+             * of an App's page here so all user objects can use it*/
+        }
+        
 	/*methods for the Users
 	 * post (all User objects except for Guests can do this)
 	 * request app (all Users except Guest and possibly Administrator can do this)

@@ -44,7 +44,6 @@ public class LoginHandling extends MamaServlet {
             String userPath = request.getServletPath();
             User user = userInfo.getUser();
             makePageTop(out, user, userPath);
-            
 
             if (userPath.compareTo("/accountLogin") == 0) {
                 if (userInfo.login()) {
@@ -66,11 +65,6 @@ public class LoginHandling extends MamaServlet {
             }
 
             if (userPath.compareTo("/accountCreation") == 0) {
-                /*TAG: database stuff
-                 * you need to put in here a call to a method that is in AccountCreator
-                 * that will check to see if the account can be created and then
-                 * returns a boolean so I can determine what needs to happen next
-                 * in the HTML stuff*/
 
                 if (creation.canMake()) {
 
@@ -84,12 +78,13 @@ public class LoginHandling extends MamaServlet {
                         out.println("<h2>So you would like to be called " + user.getName()
                                 + "</h2>");
                     }
+                    
+                    out.println("need to put in something that will move user on to next page here");
                 } else {
                     out.println("<h3>That username is already taken. Please try a different username</h3>");
                     makeGetAccountCreationInfoPage(out);
                 }
 
-                out.println("need to put in something that will move user on to next page here");
             }
 
             out.println("</body>");
