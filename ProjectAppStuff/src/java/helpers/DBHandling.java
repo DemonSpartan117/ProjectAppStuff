@@ -44,9 +44,8 @@ public class DBHandling {
             stmt.executeUpdate(statement);
         } catch (SQLException e) {
             return false; // SIGNUP FAILED
-        } finally {
-            return true; // SIGNUP SUCCESSFUL
         }
+        return true; //SIGNUP SUCCESSFUL
     }
     
 }
