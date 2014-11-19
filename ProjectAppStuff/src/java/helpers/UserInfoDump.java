@@ -26,7 +26,7 @@ public class UserInfoDump {
     App app;
 
     public UserInfoDump() {
-        user = new Guest();
+        user = Guest.getInstance();
         if(staticUser == null) {
             setStaticUser(user);
         }
