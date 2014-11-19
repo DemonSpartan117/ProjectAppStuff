@@ -12,7 +12,7 @@
         <title>Hello Internetz</title>
     </head>
     <body>
-        <jsp:useBean id="mybean" scope="session" class="com.others.SearchesInfo" />
+        <jsp:useBean id="mybean" scope="session" class="helpers.SearchesInfo" />
         <jsp:setProperty name="mybean" property="name" /> <!-- this sets the property
          of the name instance variable in the specified bean (the bean is the Java class)
          to what "property="'s (uses a setter) --> <!-- see internet bookmark for more info -->

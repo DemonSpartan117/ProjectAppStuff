@@ -31,12 +31,15 @@ public class appPageMaker extends MamaServlet {
      * @throws IOException if an I/O error occurs
      */
     
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            makePageTop(out, user);
+            String userPath = request.getServletPath();
+            makePageTop(out, user, userPath);
+            
             
 //TODO: add in the print statements needed to make the rest of the page below
             

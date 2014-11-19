@@ -12,18 +12,23 @@
         <servlet-name>appPageMaker</servlet-name>
         <servlet-class>helpers.servlets.appPageMaker</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>teLogin</servlet-name>
         <url-pattern>/login</url-pattern>
         <url-pattern>/failedLogin</url-pattern>
         <url-pattern>/accountCreation</url-pattern>
+        <url-pattern>/getCreateAccountInfo</url-pattern>
+        <url-pattern>/accountLogin</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>SearchHandling</servlet-name>
         <url-pattern>/getResults</url-pattern>
         <url-pattern>/manageResults</url-pattern>
         <url-pattern>/sortResults</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>appPageMaker</servlet-name>
         <url-pattern>/viewAppPage</url-pattern>

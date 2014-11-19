@@ -14,7 +14,7 @@ import com.secure.userInfo.*;
  */
 public class DBHandling {
     
-    private static final String DBUrl = null;
+    private static final String DBUrl = null";
     private static final String DBID = null;
     private static final String DBPW = null;
     
@@ -38,7 +38,7 @@ public class DBHandling {
     public static boolean SignUp(User u) throws Exception {
         Connection con = DriverManager.getConnection(DBUrl, DBID, DBPW);
         Statement stmt = con.createStatement();
-        String statement = String.format("INSERT INTO USER " + "VALUES ('%s', '%s', null);", u.getName(), u.getPassword());
+        String statement = String.format("INSERT INTO USER " + "VALUES ('%s', '%s');", u.getName(), u.getPassword());
         try {
             stmt.executeUpdate(statement);
         } catch (SQLException e) {
@@ -53,7 +53,6 @@ public class DBHandling {
         String statement = String.format("DELETE FROM USER WHERE USERNAME = '%s';", u.getName());
         try {
             stmt.executeUpdate(statement);
-            u.setPassword("");
         } catch (SQLException e) {
             return false; // DELETE FAILED
         }

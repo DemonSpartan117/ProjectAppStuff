@@ -38,7 +38,7 @@ public class MamaServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MamaServlet</title>");            
+            out.println("<title>Servlet MamaServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MamaServlet at " + request.getContextPath() + "</h1>");
@@ -46,27 +46,62 @@ public class MamaServlet extends HttpServlet {
             out.println("</html>");
         }
     }
-    
-    protected void makePageTop(PrintWriter out, User user) {
+
+    protected void makePageTop(PrintWriter out, User user, String userPath) {
         out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<link rel=\"stylesheet\" href=\"SearchBoxStyle.css\">");
-            out.println("<title>account possibly created</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<div id=\"tfheader\">\n"
-                    + "            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n"
-                    + "                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n"
-                    + "                \n"
-                    + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
-                    + "                \n"
-                    + "            </form>\n"
-                    + "\n"
-                    + "            <div class=\"tfclear\"></div>\n"
-                    + "        </div>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<link rel=\"stylesheet\" href=\"SearchBoxStyle.css\">");
+        
+        setPageTitle(out, userPath);
+
+        out.println("</head>");
+        out.println("<body>");
+
+        out.println("<h5 style=\"text-align:right\">Currently signed is as " +
+                user.getName() + "</h5>");
+        placeSearchBar(out);
+
+        /*add in the other things that need to be added in so that the
+         webpages created will allow Users to preform their various tasks
+         / the things they can do such as moderate and whatnot*/
     }
-    
+
+    private void setPageTitle(PrintWriter out, String userPath) {
+        //out.println("<title>account possibly created</title>");
+        if (userPath.compareTo("/login") == 0) {
+            out.println("<title>Login Page</title>");
+        } else if (userPath.compareTo("/accountCreation") == 0) {
+            out.println("<title>Acount Possibly Created</title>");
+        } else if (userPath.compareTo("/getCreateAccountInfo") == 0) {
+            out.println("<title>Create Account</title>");
+        } else if (userPath.compareTo("/accountLogin") == 0) {
+            out.println("<title>Logging in</title>");
+        } else if (userPath.compareTo("/getResults") == 0
+                || userPath.compareTo("/manageResults") == 0
+                || userPath.compareTo("/sortResults") == 0) {
+            out.println("<title>App Search Results</title>");
+        } else if (userPath.compareTo("/viewAppPage") == 0
+                || userPath.compareTo("/commentOnForum") == 0
+                || userPath.compareTo("/rateApp") == 0) {
+            out.println("<title>App Page</title>");
+        }
+        //TODO: make a title for every possible userPath in this method
+    }
+
+    private void placeSearchBar(PrintWriter out) {
+        out.println("<div id=\"tfheader\">\n"
+                + "            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n"
+                + "                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n"
+                + "                \n"
+                + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
+                + "                \n"
+                + "            </form>\n"
+                + "\n"
+                + "            <div class=\"tfclear\"></div>\n"
+                + "        </div>");
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

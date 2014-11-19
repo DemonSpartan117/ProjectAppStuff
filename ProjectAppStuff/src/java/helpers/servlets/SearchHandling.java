@@ -8,10 +8,11 @@ package helpers.servlets;
 import helpers.UserInfoDump;
 import helpers.SearchesInfo;
 import com.others.*;
-import com.secure.userInfo.Administrator;
-import com.secure.userInfo.User;
+import com.secure.userInfo.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,15 +22,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ducketdw
  */
-@WebServlet(name = "SearchHandling", loadOnStartup = 1, urlPatterns = {"/getResults", "/manageResults", "/sortResults"})
+@WebServlet(name = "SearchHandling", urlPatterns = {"/getResults", "/manageResults", "/sortResults"})
 public class SearchHandling extends MamaServlet {
 
     App[] appList = makeAppList();
 //need to make it so that this is recieved from somewhere else later
     int size = appList.length;
     SearchesInfo SearchObject = new SearchesInfo();
-    UserInfoDump info;
-    User user = info.getUser();
+    UserInfoDump info = new UserInfoDump();
+    /* WHY DOES THIS NEED TO BE A THING?!?!?!?!?!?*/
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,36 +41,18 @@ public class SearchHandling extends MamaServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        User user = info.getUser();
         String userPath = request.getServletPath();
 
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<link rel=\"stylesheet\" href=\"SearchBoxStyle.css\">");
-            out.println("<title>A list of apps and whatnot</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<div id=\"tfheader\">\n"
-                    + "            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n"
-                    + "                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n"
-                    + "                \n"
-                    + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
-                    + "                \n"
-                    + "            </form>\n"
-                    + "\n"
-                    + "            <div class=\"tfclear\"></div>\n"
-                    + "        </div>");
 
-            /*add in the other things that need to be added in so that the
-             webpages created will allow Users to preform their various tasks
-             / the things they can do such as moderate and whatnot*/
-            /* insert the print statements that will paste the stuff for the SearchObject button here*/
+            makePageTop(out, user, userPath);
+
             if (userPath.compareTo("/getResults") == 0) {
                 //appList = SearchObject.search();
                 /*commented out until the search method is properly implemented*/
@@ -82,7 +65,7 @@ public class SearchHandling extends MamaServlet {
                 addAppsToPage(appList, out);
             }
 
-            out.println("<h1>" + SearchObject.getSearchKeyword() + "</h1>");
+            out.println("<h1>" + SearchObject.getStaticKeyword() + "</h1>");
 
             out.println("</body>");
             out.println("</html>");
@@ -99,8 +82,9 @@ public class SearchHandling extends MamaServlet {
     private App[] makeAppList() {
         App[] thisAppList = new App[2];
         /*public App(String name, String developer, String description, String[] platforms, String link) {*/
-        thisAppList[0] = new App("Amazing App", "Damon Duckett", "this is awesome", new String[1], "www.awesome.com");
-        thisAppList[1] = new App("Trble Ap", "Christopher Scavongelli", "who cares", new String[1], "non existant");
+        String[] platforms = {"all of them"};
+        thisAppList[0] = new App("Amazing App", "Damon Duckett", "this is awesome", platforms, "www.awesome.com");
+        thisAppList[1] = new App("Trble Ap", "Christopher Scavongelli", "who cares", platforms, "non existant");
         return thisAppList;
     }
 
@@ -142,7 +126,11 @@ public class SearchHandling extends MamaServlet {
         } else if (i == 2) {
             out.println(appList[j].getRating());
         } else if (i == 3) {
-            out.println(appList[j].getDescription());
+            String[] platforms = appList[j].getPlatforms();
+            for (int p = 0; p < platforms.length - 1; p++) {
+                out.print(platforms[j] + ", ");
+            }
+            out.print(platforms[platforms.length - 1]);
         } else if (i == 4) {
             out.println("<a href=\"" + appList[j].getLink() + "\">Developer site</a>");
         }
