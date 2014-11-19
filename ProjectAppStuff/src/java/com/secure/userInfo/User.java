@@ -4,22 +4,26 @@ import com.others.App;
 
 public class User {
 
+	// In order to make moderator and admin, please use that method.
+	public static User getInstance(String name, String password) {
+		return new User(name, password, false, false);
+	}
 
 	private String name;
 	private String password;
 	private final boolean admin;
-        private boolean moderator;
+    private boolean moderator;
 	
 
 	//constructor for guests only.
-	public User() {
+	protected User() {
 		this.name = "Guest";
 		this.password = "";
 		this.admin = false;
                 this.moderator = false;
 	}
 
-	public User(String name, String password, boolean admin, boolean moderator){
+	protected User(String name, String password, boolean admin, boolean moderator){
 		this.name = name;
 		this.password = password;
 		this.admin = admin;
