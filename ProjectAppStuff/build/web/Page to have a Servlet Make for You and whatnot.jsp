@@ -26,10 +26,11 @@
         </div>
         <!-- end code for the search bar -->
         
-        <form name="Login to existing account" action="LoginSteppingStone.jsp" method="POST" enctype="multipart/form-data">
-            Username: <input type="text" name="username" /> <br/>
-            Password: <input type="password" name="pass" />
-            <input type="submit" value="Login" name="onward with the login" />
+        <form name="Login to existing account" action="login" method="POST">
+            <input type="submit" value="login" name="name goes here" />
+        </form>
+        <form name="Login to existing account" action="getCreateAccountInfo" method="POST">
+            <input type="submit" value="create account" name="some name goes here" />
         </form>
         
     </body>

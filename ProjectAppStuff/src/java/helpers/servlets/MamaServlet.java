@@ -5,7 +5,7 @@
  */
 package helpers.servlets;
 
-import com.secure.userInfo.User;
+import com.secure.userInfo.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -52,14 +52,14 @@ public class MamaServlet extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("<link rel=\"stylesheet\" href=\"SearchBoxStyle.css\">");
-        
+
         setPageTitle(out, userPath);
 
         out.println("</head>");
         out.println("<body>");
 
-        out.println("<h5 style=\"text-align:right\">Currently signed is as " +
-                user.getName() + "</h5>");
+        placeUserInfo(out, user);
+
         placeSearchBar(out);
 
         /*add in the other things that need to be added in so that the
@@ -91,8 +91,8 @@ public class MamaServlet extends HttpServlet {
 
     private void placeSearchBar(PrintWriter out) {
         out.println("<div id=\"tfheader\">\n"
-                + "            <form id=\"tfnewsearch\" method=\"get\" action=\"steppingStone.jsp\">\n"
-                + "                <input type=\"text\" class=\"tftextinput\" name=\"searchKeyword\" size=\"21\" maxlength=\"120\">\n"
+                + "            <form id=\"tfnewsearch\" method=\"post\" action=\"getResults\">\n"
+                + "                <input type=\"text\" class=\"tftextinput\" name=\"keyword\" size=\"21\" maxlength=\"120\">\n"
                 + "                \n"
                 + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
                 + "                \n"
@@ -140,5 +140,20 @@ public class MamaServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void placeUserInfo(PrintWriter out, User user) {
+        if (!(user instanceof Guest)) {
+            out.println("<h5 style=\"text-align:right\">Currently signed is as "
+                    + user.getName() + "</h5>");
+        } else {
+            out.println("<form style=\"text-align:right\" name=\"Login to existing account\" action=\"login\" method=\"POST\">\n"
+                    + "            <input type=\"submit\" value=\"login\" name=\"name goes here\" />\n"
+                    + "        </form>\n"
+                    + "        <form style=\"text-align:right\" name=\"Login to existing account\" action=\"getCreateAccountInfo\" method=\"POST\">\n"
+                    + "            <input type=\"submit\" value=\"create account\" name=\"some name goes here\" />\n"
+                    + "        </form>");
+        }
+
+    }
 
 }

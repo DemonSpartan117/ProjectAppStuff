@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginHandling extends MamaServlet {
 
-    AccountCreator creation = new AccountCreator();
-    UserInfoDump userInfo = new UserInfoDump();
+    AccountCreator creation = AccountCreator.getInstance();
+    UserInfoDump userInfo = UserInfoDump.getInstance();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +46,10 @@ public class LoginHandling extends MamaServlet {
             makePageTop(out, user, userPath);
 
             if (userPath.compareTo("/accountLogin") == 0) {
+
+                userInfo.setPass(request.getParameter("pass"));
+                userInfo.setUsername(request.getParameter("username"));
+
                 if (userInfo.login()) {
                     out.println("<h1>Hello there " + userInfo.getUsername() + "</h1>");
                 } else {
@@ -66,6 +70,11 @@ public class LoginHandling extends MamaServlet {
 
             if (userPath.compareTo("/accountCreation") == 0) {
 
+                creation.setPass(request.getParameter("pass"));
+                creation.setPassConfirm(request.getParameter("passConfirm"));
+                creation.setPassPhrase(request.getParameter("passPhrase"));
+                creation.setUsername(request.getParameter("username"));
+
                 if (creation.canMake()) {
 
                     if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
@@ -75,11 +84,12 @@ public class LoginHandling extends MamaServlet {
                         out.println("<h2>So you want to be an administrator named "
                                 + creation.getUsername() + "</h2>");
                     } else {
-                        out.println("<h2>So you would like to be called " + user.getName()
-                                + "</h2>");
+                        out.println("<h2>So you would like to be called "
+                                + creation.getUsername() + "</h2>");
                     }
-                    
-                    out.println("need to put in something that will move user on to next page here");
+
+                    out.println("<h3>You can login below</h3>");
+                    makeLoginPage(out);
                 } else {
                     out.println("<h3>That username is already taken. Please try a different username</h3>");
                     makeGetAccountCreationInfoPage(out);
@@ -93,17 +103,20 @@ public class LoginHandling extends MamaServlet {
     }
 
     private void makeLoginPage(PrintWriter out) {
-        out.println("<form name=\"Login to existing account\" action=\"LoginSteppingStone.jsp\">\n"
+        out.println("<form name=\"Login to existing account\" method=\"post\"action=\"accountLogin\">\n"
                 + "            Username: <input type=\"text\" name=\"username\" /> <br/>\n"
                 + "            Password: <input type=\"password\" name=\"pass\" />\n"
                 + "            <input type=\"submit\" value=\"Login\" name=\"onward with the login\" />\n"
+                + "        </form>"
+                + "<form name=\"Login to existing account\" action=\"getCreateAccountInfo\" method=\"POST\">\n"
+                + "            <input type=\"submit\" value=\"or click here create an account\" name=\"name goes here\" />\n"
                 + "        </form>");
     }
 
     private void makeGetAccountCreationInfoPage(PrintWriter out) {
         out.println("<h1>Account Creation</h1>\n"
                 + "        <h3>Please fill out the following information to create an account</h3>\n"
-                + "        <form action = \"CreationSteppingStone.jsp\" method = \"get\"> \n"
+                + "        <form action = \"accountCreation\" method = \"post\"> \n"
                 + "            Username: <input name = \"username\" /><br/>\n"
                 + "            Password: <input type = \"password\" name = \"pass\"/><br/>\n"
                 + "            Confirm Password: <input type =\"password\" name =\"passConfirm\"/><br/>\n"
@@ -111,9 +124,12 @@ public class LoginHandling extends MamaServlet {
                 + "            an administrator or not and then have them confirm it with their\n"
                 + "            super secret password or something -->\n"
                 + "            code: <input name =\"passPhrase\"/>\n"
-                + "            just leave this blank if you were not given a special code\n"
+                + "            just leave this blank if you were not given a special code<br/>\n"
                 + "            <input type= \"submit\" value = \"OK\"/>\n"
-                + "        </form>\n");
+                + "        </form><br/><br/>\n"
+                + "<form name=\"Login to existing account\" action=\"login\" method=\"POST\">\n"
+                + "            <input type=\"submit\" value=\"or click here to login to an existing account\" name=\"name goes here\" />\n"
+                + "        </form>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

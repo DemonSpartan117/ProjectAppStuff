@@ -14,16 +14,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        
+
         <h1 style="text-align:right">you are a person right?</h1>
-        
+
         <!-- start code for the search bar -->
         <div id="tfheader">
-            <form id="tfnewsearch" method="get" action="steppingStone.jsp">
+            <form id="tfnewsearch" method="post" action="getResults">
                 <input type="text" class="tftextinput" name="keyword" size="21" maxlength="120">
-                
+
                 <input type="submit" value="search" class="tfbutton">
-                
+
             </form>
 
             <div class="tfclear"></div>
@@ -42,6 +42,9 @@
         </form>
         <form name="go to login page" action="login">
             <input type="submit" value="Or click here to login" name="onwards to the login page" />
+        </form>
+        <form name="see help page" action="help.html" method="POST">
+            <input type="submit" value="See the help page" name="on to the help page" />
         </form>
         <div>content goes here apparently</div>
     </body>

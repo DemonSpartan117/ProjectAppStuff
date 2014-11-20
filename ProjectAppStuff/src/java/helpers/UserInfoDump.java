@@ -14,38 +14,39 @@ import com.secure.userInfo.User;
  * @author ducketdw
  */
 public class UserInfoDump {
-
-    private User user;
-    private static User staticUser;
     
+    private User user;
     private String username;
     private String pass;
-    private static String staticUsername;
-    private static String staticPass;
-
     App app;
+    private static UserInfoDump me;
 
-    public UserInfoDump() {
-        user = Guest.getInstance();
-        if(staticUser == null) {
-            setStaticUser(user);
+    public static UserInfoDump getInstance() {
+        if(me == null) {
+            me = new UserInfoDump();
         }
-        else {
-            user = staticUser;
-        }
+        return me;
     }
     
+    private UserInfoDump() {
+        user = Guest.getInstance();
+        username = "Guest";
+        pass = "";
+        String temp = "temp";
+        String[] var = {"part 1","part 2"};
+        app = new App(temp, temp, temp, var, temp);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="Getters and setters. Click on the + sign on the left to edit the code.">
     public User getUser() {
-        return staticUser;
+        return user;
     }
-    
+
     /**
      * @return the username
      */
     public String getUsername() {
-        return staticUsername;
+        return username;
     }
 
     /**
@@ -53,14 +54,13 @@ public class UserInfoDump {
      */
     public void setUsername(String username) {
         this.username = username;
-        staticUsername = username;
     }
 
     /**
      * @return the pass
      */
     public String getPass() {
-        return staticPass;
+        return pass;
     }
 
     /**
@@ -68,7 +68,6 @@ public class UserInfoDump {
      */
     public void setPass(String pass) {
         this.pass = pass;
-        staticPass = pass;
     }// </editor-fold>
 
     public boolean login() {
@@ -85,8 +84,7 @@ public class UserInfoDump {
 
         /*also set the staticUser variable equal to the user variable so I can
          get the right information in all the other classes*/
-        
-        setStaticUser(new User(staticUsername, staticPass, isMod, isAdmin));
+        user = new User(username, pass, isMod, isAdmin);
         return true;
         /*I set everything up the way it is now just for testing purposes and
          * to give an illusion of functionality (so I can know what is not right
@@ -94,8 +92,5 @@ public class UserInfoDump {
          * protected if you can when you are done here*/
     }
 
-    private static void setStaticUser(User userB) {
-        staticUser = userB;
-    }
-    
+
 }

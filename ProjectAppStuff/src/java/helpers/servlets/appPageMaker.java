@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Damon Wolfgang Duckett
  */
 public class appPageMaker extends MamaServlet {
-    UserInfoDump userInfo = new UserInfoDump();
+    UserInfoDump userInfo = UserInfoDump.getInstance();
     User user = userInfo.getUser();
     
     /**
