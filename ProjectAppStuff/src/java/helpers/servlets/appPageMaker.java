@@ -5,7 +5,7 @@
  */
 package helpers.servlets;
 
-import com.secure.userInfo.User;
+import com.secure.userInfo.*;
 import helpers.UserInfoDump;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ducketdw
+ * @author Damon Wolfgang Duckett
  */
 public class appPageMaker extends MamaServlet {
-    UserInfoDump userInfo = new UserInfoDump();
+    UserInfoDump userInfo = UserInfoDump.getInstance();
     User user = userInfo.getUser();
     
     /**
@@ -41,7 +41,7 @@ public class appPageMaker extends MamaServlet {
             makePageTop(out, user, userPath);
             
             
-//TODO: add in the print statements needed to make the rest of the page below
+//TODO: add in the print statements needed to make the rest of the App page below
             
             
             out.println("<h1>Servlet appPageMaker at " + request.getContextPath() + "</h1>");

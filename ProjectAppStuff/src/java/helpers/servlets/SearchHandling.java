@@ -28,8 +28,8 @@ public class SearchHandling extends MamaServlet {
     App[] appList = makeAppList();
 //need to make it so that this is recieved from somewhere else later
     int size = appList.length;
-    SearchesInfo SearchObject = new SearchesInfo();
-    UserInfoDump info = new UserInfoDump();
+    SearchesInfo SearchObject = SearchesInfo.getInstance();
+    UserInfoDump info = UserInfoDump.getInstance();
     /* WHY DOES THIS NEED TO BE A THING?!?!?!?!?!?*/
 
     /**
@@ -54,10 +54,16 @@ public class SearchHandling extends MamaServlet {
             makePageTop(out, user, userPath);
 
             if (userPath.compareTo("/getResults") == 0) {
+                SearchObject.setKeyword(request.getParameter("keyword"));
                 //appList = SearchObject.search();
                 /*commented out until the search method is properly implemented*/
                 addAppsToPage(appList, out);
             } else if (userPath.compareTo("/manageResults") == 0) {
+                int num = Integer.parseInt(request.getParameter("searchConstant"));
+                SearchObject.setSortConstant(num);
+                /*TODO: add in something to the results page that will allow me
+                 to recieve whatever the proper number to set the sort constant
+                 to. (best if it can be done with a drop down menu)*/
                 appList = SearchObject.filterResults();
                 addAppsToPage(appList, out);
             } else if (userPath.compareTo("/sortResults") == 0) {
@@ -65,7 +71,7 @@ public class SearchHandling extends MamaServlet {
                 addAppsToPage(appList, out);
             }
 
-            out.println("<h1>" + SearchObject.getStaticKeyword() + "</h1>");
+            out.println("<h1>" + SearchObject.getKeyword() + "</h1>");
 
             out.println("</body>");
             out.println("</html>");

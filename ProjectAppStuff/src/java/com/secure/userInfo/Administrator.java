@@ -8,11 +8,11 @@ public class Administrator extends Moderator {
 	}	
 
 	protected Administrator(String name, String password) {
-		super(name, password, true, false);
+		super(name, password, true);
 	}
 
 	public Administrator() {
-		super("root", "root", true, false); // This is 'root' user
+		super("root", "root", true); // This is 'root' user
                 //(take out the quotation marks once the 'root' user is actually defined
 	}
         

@@ -9,7 +9,6 @@ public class Moderator extends User{
 	
 	protected Moderator(String name, String password) {
 		super(name, password, false, true);
-		// TODO Add in things important for Moderator objects
 	}
         
         /**
@@ -24,6 +23,7 @@ public class Moderator extends User{
             super(name, password, admin, true);
         }
 	
+        // TODO Add in things important for Moderator objects
 	/* methods to make for the Moderator class:
 	 * remove content (for the forums)
 	 * */
