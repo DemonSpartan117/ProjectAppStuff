@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/web/index.jsp</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/SearchesInfo.java</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/MamaServlet.java</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/LoginHandling.java</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/SearchHandling.java</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/UserInfoDump.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
