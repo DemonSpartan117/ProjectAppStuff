@@ -14,9 +14,9 @@ import com.secure.userInfo.*;
  */
 public class DBHandling {
     
-    private static final String DBUrl = null;
-    private static final String DBID = null;
-    private static final String DBPW = null;
+    private static final String DBUrl = "jdbc:mysql://localhost:3306/appstore";
+    private static final String DBID = "root";
+    private static final String DBPW = "fe8029AFC10";
     
     public static boolean Login(User u) throws Exception {
         Connection con = DriverManager.getConnection(DBUrl, DBID, DBPW);
