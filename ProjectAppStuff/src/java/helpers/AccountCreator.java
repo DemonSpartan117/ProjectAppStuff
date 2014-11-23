@@ -5,6 +5,8 @@
  */
 package helpers;
 
+import com.secure.userInfo.User;
+
 /**
  *
  * @author Damon Wolfgang Duckett
@@ -92,7 +94,7 @@ public class AccountCreator {
     }
 
 // </editor-fold>
-    private boolean createAccount() {
+    private boolean createAccount() throws Exception {
         /*TODO: implement the logic to create a new User account
          and put it in the database and all of that fun stuff
          but make sure that the username is not already taken (although that is
@@ -117,21 +119,21 @@ public class AccountCreator {
             if (passPhrase.compareTo(MODERATOR_PHRASE) == 0) {
                 /*TODO: add logic to make the user you are adding to the database
                  of the Moderator subclass*/
-                return true;
+                return DBHandling.SignUp(new User(this.Username, this.pass, true, false));
             } else if (passPhrase.compareTo(ADMINISTRATOR_STRING) == 0) {
                 /*TODO: add logic to make the user you are adding to the database
                  of the Administrator subclass*/
-                return true;
+                return DBHandling.SignUp(new User(this.Username, this.pass, false, true));
             } else {
                 return false;
             }
         }
         /*if this part of the code is reached, the User object you will be
          creating will of type User.*/
-        return true;
+        return DBHandling.SignUp(new User(this.Username, this.pass, false, false));
     }
 
-    public boolean canMake() {
+    public boolean canMake() throws Exception {
         /*TODO: put in logic that will allow determine if the current Username is
          taken yet NOTE: use the staticUsername variable only in your logic!!!!!
          the non-static variable will not be set to the correct String you will

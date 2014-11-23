@@ -2,17 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/web/index.jsp</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/SearchesInfo.java</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/MamaServlet.java</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/LoginHandling.java</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/servlets/SearchHandling.java</file>
-            <file>file:/C:/Users/ducketdw/Documents/NetBeansProjects/ProjectAppStuff/src/java/helpers/UserInfoDump.java</file>
+            <file>file:/C:/Users/Kwangju/Documents/GitHub/ProjectAppStuffMine/ProjectAppStuff/ProjectAppStuff/src/java/helpers/servlets/LoginHandling.java</file>
+            <file>file:/C:/Users/Kwangju/Documents/GitHub/ProjectAppStuffMine/ProjectAppStuff/ProjectAppStuff/src/java/helpers/AccountCreator.java</file>
+            <file>file:/C:/Users/Kwangju/Documents/GitHub/ProjectAppStuffMine/ProjectAppStuff/ProjectAppStuff/src/java/helpers/UserInfoDump.java</file>
+            <file>file:/C:/Users/Kwangju/Documents/GitHub/ProjectAppStuffMine/ProjectAppStuff/ProjectAppStuff/src/java/helpers/DBHandling.java</file>
+            <file>file:/C:/Users/Kwangju/Documents/GitHub/ProjectAppStuffMine/ProjectAppStuff/ProjectAppStuff/web/index.jsp</file>
         </group>
->>>>>>> upstream/master
     </open-files>
 </project-private>
