@@ -61,13 +61,13 @@ public class SearchHandling extends MamaServlet {
             } else if (userPath.compareTo("/manageResults") == 0) {
                 int num = Integer.parseInt(request.getParameter("searchConstant"));
                 SearchObject.setSortConstant(num);
+                num = Integer.parseInt(request.getParameter("searchType"));
+                SearchObject.setSortType(num);
                 /*TODO: add in something to the results page that will allow me
                  to recieve whatever the proper number to set the sort constant
                  to. (best if it can be done with a drop down menu)*/
-                appList = SearchObject.filterResults();
-                addAppsToPage(appList, out);
-            } else if (userPath.compareTo("/sortResults") == 0) {
-                appList = SearchObject.sortResults();
+                
+                appList = SearchObject.filterOrSort();
                 addAppsToPage(appList, out);
             }
 

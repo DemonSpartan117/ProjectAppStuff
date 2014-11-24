@@ -23,16 +23,19 @@ public class SearchesInfo {
     public final int NAME = 1;
     public final int DEVELOPER = 2;
     public final int RATING = 3;
+    public final int PLATFORM = 4;
+    public final int SORT = 1;
+    public final int FILTER = 2;
+    
     /*they is is what will be compared to the above constants in order to
      know exactly how we need to sort or filter*/
     private int sortConstant;
+    private int sortType;
 
-    public static String staticKeyword = "Wolfgang";
     private String keyword;
     private App[] searchResults;
     private String name;
     private int requestedApp;
-    private static int staticRequestedApp;
     
     private static SearchesInfo me;
 
@@ -47,6 +50,7 @@ public class SearchesInfo {
         name = "me";
         keyword = "Wolfgang";
         sortConstant = 0;
+        sortType = 0;
         //searchResults = staticSearchResults;
  /* uncomment above line if we do need to make a static copy of searchResults*/
     }
@@ -103,6 +107,14 @@ public class SearchesInfo {
         return requestedApp;
         //method actually only needed for testing purposes (possibly might be required)
     }
+    
+    public void setSortType(int x) {
+        sortType = x;
+    }
+    
+    public int getSortType() {
+        return sortType;
+    }
     // </editor-fold>
 
     /*NOTICE: only use the static instance variables in your logic or else the
@@ -115,13 +127,23 @@ public class SearchesInfo {
         return results;
     }
 
-    public App[] filterResults() {
+    public App[] filterOrSort() {
+        if(sortType == SORT) {
+            return sortResults();
+        }
+        else {
+            return filterResults();
+        }
+    }
+    
+    private App[] filterResults() {
         //TODO: add logic to change searchResults so that things are filtered
         //according to the sortConstant variable
+        //use the keyword variable to help the filtering
         return searchResults;
     }
 
-    public App[] sortResults() {
+    private App[] sortResults() {
         //TODO: add logic to change searchResults so that things are sorted
         //according to the sortConstant variable
         return searchResults;
@@ -139,7 +161,7 @@ public class SearchesInfo {
      * @return the app in the search results that the user wants to see
      */
     public App getDesiredApp() {
-        return searchResults[staticRequestedApp];
+        return searchResults[requestedApp];
     }
 
     /*TODO: need to make a method that will sort all of the app objects in a specified way*/

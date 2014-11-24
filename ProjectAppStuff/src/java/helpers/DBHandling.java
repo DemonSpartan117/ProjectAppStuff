@@ -16,7 +16,7 @@ public class DBHandling {
     
     private static final String DBUrl = "jdbc:mysql://localhost:3306/appstore";
     private static final String DBID = "root";
-    private static final String DBPW = "fe8029AFC10";
+    private static final String DBPW = "Levi*7537";
     
     public static boolean Login(User u) throws Exception {
         Connection con = DriverManager.getConnection(DBUrl, DBID, DBPW);

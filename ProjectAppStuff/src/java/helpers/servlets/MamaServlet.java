@@ -62,6 +62,10 @@ public class MamaServlet extends HttpServlet {
 
         placeUserInfo(out, user);
 
+        if (userPath.compareTo("/manageResults") == 0 ||
+                userPath.compareTo("/getResults") == 0) {
+            printFilterBar(out);
+        }
         placeSearchBar(out);
 
         /*add in the other things that need to be added in so that the
@@ -164,6 +168,29 @@ public class MamaServlet extends HttpServlet {
                     + "        </form>");
         }
 
+    }
+
+    private void printFilterBar(PrintWriter out) {
+        out.println("<form action=\"manageResults\" style=\"text-align:right\">\n"
+                + "            <fieldset>\n"
+                + "                <legend></legend>\n"
+                + "                <p>\n"
+                + "                    <select id = \"searchType\">\n"
+                + "                        <option value = \"1\">sort results</option>\n"
+                + "                        <option value = \"2\">filter results</option>\n"
+                + "                    </select>\n"
+                + "                    <label>by</label>\n"
+                + "                    <select id = \"searchConstant\">\n"
+                + "                        <option value = \"1\">name</option>\n"
+                + "                        <option value = \"2\">developer</option>\n"
+                + "                        <option value = \"3\">rating</option>\n"
+                + "                        <option value = \"4\">platform</option>\n"
+                + "                    </select>\n"
+                + "                </p>\n"
+                + "            </fieldset>\n"
+                + "            <input type=\"text\" name=\"keyword\" />\n"
+                + "            <input type=\"submit\" value=\"go\" name=\"to the testing stuff\" />\n"
+                + "        </form>");
     }
 
 }
