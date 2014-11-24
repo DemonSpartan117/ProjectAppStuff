@@ -70,7 +70,7 @@ public class UserInfoDump {
         this.pass = pass;
     }// </editor-fold>
 
-    public boolean login() {
+    public boolean login() throws Exception {
         boolean isAdmin = true;
         boolean isMod = true;
         /*so the proposed username and password are passed in as parameters
@@ -85,7 +85,7 @@ public class UserInfoDump {
         /*also set the staticUser variable equal to the user variable so I can
          get the right information in all the other classes*/
         user = new User(username, pass, isMod, isAdmin);
-        return true;
+        return DBHandling.Login(user);
         /*I set everything up the way it is now just for testing purposes and
          * to give an illusion of functionality (so I can know what is not right
          * (again, for testing)) set the User constructor I just called back to

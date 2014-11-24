@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -99,6 +101,8 @@ public class LoginHandling extends MamaServlet {
 
             out.println("</body>");
             out.println("</html>");
+        } catch (Exception ex) {
+            Logger.getLogger(LoginHandling.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
