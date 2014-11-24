@@ -7,7 +7,7 @@ public class Administrator extends Moderator {
 		return new Administrator(name, password);
 	}	
 
-	protected Administrator(String name, String password) {
+	public Administrator(String name, String password) {
 		super(name, password, true);
 	}
 

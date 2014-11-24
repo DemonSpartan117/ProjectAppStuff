@@ -12,6 +12,18 @@
         <title>The First Step</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <STYLE TYPE="text/css">
+
+        BODY
+           {
+           color:black;
+           background-color:white;
+           font-family:"Noto Sans";
+           }
+        A:link{color:white}
+        A:visited{color:yellow}
+
+        </STYLE>
     </head>
     <body>
 
