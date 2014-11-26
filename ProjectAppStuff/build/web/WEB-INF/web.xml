@@ -20,6 +20,7 @@
         <url-pattern>/accountCreation</url-pattern>
         <url-pattern>/getCreateAccountInfo</url-pattern>
         <url-pattern>/accountLogin</url-pattern>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>

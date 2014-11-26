@@ -62,11 +62,11 @@ public class MamaServlet extends HttpServlet {
 
         placeUserInfo(out, user);
 
-        if (userPath.compareTo("/manageResults") == 0 ||
-                userPath.compareTo("/getResults") == 0) {
+        if (userPath.compareTo("/manageResults") == 0
+                || userPath.compareTo("/getResults") == 0) {
             printFilterBar(out);
         }
-        placeSearchBar(out);
+        placeSearchBar(out, userPath);
 
         /*add in the other things that need to be added in so that the
          webpages created will allow Users to preform their various tasks
@@ -95,17 +95,24 @@ public class MamaServlet extends HttpServlet {
         //TODO: make a title for every possible userPath in this method
     }
 
-    private void placeSearchBar(PrintWriter out) {
-        out.println("<div id=\"tfheader\">\n"
+    private void placeSearchBar(PrintWriter out, String userPath) {
+        out.print("<div id=\"tfheader\">\n"
                 + "            <form id=\"tfnewsearch\" method=\"post\" action=\"getResults\">\n"
                 + "                <input type=\"text\" class=\"tftextinput\" name=\"keyword\" size=\"21\" maxlength=\"120\">\n"
                 + "                \n"
-                + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
-                + "                \n"
-                + "            </form>\n"
-                + "\n"
-                + "            <div class=\"tfclear\"></div>\n"
-                + "        </div>");
+                + "                <input type=\"submit\" value=");
+        if (userPath.compareTo("/manageResults") == 0
+                || userPath.compareTo("/getResults") == 0) {
+            out.print("\"new search\"");
+        } else {
+            out.print("\"search\"");
+        }
+        out.println("class=\"tfbutton\">\n"
+                    + "                \n"
+                    + "            </form>\n"
+                    + "\n"
+                    + "            <div class=\"tfclear\"></div>\n"
+                    + "        </div>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -158,7 +165,10 @@ public class MamaServlet extends HttpServlet {
     private void placeUserInfo(PrintWriter out, User user) {
         if (!(user instanceof Guest)) {
             out.println("<h5 style=\"text-align:right\">Currently signed is as "
-                    + user.getName() + "</h5>");
+                    + user.getName() + "</h5><form action=\"logout\" style=\"text-align:right\">\n" +
+"            <input type=\"submit\" value=\"logout\" name=\"logout stuffs\" />\n" +
+"        </form>");
+            //TODO: insert syntax for a logout button right here
         } else {
             out.println("<form style=\"text-align:right\" name=\"Login to existing account\" action=\"login\" method=\"POST\">\n"
                     + "            <input type=\"submit\" value=\"login\" name=\"name goes here\" />\n"

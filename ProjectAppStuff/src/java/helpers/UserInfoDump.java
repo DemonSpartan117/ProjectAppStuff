@@ -84,12 +84,17 @@ public class UserInfoDump {
 
         /*also set the staticUser variable equal to the user variable so I can
          get the right information in all the other classes*/
+        
         user = new User(username, pass, isMod, isAdmin);
         return DBHandling.Login(user);
         /*I set everything up the way it is now just for testing purposes and
          * to give an illusion of functionality (so I can know what is not right
          * (again, for testing)) set the User constructor I just called back to
          * protected if you can when you are done here*/
+    }
+    
+    public void logout() {
+        user = Guest.getInstance();
     }
 
 
