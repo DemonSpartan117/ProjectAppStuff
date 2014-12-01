@@ -29,11 +29,11 @@ public class SearchesInfo {
     
     /*they is is what will be compared to the above constants in order to
      know exactly how we need to sort or filter*/
-    private int sortConstant;
-    private int sortType;
+    private int sortConstant; //is with the 1 - 4
+    private int sortType; // is with the 1 - 2
 
     private String keyword;
-    private App[] searchResults;
+    private App[] searchResults; // this is the one you can manipulate
     private String name;
     private int requestedApp;
     
@@ -117,9 +117,7 @@ public class SearchesInfo {
     }
     // </editor-fold>
 
-    /*NOTICE: only use the static instance variables in your logic or else the
-     * application will not work properly.
-     * Thank You*/
+    /* Database stuff */
     public App[] search() {
         App[] results = new App[1];
         //TODO: create actual logic to make this method get stuff from database
@@ -136,6 +134,7 @@ public class SearchesInfo {
         }
     }
     
+    /* Database stuff */
     private App[] filterResults() {
         //TODO: add logic to change searchResults so that things are filtered
         //according to the sortConstant variable
@@ -143,6 +142,7 @@ public class SearchesInfo {
         return searchResults;
     }
 
+    /* Database stuff */
     private App[] sortResults() {
         //TODO: add logic to change searchResults so that things are sorted
         //according to the sortConstant variable
