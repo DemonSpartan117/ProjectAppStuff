@@ -16,8 +16,8 @@
 
         <!-- start code for the search bar -->
         <div id="tfheader">
-            <form id="tfnewsearch" method="get" action="steppingStone.jsp">
-                <input type="text" class="tftextinput" name="searchKeyword" size="21" maxlength="120">
+            <form id="tfnewsearch" method="post" action="getResults">
+                <input type="text" class="tftextinput" name="keyword" size="21" maxlength="120">
 
                 <input type="submit" value="search" class="tfbutton">
 
@@ -32,12 +32,12 @@
             <fieldset>
                 <legend></legend>
                 <p>
-                    <select id = "searchType">
+                    <select id = "searchType" name="searchType">
                         <option value = "1">sort results</option>
                         <option value = "2">filter results</option>
                     </select>
                     <label>by</label>
-                    <select id = "searchConstant">
+                    <select id = "searchConstant" name="searchConstant">
                         <option value = "1">name</option>
                         <option value = "2">developer</option>
                         <option value = "3">rating</option>
@@ -48,6 +48,7 @@
             <input type="text" name="keyword" />
             <input type="submit" value="go" name="to the testing stuff" />
         </form>
+        
 
     </body>
 </html>

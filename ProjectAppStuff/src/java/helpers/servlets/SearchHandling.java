@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -55,10 +56,11 @@ public class SearchHandling extends MamaServlet {
 
             if (userPath.compareTo("/getResults") == 0) {
                 SearchObject.setKeyword(request.getParameter("keyword"));
-                //appList = SearchObject.search();
+                appList = SearchObject.search();
                 /*commented out until the search method is properly implemented*/
                 addAppsToPage(appList, out);
             } else if (userPath.compareTo("/manageResults") == 0) {
+                
                 int num = Integer.parseInt(request.getParameter("searchConstant"));
                 SearchObject.setSortConstant(num);
                 num = Integer.parseInt(request.getParameter("searchType"));

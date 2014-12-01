@@ -119,7 +119,7 @@ public class SearchesInfo {
 
     /* Database stuff */
     public App[] search() {
-        App[] results = new App[1];
+        App[] results = makeAppList();//get rid of this statement when implementing correct logic
         //TODO: create actual logic to make this method get stuff from database
         searchResults = results;
         return results;
@@ -164,5 +164,18 @@ public class SearchesInfo {
         return searchResults[requestedApp];
     }
 
+    /**
+     * this method should be deleted as soon as possible. It is here as dummy
+     * code until the rest of the logic is properly implemented
+     * @return an array of some made up apps
+     */
+    private App[] makeAppList() {
+        App[] thisAppList = new App[2];
+        /*public App(String name, String developer, String description, String[] platforms, String link) {*/
+        String[] platforms = {"all of them"};
+        thisAppList[0] = new App("Amazing App", "Damon Duckett", "this is awesome", platforms, "www.awesome.com");
+        thisAppList[1] = new App("Trble Ap", "Christopher Scavongelli", "who cares", platforms, "non existant");
+        return thisAppList;
+    }
     /*TODO: need to make a method that will sort all of the app objects in a specified way*/
 }
