@@ -6,6 +6,8 @@
 package helpers;
 
 import com.secure.userInfo.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -95,13 +97,13 @@ public class AccountCreator {
 
 // </editor-fold>
     private boolean createAccount() throws Exception {
+        boolean isCreated;
         /*TODO: implement the logic to create a new User account
          and put it in the database and all of that fun stuff
          but make sure that the username is not already taken (although that is
          probably already part of the SQL stuff and you probably already knew
          that anyway)*/
         /* TAG: database stuff */
-
         /*ADDITIONAL NOTES:
          *the passPhrases are for creating Moderators and
          Administrators. If the person typed in "sugar, spice, and everything nice"
@@ -119,18 +121,18 @@ public class AccountCreator {
             if (passPhrase.compareTo(MODERATOR_PHRASE) == 0) {
                 /*TODO: add logic to make the user you are adding to the database
                  of the Moderator subclass*/
-                return DBHandling.SignUp(new User(this.Username, this.pass, true, false));
+                isCreated = DBHandling.SignUp(new User(this.Username, this.pass, false, true));
             } else if (passPhrase.compareTo(ADMINISTRATOR_STRING) == 0) {
                 /*TODO: add logic to make the user you are adding to the database
                  of the Administrator subclass*/
-                return DBHandling.SignUp(new User(this.Username, this.pass, false, true));
-            } else {
-                return false;
-            }
+                isCreated = DBHandling.SignUp(new User(this.Username, this.pass, true, true));
+            } else isCreated = DBHandling.SignUp(new User(this.Username, this.pass, false, false));
         }
         /*if this part of the code is reached, the User object you will be
          creating will of type User.*/
-        return DBHandling.SignUp(new User(this.Username, this.pass, false, false));
+        else isCreated = DBHandling.SignUp(new User(this.Username, this.pass, false, false));
+        
+        return isCreated;
     }
 
     public boolean canMake() throws Exception {

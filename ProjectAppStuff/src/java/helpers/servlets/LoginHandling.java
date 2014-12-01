@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.mysql.jdbc.Driver;
 
 /**
  *
@@ -40,6 +40,7 @@ public class LoginHandling extends MamaServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
@@ -51,23 +52,24 @@ public class LoginHandling extends MamaServlet {
 
                 userInfo.setPass(request.getParameter("pass"));
                 userInfo.setUsername(request.getParameter("username"));
-
-                if (userInfo.login()) {
-                    out.println("<h1>Hello there " + userInfo.getUsername() + "</h1>");
-                } else {
-                    out.println("<h1>Username or Passwrod is wrong.</h1>");
-                    out.println("<h2>Please try to login again.</h2>");
+                try {
+                    
+                    if (userInfo.login()) {
+                        out.println("<h1>Hello there " + userInfo.getUsername() + "</h1>");
+                    } else {
+                        out.println("<h1>Username or Password is wrong.</h1>");
+                        out.println("<h2>Please try to login again.</h2>");
+                        out.println("<h2>Don't have an account? Go to Sign Up Page!</h2>");
+                        makeLoginPage(out);
+                    }
+                } catch (Exception ex) {
+                    out.println("<h1>There is a critical error. Contact the programmer.</h1>");
+                    out.println("<p>" + ex.getLocalizedMessage() + "</p>");
                     makeLoginPage(out);
                 }
             }
 
             if (userPath.compareTo("/login") == 0) {
-                makeLoginPage(out);
-            }
-            
-            if (userPath.compareTo("/logout") == 0) {
-                userInfo.logout();
-                out.println("<h1>You have logged out. Have a nice day :)</h1><br/>");
                 makeLoginPage(out);
             }
 
@@ -82,9 +84,12 @@ public class LoginHandling extends MamaServlet {
                 creation.setPassConfirm(request.getParameter("passConfirm"));
                 creation.setPassPhrase(request.getParameter("passPhrase"));
                 creation.setUsername(request.getParameter("username"));
-
+                
+                
+                
+                try {
                 if (creation.canMake()) {
-
+                    
                     if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
                         out.println("<h2>So you want to be a moderator named "
                                 + creation.getUsername() + "</h2>");
@@ -101,14 +106,17 @@ public class LoginHandling extends MamaServlet {
                 } else {
                     out.println("<h3>That username is already taken. Please try a different username</h3>");
                     makeGetAccountCreationInfoPage(out);
+                } } catch (Exception ex) {
+                    out.println("<h1>There is a critical eror. Contact the programmer.</h1>");
+                    out.println("<p>" + ex.getLocalizedMessage() + " " + java.util.Arrays.toString(ex.getStackTrace()) + "</p>");
+                    
+                    makeGetAccountCreationInfoPage(out);
                 }
 
             }
 
             out.println("</body>");
             out.println("</html>");
-        } catch (Exception ex) {
-            Logger.getLogger(LoginHandling.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

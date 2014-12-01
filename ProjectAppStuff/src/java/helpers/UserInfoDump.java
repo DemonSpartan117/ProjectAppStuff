@@ -6,8 +6,9 @@
 package helpers;
 
 import com.others.*;
-import com.secure.userInfo.Guest;
-import com.secure.userInfo.User;
+import com.secure.userInfo.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -71,8 +72,8 @@ public class UserInfoDump {
     }// </editor-fold>
 
     public boolean login() throws Exception {
-        boolean isAdmin = true;
-        boolean isMod = true;
+        
+        
         /*so the proposed username and password are passed in as parameters
          then you need to search the database for User object with this
          username. Afterwards, check the password and see if it is the same as
@@ -81,20 +82,24 @@ public class UserInfoDump {
          User object you got from the database and return true.
          If the username was not found or the password was wrong, then return
          false and I will work on the reprecussions from there*/
-
+        
         /*also set the staticUser variable equal to the user variable so I can
          get the right information in all the other classes*/
-        
-        user = new User(username, pass, isMod, isAdmin);
-        return DBHandling.Login(user);
-        /*I set everything up the way it is now just for testing purposes and
-         * to give an illusion of functionality (so I can know what is not right
-         * (again, for testing)) set the User constructor I just called back to
-         * protected if you can when you are done here*/
-    }
-    
-    public void logout() {
-        user = Guest.getInstance();
+        user = new Administrator(username, pass);
+        if (DBHandling.Login(user)) {
+            return true;
+        }
+        else {
+            user = new Moderator(username, pass);
+            if (DBHandling.Login(user)) {
+                return true;
+            } else {
+                user = new User(username, pass, false, false);
+                if (DBHandling.Login(user)) {
+                    return true;
+                }
+            }
+        } return false;
     }
 
 
