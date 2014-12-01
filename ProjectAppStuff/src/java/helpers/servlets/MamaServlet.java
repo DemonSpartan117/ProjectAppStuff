@@ -164,10 +164,10 @@ public class MamaServlet extends HttpServlet {
 
     private void placeUserInfo(PrintWriter out, User user) {
         if (!(user instanceof Guest)) {
-            out.println("<h5 style=\"text-align:right\">Currently signed is as "
-                    + user.getName() + "</h5><form action=\"logout\" style=\"text-align:right\">\n" +
-"            <input type=\"submit\" value=\"logout\" name=\"logout stuffs\" />\n" +
-"        </form>");
+            out.println("<h5 style=\"text-align:right\">Currently signed in as "
+                    + getUserType(user) + user.getName() + "</h5><form action=\"logout\" style=\"text-align:right\">\n"
+                    + "            <input type=\"submit\" value=\"logout\" name=\"logout stuffs\" />\n"
+                    + "        </form>");
             //TODO: insert syntax for a logout button right here
         } else {
             out.println("<form style=\"text-align:right\" name=\"Login to existing account\" action=\"login\" method=\"POST\">\n"
@@ -203,4 +203,13 @@ public class MamaServlet extends HttpServlet {
                 + "        </form>");
     }
 
+    private String getUserType(User user) {
+        if (user instanceof Administrator) {
+            return "Administrator: ";
+        }
+        if (user instanceof Moderator) {
+            return "Moderator: ";
+        }
+        return "User: ";
+    }
 }
