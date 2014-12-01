@@ -18,9 +18,16 @@ public class DBHandling {
     private static final String DBID = "root";
     private static final String DBPW = "Levi*7537";
     
-    public static boolean Login(User u) throws Exception {
+    private static Statement stmt;
+    
+    private static Statement initializer() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(DBUrl, DBID, DBPW);
-        Statement stmt = con.createStatement();
+        return con.createStatement();
+    }
+    
+    public static boolean Login(User u) throws Exception {
+        stmt = initializer();
         String statement = String.format("SELECT USERNAME, PASSWORD FROM USER WHERE USERNAME = '%s' AND PASSWORD = '%s'", u.getName(), u.getPassword());
         ResultSet rs = stmt.executeQuery(statement);
         while (rs.next()) {
@@ -36,8 +43,7 @@ public class DBHandling {
     }
     
     public static boolean SignUp(User u) throws Exception {
-        Connection con = DriverManager.getConnection(DBUrl, DBID, DBPW);
-        Statement stmt = con.createStatement();
+        stmt = initializer();
         String statement = String.format("INSERT INTO USER " + "VALUES ('%s', '%s');", u.getName(), u.getPassword());
         try {
             stmt.executeUpdate(statement);
@@ -48,8 +54,7 @@ public class DBHandling {
     }
     
     public static boolean DeleteAccount(User u) throws Exception {
-        Connection con = DriverManager.getConnection(DBUrl, DBID, DBPW);
-        Statement stmt = con.createStatement();
+        stmt = initializer();
         String statement = String.format("DELETE FROM USER WHERE USERNAME = '%s';", u.getName());
         try {
             stmt.executeUpdate(statement);

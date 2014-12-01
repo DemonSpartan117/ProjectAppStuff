@@ -7,7 +7,7 @@ public class Moderator extends User{
 		return new Moderator(name, password);
 	}
 	
-	protected Moderator(String name, String password) {
+	public Moderator(String name, String password) {
 		super(name, password, false, true);
 	}
         

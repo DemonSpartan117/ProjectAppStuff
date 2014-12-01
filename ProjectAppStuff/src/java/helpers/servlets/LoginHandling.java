@@ -73,6 +73,12 @@ public class LoginHandling extends MamaServlet {
                 makeLoginPage(out);
             }
 
+            if (userPath.compareTo("/logout") == 0) {
+                userInfo.logout();
+                out.println("<h1>You have logged out. Have a nice day :)</h1><br/>");
+                makeLoginPage(out);
+            }
+            
             if (userPath.compareTo("/getCreateAccountInfo") == 0) {
                 makeGetAccountCreationInfoPage(out);
 
