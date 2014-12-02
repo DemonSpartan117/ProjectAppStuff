@@ -27,9 +27,11 @@
         </div>
         <!-- end code for the search bar -->
 
-        <h1 style="text-align:center">My name here</h1>
+        <h1>Please enter the following information</h1>
+        <form name="do it" action="changeTheUsername" method="POST">
+            What is the new username you desire?: <input type="text" name="username" />
+        </form>
         
-        <p><a href="viewAccount">View Account</a></p>
 
     </body>
 </html>
