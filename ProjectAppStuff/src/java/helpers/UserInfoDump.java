@@ -102,5 +102,8 @@ public class UserInfoDump {
         } return false;
     }
 
+    public void logout() {
+        user = Guest.getInstance();
+    }
 
 }

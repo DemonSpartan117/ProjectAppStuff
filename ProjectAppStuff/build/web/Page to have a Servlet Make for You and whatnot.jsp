@@ -8,30 +8,47 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="SearchBoxStyle.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>
-        
+
         <!-- start code for the search bar -->
         <div id="tfheader">
-            <form id="tfnewsearch" method="get" action="steppingStone.jsp">
-                <input type="text" class="tftextinput" name="searchKeyword" size="21" maxlength="120">
-                
+            <form id="tfnewsearch" method="post" action="getResults">
+                <input type="text" class="tftextinput" name="keyword" size="21" maxlength="120">
+
                 <input type="submit" value="search" class="tfbutton">
-                
+
             </form>
 
             <div class="tfclear"></div>
         </div>
         <!-- end code for the search bar -->
-        
-        <form name="Login to existing account" action="login" method="POST">
-            <input type="submit" value="login" name="name goes here" />
+
+        <h1>Form Demo</h1>
+        <form action="manageResults" style="text-align:right">
+            <fieldset>
+                <legend></legend>
+                <p>
+                    <select id = "searchType" name="searchType">
+                        <option value = "1">sort results</option>
+                        <option value = "2">filter results</option>
+                    </select>
+                    <label>by</label>
+                    <select id = "searchConstant" name="searchConstant">
+                        <option value = "1">name</option>
+                        <option value = "2">developer</option>
+                        <option value = "3">rating</option>
+                        <option value = "4">platform</option>
+                    </select>
+                </p>
+            </fieldset>
+            <input type="text" name="keyword" />
+            <input type="submit" value="go" name="to the testing stuff" />
         </form>
-        <form name="Login to existing account" action="getCreateAccountInfo" method="POST">
-            <input type="submit" value="create account" name="some name goes here" />
-        </form>
         
+
     </body>
 </html>

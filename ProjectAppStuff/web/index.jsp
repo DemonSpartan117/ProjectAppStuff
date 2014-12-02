@@ -12,18 +12,6 @@
         <title>The First Step</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <STYLE TYPE="text/css">
-
-        BODY
-           {
-           color:black;
-           background-color:white;
-           font-family:"Noto Sans";
-           }
-        A:link{color:white}
-        A:visited{color:yellow}
-
-        </STYLE>
     </head>
     <body>
 
@@ -49,15 +37,25 @@
                                               when the text is entered into the box is named "name" -->
             <input type="submit" value="OK" /> <!-- "submit" type is a button -->
         </form>
+        
         <form action="getCreateAccountInfo" method="post">
             <input type="submit" value="Create an account" />
         </form>
+        
         <form name="go to login page" action="login">
             <input type="submit" value="Or click here to login" name="onwards to the login page" />
         </form>
+        
         <form name="see help page" action="help.html" method="POST">
             <input type="submit" value="See the help page" name="on to the help page" />
         </form>
         <div>content goes here apparently</div>
+
+        <!-- go to the testing page designed so I can see how stuff looks -->
+        <form name="testing time" action="Page to have a Servlet Make for You and whatnot.jsp" method="POST">
+            <input type="submit" value="test" name="go to test page" />
+        </form>
+        
+        
     </body>
 </html>

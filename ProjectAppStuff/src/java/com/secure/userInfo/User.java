@@ -32,7 +32,7 @@ public class User {
 
     // <editor-fold defaultstate="collapsed" desc="Getters and setters. Click on the + sign on the left to edit the code.">
     public boolean isAdmin() {
-        return this.admin && this.moderator;
+        return this.admin;
     }
 
     public String getName() {

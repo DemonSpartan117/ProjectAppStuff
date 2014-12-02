@@ -23,16 +23,19 @@ public class SearchesInfo {
     public final int NAME = 1;
     public final int DEVELOPER = 2;
     public final int RATING = 3;
+    public final int PLATFORM = 4;
+    public final int SORT = 1;
+    public final int FILTER = 2;
+    
     /*they is is what will be compared to the above constants in order to
      know exactly how we need to sort or filter*/
-    private int sortConstant;
+    private int sortConstant; //is with the 1 - 4
+    private int sortType; // is with the 1 - 2
 
-    public static String staticKeyword = "Wolfgang";
     private String keyword;
-    private App[] searchResults;
+    private App[] searchResults; // this is the one you can manipulate
     private String name;
     private int requestedApp;
-    private static int staticRequestedApp;
     
     private static SearchesInfo me;
 
@@ -47,6 +50,7 @@ public class SearchesInfo {
         name = "me";
         keyword = "Wolfgang";
         sortConstant = 0;
+        sortType = 0;
         //searchResults = staticSearchResults;
  /* uncomment above line if we do need to make a static copy of searchResults*/
     }
@@ -103,25 +107,43 @@ public class SearchesInfo {
         return requestedApp;
         //method actually only needed for testing purposes (possibly might be required)
     }
+    
+    public void setSortType(int x) {
+        sortType = x;
+    }
+    
+    public int getSortType() {
+        return sortType;
+    }
     // </editor-fold>
 
-    /*NOTICE: only use the static instance variables in your logic or else the
-     * application will not work properly.
-     * Thank You*/
+    /* Database stuff */
     public App[] search() {
-        App[] results = new App[1];
+        App[] results = makeAppList();//get rid of this statement when implementing correct logic
         //TODO: create actual logic to make this method get stuff from database
         searchResults = results;
         return results;
     }
 
-    public App[] filterResults() {
+    public App[] filterOrSort() {
+        if(sortType == SORT) {
+            return sortResults();
+        }
+        else {
+            return filterResults();
+        }
+    }
+    
+    /* Database stuff */
+    private App[] filterResults() {
         //TODO: add logic to change searchResults so that things are filtered
         //according to the sortConstant variable
+        //use the keyword variable to help the filtering
         return searchResults;
     }
 
-    public App[] sortResults() {
+    /* Database stuff */
+    private App[] sortResults() {
         //TODO: add logic to change searchResults so that things are sorted
         //according to the sortConstant variable
         return searchResults;
@@ -139,8 +161,21 @@ public class SearchesInfo {
      * @return the app in the search results that the user wants to see
      */
     public App getDesiredApp() {
-        return searchResults[staticRequestedApp];
+        return searchResults[requestedApp];
     }
 
+    /**
+     * this method should be deleted as soon as possible. It is here as dummy
+     * code until the rest of the logic is properly implemented
+     * @return an array of some made up apps
+     */
+    private App[] makeAppList() {
+        App[] thisAppList = new App[2];
+        /*public App(String name, String developer, String description, String[] platforms, String link) {*/
+        String[] platforms = {"all of them"};
+        thisAppList[0] = new App("Amazing App", "Damon Duckett", "this is awesome", platforms, "www.awesome.com");
+        thisAppList[1] = new App("Trble Ap", "Christopher Scavongelli", "who cares", platforms, "non existant");
+        return thisAppList;
+    }
     /*TODO: need to make a method that will sort all of the app objects in a specified way*/
 }

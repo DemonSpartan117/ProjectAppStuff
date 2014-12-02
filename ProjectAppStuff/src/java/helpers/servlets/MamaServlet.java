@@ -62,7 +62,11 @@ public class MamaServlet extends HttpServlet {
 
         placeUserInfo(out, user);
 
-        placeSearchBar(out);
+        if (userPath.compareTo("/manageResults") == 0
+                || userPath.compareTo("/getResults") == 0) {
+            printFilterBar(out);
+        }
+        placeSearchBar(out, userPath);
 
         /*add in the other things that need to be added in so that the
          webpages created will allow Users to preform their various tasks
@@ -91,17 +95,24 @@ public class MamaServlet extends HttpServlet {
         //TODO: make a title for every possible userPath in this method
     }
 
-    private void placeSearchBar(PrintWriter out) {
-        out.println("<div id=\"tfheader\">\n"
+    private void placeSearchBar(PrintWriter out, String userPath) {
+        out.print("<div id=\"tfheader\">\n"
                 + "            <form id=\"tfnewsearch\" method=\"post\" action=\"getResults\">\n"
                 + "                <input type=\"text\" class=\"tftextinput\" name=\"keyword\" size=\"21\" maxlength=\"120\">\n"
                 + "                \n"
-                + "                <input type=\"submit\" value=\"search\" class=\"tfbutton\">\n"
-                + "                \n"
-                + "            </form>\n"
-                + "\n"
-                + "            <div class=\"tfclear\"></div>\n"
-                + "        </div>");
+                + "                <input type=\"submit\" value=");
+        if (userPath.compareTo("/manageResults") == 0
+                || userPath.compareTo("/getResults") == 0) {
+            out.print("\"new search\"");
+        } else {
+            out.print("\"search\"");
+        }
+        out.println("class=\"tfbutton\">\n"
+                    + "                \n"
+                    + "            </form>\n"
+                    + "\n"
+                    + "            <div class=\"tfclear\"></div>\n"
+                    + "        </div>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -153,8 +164,11 @@ public class MamaServlet extends HttpServlet {
 
     private void placeUserInfo(PrintWriter out, User user) {
         if (!(user instanceof Guest)) {
-            out.println("<h5 style=\"text-align:right\">Currently signed is as "
-                    + user.getName() + "</h5>");
+            out.println("<h5 style=\"text-align:right\">Currently signed in as "
+                    + getUserType(user) + user.getName() + "</h5><form action=\"logout\" style=\"text-align:right\">\n"
+                    + "            <input type=\"submit\" value=\"logout\" name=\"logout stuffs\" />\n"
+                    + "        </form>");
+            //TODO: insert syntax for a logout button right here
         } else {
             out.println("<form style=\"text-align:right\" name=\"Login to existing account\" action=\"login\" method=\"POST\">\n"
                     + "            <input type=\"submit\" value=\"login\" name=\"name goes here\" />\n"
@@ -166,4 +180,36 @@ public class MamaServlet extends HttpServlet {
 
     }
 
+    private void printFilterBar(PrintWriter out) {
+        out.println("<form action=\"manageResults\" style=\"text-align:right\">\n"
+                + "            <fieldset>\n"
+                + "                <legend></legend>\n"
+                + "                <p>\n"
+                + "                    <select id = \"searchType\" name=\"searchType\">\n"
+                + "                        <option value = \"1\">sort results</option>\n"
+                + "                        <option value = \"2\">filter results</option>\n"
+                + "                    </select>\n"
+                + "                    <label>by</label>\n"
+                + "                    <select id = \"searchConstant\" name=\"searchConstant\">\n"
+                + "                        <option value = \"1\">name</option>\n"
+                + "                        <option value = \"2\">developer</option>\n"
+                + "                        <option value = \"3\">rating</option>\n"
+                + "                        <option value = \"4\">platform</option>\n"
+                + "                    </select>\n"
+                + "                </p>\n"
+                + "            </fieldset>\n"
+                + "            <input type=\"text\" name=\"keyword\" />\n"
+                + "            <input type=\"submit\" value=\"go\" name=\"to the testing stuff\" />\n"
+                + "        </form>");
+    }
+
+    private String getUserType(User user) {
+        if (user instanceof Administrator) {
+            return "Administrator: ";
+        }
+        if (user instanceof Moderator) {
+            return "Moderator: ";
+        }
+        return "User: ";
+    }
 }
