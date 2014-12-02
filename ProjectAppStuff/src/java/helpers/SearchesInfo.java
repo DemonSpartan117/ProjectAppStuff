@@ -122,34 +122,48 @@ public class SearchesInfo {
 
     /* Database stuff */
     public App[] search() {
-        App[] results = makeAppList();//get rid of this statement when implementing correct logic
-        //TODO: create actual logic to make this method get stuff from database
-        searchResults = results;
-        return results;
+        ArrayList<App> thisAppList = new ArrayList<App>();
+        try {
+            thisAppList.addAll(DBHandling.search(keyword, false, false, 0));
+        } catch (Exception ex) {
+            Logger.getLogger(SearchesInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /*public App(String name, String developer, String description, String[] platforms, String link) {*/
+        
+        searchResults = thisAppList.toArray(new App[thisAppList.size()]);
+        
+        return searchResults;
     }
 
-    public App[] filterOrSort() {
+    public App[] filterOrSort() throws Exception {
         if(sortType == SORT) {
             return sortResults();
         }
-        else {
+        else if (sortType == FILTER) {
             return filterResults();
+        } else {
+            throw new IllegalStateException("Wrong type argument: " + sortType);
         }
     }
     
     /* Database stuff */
-    private App[] filterResults() {
+    private App[] filterResults() throws Exception {
         //TODO: add logic to change searchResults so that things are filtered
         //according to the sortConstant variable
         //use the keyword variable to help the filtering
-        return searchResults;
+
+        ArrayList<App> tmp = DBHandling.search(keyword, true, false, sortConstant);
+        App[] ret = tmp.toArray(new App[tmp.size()]);
+        return ret;
     }
 
     /* Database stuff */
-    private App[] sortResults() {
+    private App[] sortResults() throws Exception {
         //TODO: add logic to change searchResults so that things are sorted
         //according to the sortConstant variable
-        return searchResults;
+        ArrayList<App> tmp = DBHandling.search(keyword, false, true, sortConstant);
+        App[] ret = tmp.toArray(new App[tmp.size()]);
+        return ret;
     }
 
     /**
@@ -172,13 +186,11 @@ public class SearchesInfo {
      * code until the rest of the logic is properly implemented
      * @return an array of some made up apps
      */
+    @Deprecated
     private App[] makeAppList() {
         ArrayList<App> thisAppList = new ArrayList<App>();
-        String[] platforms = {"all of them"};
-        thisAppList.add(new App("Amazing App", "Damon Duckett", "this is awesome", platforms, "www.awesome.com"));
-        thisAppList.add(new App("Trble Ap", "Christopher Scavongelli", "who cares", platforms, "non existant"));
         try {
-            thisAppList.addAll(DBHandling.search(keyword, 0, 0));
+            thisAppList.addAll(DBHandling.search(keyword, false, false, 0));
         } catch (Exception ex) {
             Logger.getLogger(SearchesInfo.class.getName()).log(Level.SEVERE, null, ex);
         }

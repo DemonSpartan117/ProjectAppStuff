@@ -17,7 +17,11 @@ public class SearchTest {
     
     public static void main(String[] args) throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        
+        java.util.ArrayList<App> test = new java.util.ArrayList<App>();
+        test.addAll(DBHandling.search("puppy_", false, false, 0));
+        for (int i = 0; i < test.size(); i++) {
+            System.out.println(test.get(i).getName());
+        }
     }
     
 }
