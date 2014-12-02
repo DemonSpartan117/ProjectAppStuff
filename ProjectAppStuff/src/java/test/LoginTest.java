@@ -26,6 +26,17 @@ public class LoginTest {
         } else {
             System.out.println("Log in failed.");
         }
+        if (DBHandling.DeleteAccount(a)) {
+            System.out.println("Delete Account successful.");
+        } else {
+            System.out.println("Delete Account failed.");
+        }
+        User b = new User("m", "m", false, false);
+        if (DBHandling.DeleteAccount(b)) {
+            System.out.println("Delete Account successful.");
+        } else {
+            System.out.println("Delete Account failed.");
+        }
     }
     
 }

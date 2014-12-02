@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -67,16 +71,20 @@ public class SearchHandling extends MamaServlet {
                 /*TODO: add in something to the results page that will allow me
                  to recieve whatever the proper number to set the sort constant
                  to. (best if it can be done with a drop down menu)*/
+                try {
+                    appList = SearchObject.filterOrSort();
+                    addAppsToPage(appList, out);
+                } catch (Exception ex) {
+                    out.println("<p>" + ex.getMessage() + " " + Arrays.toString(ex.getStackTrace()) + "</p>");
+                }
                 
-                appList = SearchObject.filterOrSort();
-                addAppsToPage(appList, out);
             }
 
             out.println("<h1>" + SearchObject.getKeyword() + "</h1>");
-
             out.println("</body>");
             out.println("</html>");
-        }
+            
+        } 
     }
 
     /**

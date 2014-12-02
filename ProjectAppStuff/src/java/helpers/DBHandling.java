@@ -6,7 +6,10 @@
 package helpers;
 
 import java.sql.*;
+import java.util.*;
+
 import com.secure.userInfo.*;
+import com.others.App;
 
 /**
  *
@@ -78,14 +81,100 @@ public class DBHandling {
     }
     
     public static boolean DeleteAccount(User u) throws Exception {
-        stmt = initializer();
-        String statement = String.format("DELETE FROM USER WHERE USERNAME = '%s';", u.getName());
         try {
+            if (! Login(u)) {
+                throw new IllegalArgumentException("No such account found.");
+            }
+            stmt = initializer();
+            String statement;
+            if (u instanceof Administrator) {
+                statement = String.format("DELETE FROM ADMIN WHERE USERNAME = '%s';", u.getName());
+            }
+            else if (u instanceof Moderator) {
+                statement = String.format("DELETE FROM MODERATOR WHERE USERNAME = '%s';", u.getName());
+            } else {
+                statement = String.format("DELETE FROM USER WHERE USERNAME = '%s';", u.getName());
+            }
+
             stmt.executeUpdate(statement);
         } catch (SQLException e) {
             return false; // DELETE FAILED
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.out.println("Fatal error. Contact the programmer. " + Arrays.toString(e.getStackTrace()));
+            return false;
         }
         return true; // DELETE SUCCESSFUL
+    }
+    
+    public static ArrayList<App> search(String keyword, boolean filter, boolean sort, int col) throws Exception {
+        stmt = initializer();
+        String statement;
+        
+        if (keyword.equals("puppy_") || keyword.equals("Wolfgang")) {
+            statement = "SELECT * FROM APPS;";
+        } else {
+
+            statement = "SELECT * FROM APPS WHERE NAME LIKE '" + "%" + String.format("%s", keyword).toLowerCase() + "%" + "'";
+
+            /*public App(String name, String developer, String description, String[] platforms, String link) {*/
+
+
+            if (filter) {
+                String cmd =  " AND ";
+                switch (col) {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    default: throw new IllegalStateException("Something went wrong.");
+                }
+                statement += cmd;
+            }
+
+            if (sort) {
+                statement += String.format(" ORDER BY %s", col);
+            }
+
+            statement += ";";
+        }
+        ResultSet rs = stmt.executeQuery(statement);
+        
+        ArrayList<App> ret = new ArrayList<App>();
+        
+        while (rs.next()) {
+            String name = rs.getString("NAME");
+            String developer = rs.getString("DEVELOPER");
+            String description = rs.getString("DESCRIPTION"); 
+            String[] platforms = new String[] {rs.getString("PLATFORMS")}; 
+            String link = rs.getString("LINK");
+            ret.add(new App(name, developer, description, platforms, link));
+        }
+        
+        return ret;
+    }
+    
+    public static boolean insertApp(App a) throws Exception {
+        stmt = initializer();
+        String statement = "INSERT INTO APPS VALUES ('";
+        statement += a.getName() + "', '";
+        statement += a.getDeveloper() + "', '";
+        statement += a.getDescription() + "', '";
+        for (int i = 0; i < a.getPlatforms().length; i++) {
+            statement += a.getPlatforms()[i];
+            statement += i == a.getPlatforms().length - 1 ? "" :  ", "; 
+        }
+        statement += "', null, '" + a.getLink() + "', null, " + a.getRating() + ", 'Y')";
+        
+        int executeUpdate = stmt.executeUpdate(statement);
+        
+        return executeUpdate != 0;
     }
     
 }
