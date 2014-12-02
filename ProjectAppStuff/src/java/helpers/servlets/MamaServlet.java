@@ -108,11 +108,11 @@ public class MamaServlet extends HttpServlet {
             out.print("\"search\"");
         }
         out.println("class=\"tfbutton\">\n"
-                    + "                \n"
-                    + "            </form>\n"
-                    + "\n"
-                    + "            <div class=\"tfclear\"></div>\n"
-                    + "        </div>");
+                + "                \n"
+                + "            </form>\n"
+                + "\n"
+                + "            <div class=\"tfclear\"></div>\n"
+                + "        </div>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -165,10 +165,10 @@ public class MamaServlet extends HttpServlet {
     private void placeUserInfo(PrintWriter out, User user) {
         if (!(user instanceof Guest)) {
             out.println("<h5 style=\"text-align:right\">Currently signed in as "
-                    + getUserType(user) + user.getName() + "</h5><form action=\"logout\" style=\"text-align:right\">\n"
-                    + "            <input type=\"submit\" value=\"logout\" name=\"logout stuffs\" />\n"
-                    + "        </form>");
-            //TODO: insert syntax for a logout button right here
+                    + getUserType(user) + " <a href=\"viewAccount\">" + user.getName() + "</a></h5>"
+                    + "             <form action=\"logout\" style=\"text-align:right\">\n"
+                    + "             <input type=\"submit\" value=\"logout\" name=\"logout stuffs\" />\n"
+                    + "             </form>");
         } else {
             out.println("<form style=\"text-align:right\" name=\"Login to existing account\" action=\"login\" method=\"POST\">\n"
                     + "            <input type=\"submit\" value=\"login\" name=\"name goes here\" />\n"

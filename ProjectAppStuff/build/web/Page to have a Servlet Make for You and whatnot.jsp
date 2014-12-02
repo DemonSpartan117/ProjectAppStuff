@@ -27,28 +27,9 @@
         </div>
         <!-- end code for the search bar -->
 
-        <h1>Form Demo</h1>
-        <form action="manageResults" style="text-align:right">
-            <fieldset>
-                <legend></legend>
-                <p>
-                    <select id = "searchType" name="searchType">
-                        <option value = "1">sort results</option>
-                        <option value = "2">filter results</option>
-                    </select>
-                    <label>by</label>
-                    <select id = "searchConstant" name="searchConstant">
-                        <option value = "1">name</option>
-                        <option value = "2">developer</option>
-                        <option value = "3">rating</option>
-                        <option value = "4">platform</option>
-                    </select>
-                </p>
-            </fieldset>
-            <input type="text" name="keyword" />
-            <input type="submit" value="go" name="to the testing stuff" />
-        </form>
+        <h1 style="text-align:center">My name here</h1>
         
+        <p><a href="viewAccount">View Account</a></p>
 
     </body>
 </html>
