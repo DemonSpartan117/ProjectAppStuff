@@ -6,7 +6,10 @@
 package helpers;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import com.secure.userInfo.*;
+import com.others.App;
 
 /**
  *
@@ -86,6 +89,49 @@ public class DBHandling {
             return false; // DELETE FAILED
         }
         return true; // DELETE SUCCESSFUL
+    }
+    
+    public static ArrayList<App> search(String keyword, int filter, int sort) throws Exception {
+        stmt = initializer();
+        String statement = String.format("SELECT * FROM APPLIST ");
+        
+        /*public App(String name, String developer, String description, String[] platforms, String link) {*/
+        
+        
+        if (filter != 0) {
+            String cmd = "WHERE ";
+            switch (filter) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default: throw new IllegalStateException("Something went wrong.");
+            }
+            statement += cmd;
+        }
+        
+        if (sort != 0) {
+            statement += String.format("ORDER BY %d;" + sort);
+        }
+        
+        ResultSet rs = stmt.executeQuery(statement);
+        
+        ArrayList<App> ret = new ArrayList<App>();
+        
+        while (rs.next()) {
+            String name = rs.getString("NAME");; 
+            String developer = rs.getString("DEVELOPER");
+            String description = rs.getString("DESCRIPTION"); 
+            String[] platforms = new String[] {rs.getString("PLAFTORMS")}; 
+            String link = rs.getString("LINK");
+            ret.add(new App(name, developer, description, platforms, link));
+        }
+        
+        return ret;
     }
     
 }
