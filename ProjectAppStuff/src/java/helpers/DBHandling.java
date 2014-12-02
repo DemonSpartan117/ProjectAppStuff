@@ -19,7 +19,7 @@ public class DBHandling {
     
     private static final String DBUrl = "jdbc:mysql://localhost:3306/appstore";
     private static final String DBID = "root";
-    private static final String DBPW = "fe8029AFC10"; // "Levi*7537";
+    private static final String DBPW = "Levi*7537";
     
     private static Statement stmt;
     
