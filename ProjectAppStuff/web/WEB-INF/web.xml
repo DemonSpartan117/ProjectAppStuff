@@ -46,6 +46,10 @@
         <url-pattern>/changeThePassword</url-pattern>
         <url-pattern>/changeUsernamePage</url-pattern>
         <url-pattern>/changeTheUsername</url-pattern>
+        <url-pattern>/adminAccountCreation</url-pattern>
+        <url-pattern>/addAccount</url-pattern>
+        
+        
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -6,6 +6,7 @@
 package helpers.servlets;
 
 import com.secure.userInfo.*;
+import helpers.AccountCreator;
 import helpers.DBHandling;
 import helpers.UserInfoDump;
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class UserAccountInfoManager extends MamaServlet {
             String userPath = request.getServletPath();
             makePageTop(out, user, userPath);
 
+            // <editor-fold defaultstate="collapsed" desc="if statements and logic for User info pages">
             if (userPath.compareTo("/viewAccount") == 0) {
                 printInfoPage(out, user);
 
@@ -80,18 +82,41 @@ public class UserAccountInfoManager extends MamaServlet {
                 printChangeUsernameStuff(out);
             } else if (userPath.compareTo("/changeTheUsername") == 0) {
                 String username = request.getParameter("username");
-                if(!user.setName(username)) {
+                if (!user.setName(username)) {
                     out.println("<h1>That username is taken. Please try another username</h1>");
                     printChangeUsernameStuff(out);
-                }
-                else {
+                } else {
                     out.println("<h2>Your username has been changed</h2>");
                     printInfoPage(out, user);
                 }
+            }// </editor-fold>
+            else if (userPath.compareTo("/adminAccountCreation") == 0) {
+                out.println("<h1>Please enter the following information for the account to be created</h1>");
+                printAdminAccountCreator(out);
+
+            } else if (userPath.compareTo("/addAccount") == 0) {
+                AccountCreator creation = AccountCreator.getInstance();
+                creation.setUsername(request.getParameter("username"));
+                creation.setPassPhrase(request.getParameter("type"));
+                creation.setPass(request.getParameter("pass"));
+                creation.setPassConfirm(request.getParameter("passConfirm"));
+
+                if (!creation.canMake()) {
+                    out.println("<h1>The username is already taken or the passwords did not match. Please try again</h1>");
+                    printAdminAccountCreator(out);
+                } else if (!(user instanceof Administrator)) {
+                    out.println("<h1>You are not an Administrator. Get out of here</h1>");
+                } else {
+                    out.println("<h1>The account was created</h1>");
+                    printInfoPage(out, user);
+                }
+
             }
+
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Account info pages. Click on the + sign on the left to edit the code.">
     private void printChangeUsernameStuff(PrintWriter out) {
         out.println("<h1>Please enter the following information</h1>\n"
                 + "        <form name=\"do it\" action=\"changeTheUsername\" method=\"POST\">\n"
@@ -108,6 +133,12 @@ public class UserAccountInfoManager extends MamaServlet {
         /*add in some css style stuff to this so that it looks like a warning*/
         out.println("<p>Delete your account <a href=\"confirmDeleteAccount\">click here</a></p>");
         /*add in some css style stuff to this so that it looks like a warning*/
+
+        if (user instanceof Administrator) {
+            out.println("<form name=\"whatever\" action=\"adminAccountCreation\" method=\"POST\">\n"
+                    + "            Create a new Administrator or Moderator account <input type=\"submit\" value=\"Create account\" name=\"button 1\" />\n"
+                    + "        </form>");
+        }
     }
 
     private String getType(User user) {
@@ -122,9 +153,25 @@ public class UserAccountInfoManager extends MamaServlet {
 
     private void printChangePassPage(PrintWriter out, User user) {
         out.println("        <form name=\"do it\" action=\"changeThePassword\" method=\"POST\">\n"
-                + "            Current Password: <input type=\"password\" name=\"pass\" />\n"
-                + "            New password: <input type=\"password\" name=\"newPass\" />\n"
+                + "            Current Password: <input type=\"password\" name=\"pass\" /><br/>\n"
+                + "            New password: <input type=\"password\" name=\"newPass\" /><br/>\n"
                 + "            Confirm new password: <input type=\"password\" name=\"confirmNewPass\" />\n"
+                + "        </form>");
+    }// </editor-fold>
+
+    private void printAdminAccountCreator(PrintWriter out) {
+        out.println("<form name=\"do it\" action=\"addAccount\" method=\"POST\">\n"
+                + "            Account Username: <input type=\"text\" name=\"username\" /><br/>\n"
+                + "            Account Default Password: <input type=\"password\" name=\"pass\" /><br/>\n"
+                + "            Confirm Default Password: <input type=\"password\" name=\"passConfirm\" /><br/>\n"
+                + "            Account Type <fieldset>\n"
+                + "            <legend></legend>\n"
+                + "            <select id=\"searchType\" name=\"type\">\n"
+                + "                    <option value=\"friendship is magic\">Administrator</option>\n"
+                + "                    <option value=\"sugar, spice, and everything nice\">Moderator</option>\n"
+                + "                </select>\n"
+                + "        </fieldset>\n"
+                + "            <input type=\"submit\" value=\"create account\" name=\"button 1\" />\n"
                 + "        </form>");
     }
 

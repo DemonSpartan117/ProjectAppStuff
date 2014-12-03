@@ -27,11 +27,12 @@
         </div>
         <!-- end code for the search bar -->
 
-        <h1>Please enter the following information</h1>
-        <form name="do it" action="changeTheUsername" method="POST">
-            What is the new username you desire?: <input type="text" name="username" />
+        <form name="whatever" action="adminAccountCreation" method="POST">
+            Create a new Administrator or Moderator account <input type="submit" value="Create account" name="button 1" />
         </form>
         
 
+
+        
     </body>
 </html>

@@ -96,6 +96,14 @@ public class AccountCreator {
     }
 
 // </editor-fold>
+    
+    /**
+     * This method tries to create an account.
+     * @return returns false if the account is not created
+     * @throws Exception 
+     */
+    /* database stuff
+     * finish the javaDoc because I don't know about the exception*/
     private boolean createAccount() throws Exception {
         boolean isCreated;
         /*TODO: implement the logic to create a new User account
@@ -135,18 +143,20 @@ public class AccountCreator {
         return isCreated;
     }
 
+    /**
+     * Tests to see if the account can be created. First it tests to see if the
+     * password the new user wants matches the one they used to confirm the
+     * password they want. Then it calls create account which tests to see if
+     * the desired username is taken and creates the account.
+     * @return returns false if the passwords don't match, the username is already
+     * taken, or if the account was not created
+     * @throws Exception 
+     */
     public boolean canMake() throws Exception {
-        /*TODO: put in logic that will allow determine if the current Username is
-         taken yet NOTE: use the staticUsername variable only in your logic!!!!!
-         the non-static variable will not be set to the correct String you will
-         need to use. Keep that in mind for all methods in classes within the
-         helpers Java packages*/
-
-        /*so if you find a User who already has the requested name just use a
-         return false; statement and then the rest can be taken care with the
-         simple code below that will implement the complicated code you need to
-         write in the above method*/
+        if(pass.compareTo(passConfirm) == 0) {
         return createAccount();
+        }
+        return false;
     }
 
 }
