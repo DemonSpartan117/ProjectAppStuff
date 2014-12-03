@@ -11,6 +11,7 @@ import helpers.DBHandling;
 import helpers.UserInfoDump;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +58,12 @@ public class UserAccountInfoManager extends MamaServlet {
                         + "        </form>");
 
             } else if (userPath.compareTo("/deleteAccount") == 0) {
-                DBHandling.DeleteAccount(user);
+                try {
+                    DBHandling.DeleteAccount(user);
+                } catch (Exception ex) {
+                    out.println("<p>The fatal error occured. Contact the programmer.\n" + 
+                            ex.getMessage() + Arrays.toString(ex.getStackTrace())+ "</p>");
+                }
 
             } else if (userPath.compareTo("/changePasswordPage") == 0) {
                 out.println("<h1>Please enter the following information</h1>\n");
@@ -100,16 +106,22 @@ public class UserAccountInfoManager extends MamaServlet {
                 creation.setPassPhrase(request.getParameter("type"));
                 creation.setPass(request.getParameter("pass"));
                 creation.setPassConfirm(request.getParameter("passConfirm"));
-
-                if (!creation.canMake()) {
-                    out.println("<h1>The username is already taken or the passwords did not match. Please try again</h1>");
-                    printAdminAccountCreator(out);
-                } else if (!(user instanceof Administrator)) {
-                    out.println("<h1>You are not an Administrator. Get out of here</h1>");
-                } else {
-                    out.println("<h1>The account was created</h1>");
-                    printInfoPage(out, user);
+                
+                try {
+                    if (!creation.canMake()) {
+                        out.println("<h1>The username is already taken or the passwords did not match. Please try again</h1>");
+                        printAdminAccountCreator(out);
+                    } else if (!(user instanceof Administrator)) {
+                        out.println("<h1>You are not an Administrator. Get out of here</h1>");
+                    } else {
+                        out.println("<h1>The account was created</h1>");
+                        printInfoPage(out, user);
+                    }
+                } catch (Exception ex) {
+                    out.println("<p>The fatal error occured. Contact the programmer.\n" + 
+                            ex.getMessage() + Arrays.toString(ex.getStackTrace())+ "</p>");
                 }
+                
 
             }
 
