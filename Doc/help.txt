@@ -1,8 +1,0 @@
-HELP
-
-This is ProjectAppStuff. ProjectAppStuff holds information for other apps. It's goal is to allow users to search for apps they are interested in and provide 
-them a link where they can download the app. 
-
-To start, search for an app using the search bar.
-
-If you have any specific questions or comments, you can email us at scavoncr@miamioh.edu.
