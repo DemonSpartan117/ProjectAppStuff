@@ -14,15 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author Damon Wolfgang Duckett
  */
 public class LoginHandling extends MamaServlet {
-
-    AccountCreator creation = AccountCreator.getInstance();
-    UserInfoDump userInfo = UserInfoDump.getInstance();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +32,11 @@ public class LoginHandling extends MamaServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
+            UserInfoDump userInfo = UserInfoDump.getInstance();
             String userPath = request.getServletPath();
             User user = userInfo.getUser();
             makePageTop(out, user, userPath);
@@ -49,7 +46,7 @@ public class LoginHandling extends MamaServlet {
                 userInfo.setPass(request.getParameter("pass"));
                 userInfo.setUsername(request.getParameter("username"));
                 try {
-                    
+
                     if (userInfo.login()) {
                         out.println("<h1>Hello there " + userInfo.getUsername() + "</h1>");
                     } else {
@@ -74,7 +71,7 @@ public class LoginHandling extends MamaServlet {
                 out.println("<h1>You have logged out. Have a nice day :)</h1><br/>");
                 makeLoginPage(out);
             }
-            
+
             if (userPath.compareTo("/getCreateAccountInfo") == 0) {
                 makeGetAccountCreationInfoPage(out);
 
@@ -82,36 +79,36 @@ public class LoginHandling extends MamaServlet {
 
             if (userPath.compareTo("/accountCreation") == 0) {
 
+                AccountCreator creation = AccountCreator.getInstance();
                 creation.setPass(request.getParameter("pass"));
                 creation.setPassConfirm(request.getParameter("passConfirm"));
                 creation.setPassPhrase(request.getParameter("passPhrase"));
                 creation.setUsername(request.getParameter("username"));
-                
-                
-                
-                try {
-                if (creation.canMake()) {
-                    
-                    if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
-                        out.println("<h2>So you want to be a moderator named "
-                                + creation.getUsername() + "</h2>");
-                    } else if (creation.getPassPhrase().compareTo(creation.ADMINISTRATOR_STRING) == 0) {
-                        out.println("<h2>So you want to be an administrator named "
-                                + creation.getUsername() + "</h2>");
-                    } else {
-                        out.println("<h2>So you would like to be called "
-                                + creation.getUsername() + "</h2>");
-                    }
 
-                    out.println("<h3>You can login below</h3>");
-                    makeLoginPage(out);
-                } else {
-                    out.println("<h3>That username is already taken. Please try a different username</h3>");
-                    makeGetAccountCreationInfoPage(out);
-                } } catch (Exception ex) {
+                try {
+                    if (creation.canMake()) {
+
+                        if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
+                            out.println("<h2>So you want to be a moderator named "
+                                    + creation.getUsername() + "</h2>");
+                        } else if (creation.getPassPhrase().compareTo(creation.ADMINISTRATOR_STRING) == 0) {
+                            out.println("<h2>So you want to be an administrator named "
+                                    + creation.getUsername() + "</h2>");
+                        } else {
+                            out.println("<h2>So you would like to be called "
+                                    + creation.getUsername() + "</h2>");
+                        }
+
+                        out.println("<h3>You can login below</h3>");
+                        makeLoginPage(out);
+                    } else {
+                        out.println("<h3>That username is already taken. Please try a different username</h3>");
+                        makeGetAccountCreationInfoPage(out);
+                    }
+                } catch (Exception ex) {
                     out.println("<h1>There is a critical eror. Contact the programmer.</h1>");
                     out.println("<p>" + ex.getLocalizedMessage() + " " + java.util.Arrays.toString(ex.getStackTrace()) + "</p>");
-                    
+
                     makeGetAccountCreationInfoPage(out);
                 }
 

@@ -6,6 +6,7 @@
 package helpers.servlets;
 
 import com.secure.userInfo.*;
+import helpers.SearchesInfo;
 import helpers.UserInfoDump;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 public class appPageMaker extends MamaServlet {
     UserInfoDump userInfo = UserInfoDump.getInstance();
     User user = userInfo.getUser();
+    SearchesInfo appInfo = SearchesInfo.getInstance();
+    
+    /* databade stuff */
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
