@@ -5,11 +5,11 @@
  */
 package helpers;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import com.App;
-=======
-import com.others.App;
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//=======
+//import com.others.App;
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

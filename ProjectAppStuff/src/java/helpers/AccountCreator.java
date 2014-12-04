@@ -153,13 +153,13 @@ public class AccountCreator {
      * @throws Exception 
      */
     public boolean canMake() throws Exception {
-<<<<<<< HEAD
+//<<<<<<< HEAD
         if(pass.compareTo(passConfirm) == 0) {
-=======
-        if(pass.compareTo(passConfirm) != 0) {
-            return false;
-        }
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//=======
+//        if(pass.compareTo(passConfirm) != 0) {
+//            return false;
+//        }
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
         return createAccount();
         }
         return false;

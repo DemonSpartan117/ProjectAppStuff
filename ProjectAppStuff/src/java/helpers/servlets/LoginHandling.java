@@ -10,10 +10,10 @@ import helpers.AccountCreator;
 import helpers.UserInfoDump;
 import java.io.IOException;
 import java.io.PrintWriter;
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 import java.util.Arrays;
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,12 +61,12 @@ public class LoginHandling extends MamaServlet {
                     }
                 } catch (Exception ex) {
                     out.println("<h1>There is a critical error. Contact the programmer.</h1>");
-<<<<<<< HEAD
-                    out.println("<p>" + ex.getLocalizedMessage() + "</p>");
-=======
+//<<<<<<< HEAD
+//                    out.println("<p>" + ex.getLocalizedMessage() + "</p>");
+//=======
                     out.println("<p>" + ex.getLocalizedMessage() + " "
                             + Arrays.toString(ex.getStackTrace()) + "</p>");
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
                     makeLoginPage(out);
                 }
             }
@@ -97,7 +97,7 @@ public class LoginHandling extends MamaServlet {
                 try {
                     if (creation.canMake()) {
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
                         if (creation.getPassPhrase().compareTo(creation.MODERATOR_PHRASE) == 0) {
                             out.println("<h2>So you want to be a moderator named "
                                     + creation.getUsername() + "</h2>");
@@ -108,29 +108,29 @@ public class LoginHandling extends MamaServlet {
                             out.println("<h2>So you would like to be called "
                                     + creation.getUsername() + "</h2>");
                         }
-=======
+=======*/
                         out.println("<h2>So you would like to be called "
                                 + creation.getUsername() + "</h2>");
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 
                         out.println("<h3>You can login below</h3>");
                         makeLoginPage(out);
                     } else {
-<<<<<<< HEAD
-                        out.println("<h3>That username is already taken. Please try a different username</h3>");
-=======
+//<<<<<<< HEAD
+//                        out.println("<h3>That username is already taken. Please try a different username</h3>");
+//=======
                         out.println("<h3>That username is already taken, or you typed the mismatched password."
                                 + " Please try a different username</h3>");
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
                         makeGetAccountCreationInfoPage(out);
                     }
                 } catch (Exception ex) {
                     out.println("<h1>There is a critical eror. Contact the programmer.</h1>");
-<<<<<<< HEAD
-                    out.println("<p>" + ex.getLocalizedMessage() + " " + java.util.Arrays.toString(ex.getStackTrace()) + "</p>");
-=======
+//<<<<<<< HEAD
+//                    out.println("<p>" + ex.getLocalizedMessage() + " " + java.util.Arrays.toString(ex.getStackTrace()) + "</p>");
+//=======
                     out.println("<p>" + ex.getLocalizedMessage() + " " + Arrays.toString(ex.getStackTrace()) + "</p>");
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 
                     makeGetAccountCreationInfoPage(out);
                 }

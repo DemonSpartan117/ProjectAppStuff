@@ -1,11 +1,11 @@
 package com.secure.userInfo;
 //no difference
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import com.App;
-=======
-import com.others.App;
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//=======
+//import com.others.App;
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 
 
 public class Administrator extends Moderator {

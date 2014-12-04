@@ -111,11 +111,6 @@ public class UserAccountInfoManager extends MamaServlet {
                 creation.setPassPhrase(request.getParameter("type"));
                 creation.setPass(request.getParameter("pass"));
                 creation.setPassConfirm(request.getParameter("passConfirm"));
-<<<<<<< HEAD
-
-=======
-                
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
                 try {
                     if (!creation.canMake()) {
                         out.println("<h1>The username is already taken or the passwords did not match. Please try again</h1>");
@@ -127,16 +122,16 @@ public class UserAccountInfoManager extends MamaServlet {
                         printInfoPage(out, user);
                     }
                 } catch (Exception ex) {
-<<<<<<< HEAD
-                    out.println("<p>The fatal error occured. Contact the programmer.\n"
-                            + ex.getMessage() + Arrays.toString(ex.getStackTrace()) + "</p>");
-                }
-=======
+//<<<<<<< HEAD
+//                    out.println("<p>The fatal error occured. Contact the programmer.\n"
+//                            + ex.getMessage() + Arrays.toString(ex.getStackTrace()) + "</p>");
+//                }
+//=======
                     out.println("<p>The fatal error occured. Contact the programmer.\n" + 
                             ex.getMessage() + Arrays.toString(ex.getStackTrace())+ "</p>");
                 }
                 
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 
             }
 

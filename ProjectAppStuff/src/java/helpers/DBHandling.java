@@ -9,11 +9,11 @@ import java.sql.*;
 import java.util.*;
 
 import com.secure.userInfo.*;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import com.App;
-=======
-import com.others.App;
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//=======
+//import com.others.App;
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 
 /**
  *
@@ -23,33 +23,33 @@ public class DBHandling {
 
     private static final String DBUrl = "jdbc:mysql://localhost:3306/appstore";
     private static final String DBID = "root";
-<<<<<<< HEAD
+//<<<<<<< HEAD
     private static final String DBPW = "Levi*7537";
     
     private static Statement stmt;
     
-=======
-    private static final String DBPW = "fe8029AFC10";//"Levi*7537";
+//=======
 
-    private static Statement stmt;
 
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//    private static Statement stmt;
+
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     private static Statement initializer() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(DBUrl, DBID, DBPW);
         return con.createStatement();
     }
-<<<<<<< HEAD
+//<<<<<<< HEAD
     
-    public static boolean Login(User u) throws Exception {
-        stmt = initializer();
-	String statement;
-=======
+//    public static boolean Login(User u) throws Exception {
+//        stmt = initializer();
+//	String statement;
+//=======
 
     public static boolean Login(User u) throws Exception {
         stmt = initializer();
         String statement;
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
         if (u.isAdmin()) {
             statement = String.format("SELECT USERNAME, PASSWORD FROM ADMIN WHERE USERNAME = '%s' AND PASSWORD = '%s'", u.getName(), u.getPassword());
         } else if (u.isModerator()) {
@@ -62,11 +62,11 @@ public class DBHandling {
         while (rs.next()) {
             ++count;
         }
-<<<<<<< HEAD
+//<<<<<<< HEAD
         
-=======
+//=======
 
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
         if (count > 1) {
             throw new IllegalStateException();
         }
@@ -85,17 +85,17 @@ public class DBHandling {
 
     public static boolean SignUp(User u) throws Exception {
         stmt = initializer();
-<<<<<<< HEAD
-	String statement;
-        if (u.isAdmin()) {
-            statement = String.format("INSERT INTO ADMIN " + "VALUES ('%s', '%s');", u.getName(), u.getPassword());
-        } else if (u.isModerator()) {
-            statement = String.format("INSERT INTO MODERATOR " + "VALUES ('%s', '%s');", u.getName(), u.getPassword());
-        } else {
-            statement = String.format("INSERT INTO USER " + "VALUES ('%s', '%s');", u.getName(), u.getPassword());
-        }
-        
-=======
+//<<<<<<< HEAD
+//	String statement;
+//       if (u.isAdmin()) {
+//            statement = String.format("INSERT INTO ADMIN " + "VALUES ('%s', '%s');", u.getName(), u.getPassword());
+// /       } else if (u.isModerator()) {
+//            statement = String.format("INSERT INTO MODERATOR " + "VALUES ('%s', '%s');", u.getName(), u.getPassword());
+//        } else {
+//            statement = String.format("INSERT INTO USER " + "VALUES ('%s', '%s');", u.getName(), u.getPassword());
+//        }
+//        
+//=======
         String statement = String.format("INSERT INTO USER VALUES ('%s', '%s', ", u.getName(), u.getPassword());
         String secondStatement = "";
         if (u.isAdmin()) {
@@ -108,7 +108,7 @@ public class DBHandling {
             statement += "'Normal');";
         }
 
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
         try {
             stmt.executeUpdate(statement);
             if (!secondStatement.equals("")) {
@@ -122,23 +122,23 @@ public class DBHandling {
 
     public static boolean DeleteAccount(User u) throws Exception {
         try {
-<<<<<<< HEAD
-            if (! Login(u)) {
-=======
+//<<<<<<< HEAD
+//            if (! Login(u)) {
+//=======
             if (!Login(u)) {
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
                 throw new IllegalArgumentException("No such account found.");
             }
             stmt = initializer();
             String statement;
             if (u instanceof Administrator) {
                 statement = String.format("DELETE FROM ADMIN WHERE USERNAME = '%s';", u.getName());
-<<<<<<< HEAD
-            }
-            else if (u instanceof Moderator) {
-=======
+//<<<<<<< HEAD
+//            }
+//            else if (u instanceof Moderator) {
+//=======
             } else if (u instanceof Moderator) {
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
                 statement = String.format("DELETE FROM MODERATOR WHERE USERNAME = '%s';", u.getName());
             } else {
                 statement = String.format("DELETE FROM USER WHERE USERNAME = '%s';", u.getName());
@@ -258,7 +258,7 @@ public class DBHandling {
         return true;
     }
 
-    
+    /*
     public static ArrayList<App> search(String keyword, boolean filter, boolean sort, int col) throws Exception {
         stmt = initializer();
         String statement;
@@ -269,7 +269,7 @@ public class DBHandling {
 
             statement = "SELECT * FROM APPS WHERE IS_ACCEPTED = 'Y' AND NAME LIKE '" + "%" + String.format("%s", keyword).toLowerCase() + "%" + "'";
 
-            /*public App(String name, String developer, String description, String[] platforms, String link) {*/
+            public App(String name, String developer, String description, String[] platforms, String link) {
 
 
             if (filter) {
@@ -326,5 +326,5 @@ public class DBHandling {
         
         return executeUpdate != 0;
     }
-    
+    */
 }

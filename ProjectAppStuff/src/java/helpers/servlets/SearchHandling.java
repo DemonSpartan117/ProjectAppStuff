@@ -12,16 +12,16 @@ import com.others.*;
 import com.secure.userInfo.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import java.util.Arrays;
-=======
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//=======
+//import java.sql.Connection;
+//import java.sql.SQLException;
+//import java.util.Arrays;
+//import java.util.Enumeration;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,11 +68,11 @@ public class SearchHandling extends MamaServlet {
                 /*commented out until the search method is properly implemented*/
                 addAppsToPage(appList, out);
             } else if (userPath.compareTo("/manageResults") == 0) {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
-=======
+//=======
                 
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
                 int num = Integer.parseInt(request.getParameter("searchConstant"));
                 SearchObject.setSortConstant(num);
                 num = Integer.parseInt(request.getParameter("searchType"));
@@ -86,7 +86,7 @@ public class SearchHandling extends MamaServlet {
                 } catch (Exception ex) {
                     out.println("<p>" + ex.getMessage() + " " + Arrays.toString(ex.getStackTrace()) + "</p>");
                 }
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 
             }
 
@@ -98,7 +98,7 @@ public class SearchHandling extends MamaServlet {
             out.println("</html>");
 
         }
-=======
+=======*/
                 
             }
 
@@ -107,7 +107,7 @@ public class SearchHandling extends MamaServlet {
             out.println("</html>");
             
         } 
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     }
 
     /**

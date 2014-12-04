@@ -21,19 +21,19 @@ import javax.servlet.http.HttpServletResponse;
  * @author Damon Wolfgang Duckett
  */
 public class appPageMaker extends MamaServlet {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
-    SearchesInfo appInfo = SearchesInfo.getInstance();
+//    SearchesInfo appInfo = SearchesInfo.getInstance();
     /* databade stuff */
 
-=======
+//=======
     UserInfoDump userInfo = UserInfoDump.getInstance();
     User user = userInfo.getUser();
     SearchesInfo appInfo = SearchesInfo.getInstance();
     
     /* databade stuff */
     
->>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
