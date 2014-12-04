@@ -27,10 +27,20 @@
         </div>
         <!-- end code for the search bar -->
 
+<<<<<<< HEAD
         <form name="whatever" action="approveApp" method="POST">
             <input type="submit" value="Approve app 1" class='button' name="button 1" />
         </form>
 
 
+=======
+        <form name="whatever" action="adminAccountCreation" method="POST">
+            Create a new Administrator or Moderator account <input type="submit" value="Create account" name="button 1" />
+        </form>
+        
+
+
+        
+>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     </body>
 </html>

@@ -15,6 +15,7 @@ public class LoginTest {
     
     public static void main(String[] args) throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
+<<<<<<< HEAD
         User a = new User("KWANGJU", "KIM", false, false);
         if (DBHandling.SignUp(a)) {
             System.out.println("Signing up successful.");
@@ -37,6 +38,14 @@ public class LoginTest {
         } else {
             System.out.println("Delete Account failed.");
         }
+=======
+        User a = new User("AAA", "aaa", true, true);
+        User b = new User("BBB", "bbb", false, true);
+        User c = new User("CCC", "ccc", false, false);
+        System.out.println(DBHandling.SignUp(a));
+        System.out.println(DBHandling.SignUp(b));
+        System.out.println(DBHandling.SignUp(c));
+>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     }
     
 }

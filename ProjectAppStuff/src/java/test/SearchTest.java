@@ -5,7 +5,10 @@
  */
 package test;
 
+<<<<<<< HEAD
 import com.App;
+=======
+>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 import com.others.*;
 import helpers.*;
 import helpers.servlets.*;
@@ -23,6 +26,12 @@ public class SearchTest {
         for (int i = 0; i < test.size(); i++) {
             System.out.println(test.get(i).getName());
         }
+<<<<<<< HEAD
+=======
+        App testApp = test.get(0);
+        System.out.println(DBHandling.updateRating(testApp, 7.2));
+        System.out.println(DBHandling.deleteApp(new App("n", null, null, null, null)));
+>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     }
     
 }

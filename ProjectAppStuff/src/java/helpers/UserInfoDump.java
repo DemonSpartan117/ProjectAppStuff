@@ -8,8 +8,11 @@ package helpers;
 import com.App;
 import com.others.*;
 import com.secure.userInfo.*;
+<<<<<<< HEAD
 import java.util.logging.Level;
 import java.util.logging.Logger;
+=======
+>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 
 /**
  *
@@ -100,7 +103,13 @@ public class UserInfoDump {
                     return true;
                 }
             }
+<<<<<<< HEAD
         } return false;
+=======
+        } 
+        user = Guest.getInstance();
+        return false;
+>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     }
 
     public void logout() {
