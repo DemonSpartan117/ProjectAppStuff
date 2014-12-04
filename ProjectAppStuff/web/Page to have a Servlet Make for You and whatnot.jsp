@@ -44,10 +44,25 @@
         </table>
 
 
-        <form name="whatevs" action="deleteComment" method="POST">
-            <input type="submit" value="Delete Post" name="button1" />
+        <form name="stuffs" action="rateApp" method="POST">
+            
         </form>
-
+        
+        <form action="rateApp"> 
+                             <fieldset> 
+                                 <legend></legend> 
+                                 <p> Your rating: 
+                                     <select id = "searchType" name="searchType"> 
+                                         <option value = "1">1</option> 
+                                         <option value = "2">2</option>
+                                         <option value = "3">3</option> 
+                                         <option value = "4">4</option>
+                                         <option value = "5">5</option>
+                                     </select> 
+                                 </p> 
+                             </fieldset> 
+                             <input type="submit" value="Rate App" name="to the testing stuff" /> 
+                         </form>
 
     </body>
 </html>

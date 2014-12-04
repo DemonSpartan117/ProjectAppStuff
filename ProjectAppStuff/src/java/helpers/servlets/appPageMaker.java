@@ -7,7 +7,6 @@ package helpers.servlets;
 
 import com.App;
 import com.Comment;
-import com.Forum;
 import com.secure.userInfo.*;
 import helpers.SearchesInfo;
 import helpers.UserInfoDump;
@@ -23,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Damon Wolfgang Duckett
  */
 public class appPageMaker extends MamaServlet {
+
     UserInfoDump userInfo = UserInfoDump.getInstance();
-    User user = userInfo.getUser();
     SearchesInfo appInfo = SearchesInfo.getInstance();
 
     /**
@@ -57,11 +56,15 @@ public class appPageMaker extends MamaServlet {
                 printAppPage(out);
 
             } else if (userPath.compareTo("/commentOnForum") == 0) {
-                //TODO: implement logic
+                ArrayList<Comment> forum = app.getForum();
+                forum.add(new Comment(user.getName(), request.getParameter("quote")));
                 printAppPage(out);
 
             } else if (userPath.compareTo("/rateApp") == 0) {
                 //TODO: implement logic
+                int score = Integer.parseInt(request.getParameter("searchType"));
+                /*Make it so ratings work (because others who were supposed to
+                 * do it didn't do it) */
                 printAppPage(out);
 
             }
@@ -77,6 +80,25 @@ public class appPageMaker extends MamaServlet {
 
         /* will need to alter this a bit */
         out.println("<h2>This app's current rating: " + app.getRating() + "</h2>");
+        if (!(userInfo.getUser() instanceof Guest)) {
+            out.println("<form action=\"rateApp\"> \n"
+                    + "                             <fieldset> \n"
+                    + "                                 <legend></legend> \n"
+                    + "                                 <p> Your rating: \n"
+                    + "                                     <select id = \"searchType\" name=\"searchType\"> \n"
+                    + "                                         <option value = \"1\">1</option> \n"
+                    + "                                         <option value = \"2\">2</option>\n"
+                    + "                                         <option value = \"3\">3</option> \n"
+                    + "                                         <option value = \"4\">4</option>\n"
+                    + "                                         <option value = \"5\">5</option>\n"
+                    + "                                     </select> \n"
+                    + "                                 </p> \n"
+                    + "                             </fieldset> \n"
+                    + "                             <input type=\"submit\" value=\"Rate App\" name=\"to the testing stuff\" /> \n"
+                    + "                         </form>");
+        } else {
+            out.println("<h3>Login to rate apps</h3>");
+        }
         /* The rating needs to be determined by the method that calculates it
          (once the method is created) instead of what there is now. Need to add
          in the ability for users to rate the app (so add another rating to the
@@ -88,6 +110,31 @@ public class appPageMaker extends MamaServlet {
         out.println("<p>" + app.getDescription() + "</p>");
 
         printForum(out, app);
+        /*an error occurs when I try to add comment at this line of code. The
+         comment is added but when it goes to repeat this part, an error is thrown*/
+
+        //TEST
+        //out.println("<h1>Testing now</h1>");
+        //TEST
+
+        User user = userInfo.getUser();
+        if (user instanceof Guest) {
+            out.println("<h3>To participate in conversations or comment on the App, please log in\n"
+                    + "            or create an account</h3>\n"
+                    + "        <form name=\"whatever\" action=\"login\" method=\"POST\">\n"
+                    + "            <input type=\"submit\" value=\"Login\" name=\"button1\" />\n"
+                    + "        </form>\n"
+                    + "        <form name=\"whatever2\" action=\"getCreateAccountInfo\" method=\"POST\">\n"
+                    + "            <input type=\"submit\" value=\"Create an account\" name=\"button2\" />\n"
+                    + "        </form>");
+        } else {
+            out.println("<h3>Post a comment or join a conversation</h3>\n"
+                    + "        <form name=\"whatever\" action=\"commentOnForum\" method=\"POST\">\n"
+                    + "            <textarea name=\"quote\" rows=\"4\" cols=\"20\">\n"
+                    + "            </textarea>\n"
+                    + "            <input type=\"submit\" value=\"Post\" name=\"button1\" />\n"
+                    + "        </form>");
+        }
 
     }
 
@@ -109,12 +156,16 @@ public class appPageMaker extends MamaServlet {
     private void printComment(PrintWriter out, Comment comment) {
         out.println("<tbody>\n <tr>");
         out.println("<td>" + comment.getCommenter() + "</td>");
+
+        User user = userInfo.getUser();
         if (user instanceof Moderator) {
-            out.println("<form name=\"whatevs\" action=\"deleteComment\" method=\"POST\">\n"
+            out.println("<td><form name=\"whatevs\" action=\"deleteComment\" method=\"POST\">\n"
                     + "            <input type=\"submit\" value=\"Delete Post\" name=\"button1\" />\n"
-                    + "        </form>");
+                    + "        </form></td></tr>");
+        } else {
+            out.println("<td></td></tr>");
         }
-        out.println("<td>" + comment.getQuote() + "</td>");
+        out.println("<tr><td>" + comment.getQuote() + "</td><td></td></tr>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

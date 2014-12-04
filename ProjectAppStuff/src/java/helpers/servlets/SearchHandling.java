@@ -58,10 +58,6 @@ public class SearchHandling extends MamaServlet {
                 /*commented out until the search method is properly implemented*/
                 addAppsToPage(appList, out);
             } else if (userPath.compareTo("/manageResults") == 0) {
-//<<<<<<< HEAD
-
-//=======
-//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
                 int num = Integer.parseInt(request.getParameter("searchConstant"));
                 SearchObject.setSortConstant(num);
                 num = Integer.parseInt(request.getParameter("searchType"));
