@@ -60,6 +60,7 @@
         <url-pattern>/UserRequestApp</url-pattern>
         <url-pattern>/addTheApp</url-pattern>
         <url-pattern>/requestTheApp</url-pattern>
+        <url-pattern>/approveApp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

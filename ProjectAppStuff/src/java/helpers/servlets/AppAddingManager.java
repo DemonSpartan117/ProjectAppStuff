@@ -7,10 +7,12 @@ package helpers.servlets;
 
 import com.App;
 import com.secure.userInfo.*;
+import helpers.DBHandling;
 import helpers.UserInfoDump;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,21 +47,48 @@ public class AppAddingManager extends MamaServlet {
             makePageTop(out, user, userPath);
 
             if (userPath.compareTo("/AdminAddAppPage") == 0) {
-                printAdminAddAppPage(out);
+                printAddAppPage(out, "addTheApp");
 
             } else if (userPath.compareTo("/AdminViewApps") == 0) {
-                //Todo: Implement logic
+                try {
+                    ArrayList<App> apps = DBHandling.search("puppy_", true, true, 0);
+                    printAppsForAdmin(out, apps);
+
+                } catch (Exception e) {
+                    //nothing to do here
+                }
 
             } else if (userPath.compareTo("/UserRequestApp") == 0) {
-                //Todo: Implement logic
+                printAddAppPage(out, "requestTheApp");
 
             } else if (userPath.compareTo("/addTheApp") == 0) {
-                if(canMakeApp(request)) {
+                if (canMakeApp(request)) {
                     makeApp(request, true);
                 }
 
             } else if (userPath.compareTo("/requestTheApp") == 0) {
-                //Todo: Implement logic
+                if (canMakeApp(request)) {
+                    makeApp(request, false);
+                } else if (userPath.compareTo("/approveApp") == 0) {
+                    String temp = request.getParameter("button1");
+                    temp = temp.substring(temp.length() - 1);
+                    int appNum = Integer.parseInt(temp);
+                    
+                    try {
+                        ArrayList<App> apps = DBHandling.search("puppy_", true, true, 0);
+                        App app = apps.remove(appNum);
+                        app.setAccepted(true);
+                        out.println("The " + app.getName() + " app was approved!");
+                        
+                        /* database stuff */
+                        /* make it so that this app gets the app changed from a N to a Y */
+                        
+                        printAppsForAdmin(out, apps);
+                        
+                    } catch (Exception e) {
+                        //nothing to do here
+                    }
+                }
 
             }
 
@@ -68,10 +97,19 @@ public class AppAddingManager extends MamaServlet {
         }
     }
 
-    private void printAdminAddAppPage(PrintWriter out) {
-        out.println("<h1 style=\"text-align: center\">Add an App to the Database</h1>\n"
+    private void printAddAppPage(PrintWriter out, String whereTo) {
+        String temp;
+        String temp2;
+        if (whereTo.compareTo("requestTheApp") == 0) {
+            temp = "Request App to add to site";
+            temp2 = "Request the App";
+        } else {
+            temp = "Add an App to the Database";
+            temp2 = "Add the App";
+        }
+        out.println("<h1 style=\"text-align: center\">" + temp + "</h1>\n"
                 + "        \n"
-                + "        <form name=\"stuff\" action=\"addTheApp\">\n"
+                + "        <form name=\"stuff\" action=\"" + whereTo + "\">\n"
                 + "            <table style=\"text-align: right\" border=\"1\" cellpadding=\"10\">\n"
                 + "                \n"
                 + "                <tbody>\n"
@@ -101,7 +139,7 @@ public class AppAddingManager extends MamaServlet {
                 + "                    </tr>\n"
                 + "                </tbody>\n"
                 + "            </table>\n"
-                + "            <input type=\"submit\" value=\"Add App\" name=\"button 2\" />\n"
+                + "            <input type=\"submit\" value=\"" + temp2 + "\" name=\"button 2\" />\n"
                 + "        </form>");
     }
 
@@ -121,7 +159,7 @@ public class AppAddingManager extends MamaServlet {
         String[] platforms = parsePlatforms(request.getParameter("platforms"));
         String version = request.getParameter("version");
         String link = request.getParameter("link");
-        
+
         App app = new App(name, developer, description, platforms, version, link, isAccepted);
         /* database stuff */
         /* take this app object and add it to the database */
@@ -155,8 +193,34 @@ public class AppAddingManager extends MamaServlet {
         return platforms;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    private void printAppsForAdmin(PrintWriter out, ArrayList<App> apps) {
+        App tempApp;
+        int initSize = apps.size();
+        for(int i = initSize; i < initSize; i--) {
+            if(!(apps.get(i).getAccepted())) {
+                apps.remove(i);
+            }
+        }
 
+        out.println("<table border=\"1\">\n"
+                + "            <thead>\n"
+                + "                <tr>\n"
+                + "                    <th>Name</th>\n"
+                + "                    <th>Developer</th>\n"
+                + "                    <th>Platforms</th>\n"
+                + "                    <th>Link</th>\n"
+                + "                    <th>Approve</th>\n"
+                + "                </tr>\n"
+                + "            </thead>\n"
+                + "            <tbody>");
+
+        for (int i = 0; i < apps.size(); i++) {
+            tempApp = apps.get(i);
+            addAppToTable(out, tempApp, i);
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -194,5 +258,30 @@ public class AppAddingManager extends MamaServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void addAppToTable(PrintWriter out, App app, int i) {
+        String temp = app.getName();
+        addStringToTable(out, temp);
+        temp = app.getDeveloper();
+        addStringToTable(out, temp);
+        String[] platforms = app.getPlatforms();
+        addStringToTable(out, Arrays.toString(platforms));
+        temp = app.getLink();
+        out.println("<tr>\n"
+                + "                    <td><a href=\"" + temp + "\">App's site</a></td>");
+        temp = "";//edit this part
+        addStringToTable(out, temp);
+        temp = "<form name=\"whatever\" action=\"approveApp\" method=\"POST\">\n"
+                + "            <input type=\"submit\" value=\"Approve app " + i + "\" class='button' name=\"button 1\" />\n"
+                + "        </form>";
+        addStringToTable(out, temp);
+        out.println("</tbody>\n"
+                + "        </table>");
+    }
+
+    private void addStringToTable(PrintWriter out, String temp) {
+        out.println("<tr>\n"
+                + "                    <td>" + temp + "</td>");
+    }
 
 }

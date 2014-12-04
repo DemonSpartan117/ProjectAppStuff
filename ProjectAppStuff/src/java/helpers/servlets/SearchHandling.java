@@ -77,6 +77,9 @@ public class SearchHandling extends MamaServlet {
             }
 
             out.println("<h1>" + SearchObject.getKeyword() + "</h1>");
+            out.println("<h3 style='text-align: center'>Don't see the App you are looking for?<br/>\n"
+                    + "            Request the app <a href=\"UserRequestApp\">here</a> </h3>");
+
             out.println("</body>");
             out.println("</html>");
 

@@ -13,7 +13,7 @@ public class App {
 	private String[] platforms;
 	private String version;
 	private String link;
-	private ArrayList<Comment> forum= new ArrayList<Comment>();
+	private ArrayList<Comment> forum = new ArrayList<Comment>();
 	double rating;/*this will most likely become an array
 	of doubles instead of just a double and a method will
 	be used to return the average rating*/
@@ -50,7 +50,7 @@ public class App {
             this.platforms = platforms;
             this.version = version;
             this.link = link;
-            this.forum = new Forum();
+            //this.forum = new Forum();
             this.rating = 0;
             this.accepted = accepted;
         }

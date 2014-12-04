@@ -117,7 +117,7 @@ public class DBHandling {
             statement = "SELECT * FROM APPS;";
         } else {
 
-            statement = "SELECT * FROM APPS WHERE NAME LIKE '" + "%" + String.format("%s", keyword).toLowerCase() + "%" + "'";
+            statement = "SELECT * FROM APPS WHERE IS_ACCEPTED = 'Y' AND NAME LIKE '" + "%" + String.format("%s", keyword).toLowerCase() + "%" + "'";
 
             /*public App(String name, String developer, String description, String[] platforms, String link) {*/
 
