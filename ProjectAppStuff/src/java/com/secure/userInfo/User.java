@@ -1,6 +1,6 @@
 package com.secure.userInfo;
 
-import com.others.App;
+import com.App;
 
 public class User {
 

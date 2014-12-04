@@ -1,5 +1,6 @@
-package com.others;
+package com;
 //has the second constructor I made
+
 
 public class App {
 

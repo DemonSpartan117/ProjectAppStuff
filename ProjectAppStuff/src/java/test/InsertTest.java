@@ -5,7 +5,7 @@
  */
 package test;
 
-import com.others.App;
+import com.App;
 import helpers.DBHandling;
 
 /**

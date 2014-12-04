@@ -1,7 +1,7 @@
 package com.secure.userInfo;
 //no difference
 
-import com.others.App;
+import com.App;
 
 
 public class Administrator extends Moderator {

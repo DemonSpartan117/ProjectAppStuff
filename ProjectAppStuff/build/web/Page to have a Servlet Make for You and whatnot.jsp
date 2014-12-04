@@ -26,13 +26,10 @@
             <div class="tfclear"></div>
         </div>
         <!-- end code for the search bar -->
-
-        <form name="whatever" action="adminAccountCreation" method="POST">
-            Create a new Administrator or Moderator account <input type="submit" value="Create account" name="button 1" />
-        </form>
         
-
-
+        
+        <h1 style="text-align: center"></h1>
+        
         
     </body>
 </html>

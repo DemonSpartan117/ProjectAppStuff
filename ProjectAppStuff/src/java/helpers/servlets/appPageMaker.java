@@ -5,6 +5,7 @@
  */
 package helpers.servlets;
 
+import com.App;
 import com.secure.userInfo.*;
 import helpers.SearchesInfo;
 import helpers.UserInfoDump;
@@ -19,12 +20,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Damon Wolfgang Duckett
  */
 public class appPageMaker extends MamaServlet {
-    UserInfoDump userInfo = UserInfoDump.getInstance();
-    User user = userInfo.getUser();
+
     SearchesInfo appInfo = SearchesInfo.getInstance();
-    
     /* databade stuff */
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,24 +33,41 @@ public class appPageMaker extends MamaServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
+            UserInfoDump userInfo = UserInfoDump.getInstance();
+            User user = userInfo.getUser();
             String userPath = request.getServletPath();
+
             makePageTop(out, user, userPath);
-            
-            
-//TODO: add in the print statements needed to make the rest of the App page below
-            
-            
-            out.println("<h1>Servlet appPageMaker at " + request.getContextPath() + "</h1>");
+            App app = appInfo.getDesiredApp();
+
+            if (userPath.compareTo("/viewAppPage") == 0) {
+                printAppPage(out);
+
+            } else if (userPath.compareTo("/commentOnForum") == 0) {
+                //TODO: implement logic
+                printAppPage(out);
+
+            } else if (userPath.compareTo("/rateApp") == 0) {
+                //TODO: implement logic
+                printAppPage(out);
+
+            }
+
             out.println("</body>");
             out.println("</html>");
         }
+    }
+
+    private void printAppPage(PrintWriter out) {
+        App app = appInfo.getDesiredApp();
+        out.println("<h1 style=\"text-align: center\">" + app.getName() + "</h1>");
+        out.println("<p>" + app.getDescription() + "</p>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

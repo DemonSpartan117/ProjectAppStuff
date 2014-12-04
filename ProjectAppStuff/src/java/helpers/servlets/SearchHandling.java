@@ -5,18 +5,14 @@
  */
 package helpers.servlets;
 
+import com.App;
 import helpers.UserInfoDump;
 import helpers.SearchesInfo;
 import com.others.*;
 import com.secure.userInfo.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -63,7 +59,7 @@ public class SearchHandling extends MamaServlet {
                 /*commented out until the search method is properly implemented*/
                 addAppsToPage(appList, out);
             } else if (userPath.compareTo("/manageResults") == 0) {
-                
+
                 int num = Integer.parseInt(request.getParameter("searchConstant"));
                 SearchObject.setSortConstant(num);
                 num = Integer.parseInt(request.getParameter("searchType"));
@@ -77,14 +73,14 @@ public class SearchHandling extends MamaServlet {
                 } catch (Exception ex) {
                     out.println("<p>" + ex.getMessage() + " " + Arrays.toString(ex.getStackTrace()) + "</p>");
                 }
-                
+
             }
 
             out.println("<h1>" + SearchObject.getKeyword() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            
-        } 
+
+        }
     }
 
     /**
@@ -135,7 +131,12 @@ public class SearchHandling extends MamaServlet {
 
     private void printInfo(int i, App[] appList, PrintWriter out, int j) {
         if (i == 0) {
-            out.println(appList[j].getName());
+            //HERE
+            out.println("<form name=\"stuff\" action=\"viewAppPage\" method=\"POST\">\n"
+                    + "            <input type=\"hidden\" name=\"elementNumber\" value=\"" + j + "\"/>\n"
+                    + "            <input type=\"submit\" value=\"" + appList[j].getName() + "\" name=\"button1\" />\n"
+                    + "        </form>");
+            //TO HERE
         } else if (i == 1) {
             out.println(appList[j].getDeveloper());
         } else if (i == 2) {
@@ -150,7 +151,6 @@ public class SearchHandling extends MamaServlet {
             out.println("<a href=\"" + appList[j].getLink() + "\">Developer site</a>");
         }
 
-        //TODO:add in the platforms and possibly take out the description for it
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

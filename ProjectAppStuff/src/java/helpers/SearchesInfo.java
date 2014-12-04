@@ -5,7 +5,7 @@
  */
 package helpers;
 
-import com.others.App;
+import com.App;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

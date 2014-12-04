@@ -5,6 +5,7 @@
  */
 package test;
 
+import com.App;
 import com.others.*;
 import helpers.*;
 import helpers.servlets.*;
