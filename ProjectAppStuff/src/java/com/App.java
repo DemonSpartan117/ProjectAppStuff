@@ -1,6 +1,9 @@
 package com;
 //has the second constructor I made
 
+import java.util.ArrayList;
+
+
 
 public class App {
 
@@ -10,13 +13,13 @@ public class App {
 	private String[] platforms;
 	private String version;
 	private String link;
-	Forum forum;
+	private ArrayList<Comment> forum= new ArrayList<Comment>();
 	double rating;/*this will most likely become an array
 	of doubles instead of just a double and a method will
 	be used to return the average rating*/
 	boolean accepted;
 	
-	public App(String name, String developer, String description, String[] platforms, String version, String link, Forum forum, double rating, boolean accepted) {
+	public App(String name, String developer, String description, String[] platforms, String version, String link, ArrayList<Comment> forum, double rating, boolean accepted) {
 		this.name = name;
 		this.developer = developer;
 		this.description = description;
@@ -35,7 +38,7 @@ public class App {
             this.platforms = platforms;
             this.version = "1";
             this.link = link;
-            this.forum = new Forum();
+ //           this.forum = new Forum();
             this.rating = 0;
             this.accepted = false;
         }
@@ -64,9 +67,37 @@ public class App {
 		return link;
 	}
 	
-	public Forum getForum(){
+	public ArrayList<Comment> getForum(){
 		return forum;
 	}
+        
+        /* database stuff */
+        // the forum list should be saved in the database after everytime it is changed
+        public void addComment(Comment comment){
+            forum.add(comment);
+        }
+        /* database stuff */
+        // the forum list should be saved in the database after everytime it is changed
+        public void removeComment(int position){
+            forum.remove(position);
+        }
+        /* database stuff */
+        // the forum list should be saved in the database after everytime it is changed
+        public void editComment(Comment comment, int position){
+            forum.set(position,comment);
+        }
+        
+        public int getCommentPosition(String quote){
+            int postion = -1;
+            int i = 0;
+            for (Comment c : forum){
+                if (c.getQuote().equals(quote)){
+                    postion = i;
+                }
+                i++;
+            }
+            return postion;
+        }
 	
 	public double getRating(){
 		return rating;

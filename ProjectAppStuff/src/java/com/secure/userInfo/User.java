@@ -1,6 +1,8 @@
 package com.secure.userInfo;
 
 import com.App;
+import com.Comment;
+import helpers.UserInfoDump;
 
 public class User {
 
@@ -80,10 +82,22 @@ public class User {
         return moderator;
     }// </editor-fold>
 
-    public void postComment(App app, String comment) {
+    //Edits the ArrayList forum which is an instance variable in app.
+    
+    public void postComment(App app, String quote) {
         /* TODO: implement the logic to add a comment to the Forum object
          * of an App's page here so all user objects can use it*/
         /* database stuff */
+        UserInfoDump info = UserInfoDump.getInstance();
+        Comment comment = new Comment(info.getUsername(),quote); 
+        app.addComment(comment);
+    }
+    
+    public void editComment(App app, String newQuote, String oldQuote){
+        int postion = app.getCommentPosition(oldQuote);
+        UserInfoDump info = UserInfoDump.getInstance();
+        Comment comment = new Comment(info.getUsername(),newQuote);
+        app.editComment(comment, postion);
     }
 
     /*methods for the Users
