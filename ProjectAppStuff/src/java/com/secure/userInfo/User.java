@@ -88,6 +88,7 @@ public class User {
         /* TODO: implement the logic to add a comment to the Forum object
          * of an App's page here so all user objects can use it*/
         /* database stuff */
+<<<<<<< HEAD
         UserInfoDump info = UserInfoDump.getInstance();
         Comment comment = new Comment(info.getUsername(),quote); 
         app.addComment(comment);
@@ -98,6 +99,8 @@ public class User {
         UserInfoDump info = UserInfoDump.getInstance();
         Comment comment = new Comment(info.getUsername(),newQuote);
         app.editComment(comment, postion);
+=======
+>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     }
 
     /*methods for the Users
