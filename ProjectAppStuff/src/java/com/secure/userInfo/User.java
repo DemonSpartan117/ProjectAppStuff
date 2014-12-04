@@ -69,10 +69,8 @@ public class User {
      * @param password the new password the user wants to change the current password to
      * @param currentPassword what the user enters as his or her current password
      */
-    public void setPassword(String password, String currentPassword) {
-        if ((this.password).compareTo(currentPassword) != 0) {
-            throw new IllegalArgumentException("Authentication failed");
-        }
+    public void setPassword(String password) {
+        
         this.password = password;
         /* database stuff */
         //need to make sure it is changed in the database as well

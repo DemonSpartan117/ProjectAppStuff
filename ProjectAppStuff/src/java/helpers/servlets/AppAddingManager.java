@@ -55,38 +55,39 @@ public class AppAddingManager extends MamaServlet {
                     printAppsForAdmin(out, apps);
 
                 } catch (Exception e) {
-                    //nothing to do here
+                    System.out.println("Fatal error. Contact the programmer. " + Arrays.toString(e.getStackTrace()));
                 }
 
             } else if (userPath.compareTo("/UserRequestApp") == 0) {
                 printAddAppPage(out, "requestTheApp");
 
             } else if (userPath.compareTo("/addTheApp") == 0) {
-                if (canMakeApp(request)) {
-                    makeApp(request, true);
+                if (!(makeApp(request, true))) {
+                    out.println("<h1 style=\"text-align: center\">That app may be a duplicate, please try again</h1>");
+                    printAddAppPage(out, "addTheApp");
                 }
 
             } else if (userPath.compareTo("/requestTheApp") == 0) {
-                if (canMakeApp(request)) {
-                    makeApp(request, false);
+                if (!(makeApp(request, false))) {
+                    out.println("<h1 style=\"text-align: center\">That app may be a duplicate, please try again</h1>");
+                    printAddAppPage(out, "requestTheApp");
                 } else if (userPath.compareTo("/approveApp") == 0) {
                     String temp = request.getParameter("button1");
                     temp = temp.substring(temp.length() - 1);
                     int appNum = Integer.parseInt(temp);
-                    
+
                     try {
                         ArrayList<App> apps = DBHandling.search("puppy_", true, true, 0);
                         App app = apps.remove(appNum);
                         app.setAccepted(true);
                         out.println("The " + app.getName() + " app was approved!");
-                        
+
                         /* database stuff */
                         /* make it so that this app gets the app changed from a N to a Y */
-                        
                         printAppsForAdmin(out, apps);
-                        
+
                     } catch (Exception e) {
-                        //nothing to do here
+                        System.out.println("Fatal error. Contact the programmer. " + Arrays.toString(e.getStackTrace()));
                     }
                 }
 
@@ -143,16 +144,8 @@ public class AppAddingManager extends MamaServlet {
                 + "        </form>");
     }
 
-    private boolean canMakeApp(HttpServletRequest request) {
-        String link = request.getParameter("link");
 
-        /* database stuff */
-        /* check to see if the link matches any other links for apps already in
-         the database and if it does return false. If it does not match, return true*/
-        return false;
-    }
-
-    private void makeApp(HttpServletRequest request, boolean isAccepted) {
+    private boolean makeApp(HttpServletRequest request, boolean isAccepted) {
         String name = request.getParameter("name");
         String developer = request.getParameter("developer");
         String description = request.getParameter("description");
@@ -161,9 +154,14 @@ public class AppAddingManager extends MamaServlet {
         String link = request.getParameter("link");
 
         App app = new App(name, developer, description, platforms, version, link, isAccepted);
-        /* database stuff */
-        /* take this app object and add it to the database */
-    }
+
+        try {
+            return DBHandling.insertApp(app);
+        } catch (Exception e) {
+            System.out.println("Fatal error. Contact the programmer. " + Arrays.toString(e.getStackTrace()));
+            return false;
+        }
+    }// end method
 
     private String[] parsePlatforms(String platformsString) {
         ArrayList<String> platformsList = new ArrayList<String>();
@@ -196,8 +194,8 @@ public class AppAddingManager extends MamaServlet {
     private void printAppsForAdmin(PrintWriter out, ArrayList<App> apps) {
         App tempApp;
         int initSize = apps.size();
-        for(int i = initSize; i < initSize; i--) {
-            if(!(apps.get(i).getAccepted())) {
+        for (int i = initSize; i > 0; i--) {
+            if (!(apps.get(i).getAccepted())) {
                 apps.remove(i);
             }
         }
@@ -218,6 +216,8 @@ public class AppAddingManager extends MamaServlet {
             tempApp = apps.get(i);
             addAppToTable(out, tempApp, i);
         }
+        out.println("</tbody>\n"
+                + "        </table>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -260,6 +260,7 @@ public class AppAddingManager extends MamaServlet {
     }// </editor-fold>
 
     private void addAppToTable(PrintWriter out, App app, int i) {
+        out.println("<tr>");
         String temp = app.getName();
         addStringToTable(out, temp);
         temp = app.getDeveloper();
@@ -267,21 +268,16 @@ public class AppAddingManager extends MamaServlet {
         String[] platforms = app.getPlatforms();
         addStringToTable(out, Arrays.toString(platforms));
         temp = app.getLink();
-        out.println("<tr>\n"
-                + "                    <td><a href=\"" + temp + "\">App's site</a></td>");
-        temp = "";//edit this part
-        addStringToTable(out, temp);
+        out.println("<td><a href=\"" + temp + "\">App's site</a></td>");
         temp = "<form name=\"whatever\" action=\"approveApp\" method=\"POST\">\n"
                 + "            <input type=\"submit\" value=\"Approve app " + i + "\" class='button' name=\"button 1\" />\n"
                 + "        </form>";
         addStringToTable(out, temp);
-        out.println("</tbody>\n"
-                + "        </table>");
+        out.println("</tr>");
     }
 
     private void addStringToTable(PrintWriter out, String temp) {
-        out.println("<tr>\n"
-                + "                    <td>" + temp + "</td>");
+        out.println("<td>" + temp + "</td>");
     }
 
 }

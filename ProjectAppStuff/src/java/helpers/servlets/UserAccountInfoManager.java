@@ -61,13 +61,8 @@ public class UserAccountInfoManager extends MamaServlet {
                 try {
                     DBHandling.DeleteAccount(user);
                 } catch (Exception ex) {
-//<<<<<<< HEAD
-//                    out.println("<p>The fatal error occured. Contact the programmer.\n"
-//                            + ex.getMessage() + Arrays.toString(ex.getStackTrace()) + "</p>");
-//=======
-                    out.println("<p>The fatal error occured. Contact the programmer.\n" + 
-                            ex.getMessage() + Arrays.toString(ex.getStackTrace())+ "</p>");
-//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+                    out.println("<p>The fatal error occured. Contact the programmer.\n"
+                            + ex.getMessage() + Arrays.toString(ex.getStackTrace()) + "</p>");
                 }
 
             } else if (userPath.compareTo("/changePasswordPage") == 0) {
@@ -75,12 +70,13 @@ public class UserAccountInfoManager extends MamaServlet {
                 printChangePassPage(out, user);
 
             } else if (userPath.compareTo("/changeThePassword") == 0) {
+                
                 String pass = request.getParameter("pass");
                 String newPass = request.getParameter("newPass");
                 String confirmNewPass = request.getParameter("confirmNewPass");
 
                 if (user.getPassword().compareTo(pass) == 0 && newPass.compareTo(confirmNewPass) == 0) {
-                    user.setPassword(pass, newPass);
+                    user.setPassword(pass);//this line causes problems
                     out.println("<h1 style=\"text-align: center\">Your password has been changed</h1>");
                     printInfoPage(out, user);
 
@@ -122,16 +118,10 @@ public class UserAccountInfoManager extends MamaServlet {
                         printInfoPage(out, user);
                     }
                 } catch (Exception ex) {
-//<<<<<<< HEAD
-//                    out.println("<p>The fatal error occured. Contact the programmer.\n"
-//                            + ex.getMessage() + Arrays.toString(ex.getStackTrace()) + "</p>");
-//                }
-//=======
-                    out.println("<p>The fatal error occured. Contact the programmer.\n" + 
-                            ex.getMessage() + Arrays.toString(ex.getStackTrace())+ "</p>");
+
+                    out.println("<p>The fatal error occured. Contact the programmer.\n"
+                            + ex.getMessage() + Arrays.toString(ex.getStackTrace()) + "</p>");
                 }
-                
-//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
 
             }
 
@@ -143,6 +133,7 @@ public class UserAccountInfoManager extends MamaServlet {
         out.println("<h1>Please enter the following information</h1>\n"
                 + "        <form name=\"do it\" action=\"changeTheUsername\" method=\"POST\">\n"
                 + "            What is the new username you desire?: <input type=\"text\" name=\"username\" />\n"
+                + "            <input type=\"submit\" value=\"Change your username\" name=\"stuff\"/>\n"
                 + "        </form>");
     }
 
@@ -160,13 +151,12 @@ public class UserAccountInfoManager extends MamaServlet {
             out.println("<form name=\"whatever\" action=\"adminAccountCreation\" method=\"POST\">\n"
                     + "            Create a new Administrator or Moderator account <input type=\"submit\" value=\"Create account\" name=\"button 1\" />\n"
                     + "        </form>");
-//<<<<<<< HEAD
             out.println("<form name=\"whatever\" action=\"AdminAddAppPage\">\n"
                     + "            Add a new app to the database <input type=\"submit\" value=\"Add App\" name=\"button 1\" />\n"
                     + "        </form>");
-            //TODO: add in button that takes Admin to page that allows him or her to add new app to database
-//=======
-//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
+            out.println("<form name=\"whatever\" action=\"AdminViewApps\" method=\"POST\">\n"
+                    + "            View apps currently awaiting your approval<input type=\"submit\" value=\"Look at them\" name=\"button 1\" />\n"
+                    + "        </form>");
         }
     }
 
@@ -185,6 +175,7 @@ public class UserAccountInfoManager extends MamaServlet {
                 + "            Current Password: <input type=\"password\" name=\"pass\" /><br/>\n"
                 + "            New password: <input type=\"password\" name=\"newPass\" /><br/>\n"
                 + "            Confirm new password: <input type=\"password\" name=\"confirmNewPass\" />\n"
+                + "            <input type=\"submit\" value=\"Change your password\" name=\"stuff\" />\n"
                 + "        </form>");
     }// </editor-fold>
 

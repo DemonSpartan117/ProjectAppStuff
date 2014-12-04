@@ -27,9 +27,40 @@
         </div>
         <!-- end code for the search bar -->
 
-        <form name="whatever" action="approveApp" method="POST">
-            <input type="submit" value="Approve app 1" class='button' name="button 1" />
-        </form>
+        <input type="submit" value="Change your username" name="stuff" />
+
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Developer</th>
+                    <th>Platforms</th>
+                    <th>Link</th>
+                    <th>Approve</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>App 1 name</td>
+                    <td>App 1 developer</td>
+                    <td>App 1 platforms</td>
+                    <td><a href="https://Roosterteeth.com">App 1 Link</a></td>
+                    <td><form name="whatevs" class="button" action="replaceThis" method="POST">
+                            <input type="submit" value="Approve App 0" name="button1" />
+                        </form></td>
+                </tr>
+                <tr>
+                    <td>App 2 name</td>
+                    <td>App 2 developer</td>
+                    <td>App 2 platforms</td>
+                    <td>App 2 Link</td>
+                    <td><form name="whatevs" class="button" action="replaceThis" method="POST">
+                            <input type="submit" value="Approve App 1" name="button1" />
+                        </form></td>
+                </tr>
+            </tbody>
+        </table>
+
 
 
     </body>

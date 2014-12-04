@@ -27,14 +27,12 @@ public class appPageMaker extends MamaServlet {
 
 //    SearchesInfo appInfo = SearchesInfo.getInstance();
     /* databade stuff */
-
 //=======
     UserInfoDump userInfo = UserInfoDump.getInstance();
     User user = userInfo.getUser();
     SearchesInfo appInfo = SearchesInfo.getInstance();
-    
+
     /* databade stuff */
-    
 //>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -79,21 +77,21 @@ public class appPageMaker extends MamaServlet {
     private void printAppPage(PrintWriter out) {
         App app = appInfo.getDesiredApp();
         out.println("<h1 style=\"text-align: center\">" + app.getName() + "</h1>");
-        
+
         /* will need to alter this a bit */
         out.println("<h2>This app's current rating: " + app.getRating() + "</h2>");
         /* The rating needs to be determined by the method that calculates it
-        (once the method is created) instead of what there is now. Need to add
-        in the ability for users to rate the app (so add another rating to the
-        list of Ratings) or edit their existing rating (so this needs to check
-        to see if the user has already rated the app and if the user has, it
-        will allow them to change their Rating (may need to add another action
-        request type))*/
-        
+         (once the method is created) instead of what there is now. Need to add
+         in the ability for users to rate the app (so add another rating to the
+         list of Ratings) or edit their existing rating (so this needs to check
+         to see if the user has already rated the app and if the user has, it
+         will allow them to change their Rating (may need to add another action
+         request type))*/
+
         out.println("<p>" + app.getDescription() + "</p>");
-        
+
         printForum(out, app);
-        
+
     }
 
     private void printForum(PrintWriter out, App app) {
@@ -105,8 +103,16 @@ public class appPageMaker extends MamaServlet {
          * when the Moderator id the one who made the comment*/
         // Forum forum = app.getForum();
         ArrayList<Comment> forum = app.getForum();
+        int initSize = forum.size();
+        for (int i = initSize; i > 0; i--) {
+            printComment(out, forum.get(i));
+        }
     }
-    
+
+    private void printComment(PrintWriter out, Comment comment) {
+        
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
