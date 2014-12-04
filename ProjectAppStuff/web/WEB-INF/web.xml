@@ -39,6 +39,7 @@
         <servlet-name>appPageMaker</servlet-name>
         <url-pattern>/viewAppPage</url-pattern>
         <url-pattern>/commentOnForum</url-pattern>
+        <url-pattern>/deleteComment</url-pattern>
         <url-pattern>/rateApp</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

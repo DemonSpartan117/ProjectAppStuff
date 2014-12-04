@@ -6,11 +6,7 @@ import helpers.UserInfoDump;
 
 public class User {
 
-    // In order to make moderator and admin, please use that method.
-    public static User getInstance(String name, String password) {
-        return new User(name, password, false, false);
-    }//I'm going to go with no. I will explain why soon but if you want a
-    //singleton, make it Guest, not my User.
+    
 
     private String name;
     private String password;

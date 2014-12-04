@@ -23,17 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Damon Wolfgang Duckett
  */
 public class appPageMaker extends MamaServlet {
-//<<<<<<< HEAD
-
-//    SearchesInfo appInfo = SearchesInfo.getInstance();
-    /* databade stuff */
-//=======
     UserInfoDump userInfo = UserInfoDump.getInstance();
     User user = userInfo.getUser();
     SearchesInfo appInfo = SearchesInfo.getInstance();
 
-    /* databade stuff */
-//>>>>>>> 71677c879cd52361e0863c882ec6896c4ff1001f
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -57,6 +50,10 @@ public class appPageMaker extends MamaServlet {
             App app = appInfo.getDesiredApp();
 
             if (userPath.compareTo("/viewAppPage") == 0) {
+                printAppPage(out);
+
+            } else if (userPath.compareTo("/deleteComment") == 0) {
+                //TODO: implement logic
                 printAppPage(out);
 
             } else if (userPath.compareTo("/commentOnForum") == 0) {
@@ -110,7 +107,14 @@ public class appPageMaker extends MamaServlet {
     }
 
     private void printComment(PrintWriter out, Comment comment) {
-        
+        out.println("<tbody>\n <tr>");
+        out.println("<td>" + comment.getCommenter() + "</td>");
+        if (user instanceof Moderator) {
+            out.println("<form name=\"whatevs\" action=\"deleteComment\" method=\"POST\">\n"
+                    + "            <input type=\"submit\" value=\"Delete Post\" name=\"button1\" />\n"
+                    + "        </form>");
+        }
+        out.println("<td>" + comment.getQuote() + "</td>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

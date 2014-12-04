@@ -29,38 +29,24 @@
 
         <input type="submit" value="Change your username" name="stuff" />
 
-        <table border="1" cellpadding="10">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Developer</th>
-                    <th>Platforms</th>
-                    <th>Link</th>
-                    <th>Approve</th>
-                </tr>
-            </thead>
+        <table border="1">
+            
             <tbody>
                 <tr>
-                    <td>App 1 name</td>
-                    <td>App 1 developer</td>
-                    <td>App 1 platforms</td>
-                    <td><a href="https://Roosterteeth.com">App 1 Link</a></td>
-                    <td><form name="whatevs" class="button" action="replaceThis" method="POST">
-                            <input type="submit" value="Approve App 0" name="button1" />
-                        </form></td>
+                    <td>commenter name</td>
+                    <td>possible edit button 1</td>
                 </tr>
                 <tr>
-                    <td>App 2 name</td>
-                    <td>App 2 developer</td>
-                    <td>App 2 platforms</td>
-                    <td>App 2 Link</td>
-                    <td><form name="whatevs" class="button" action="replaceThis" method="POST">
-                            <input type="submit" value="Approve App 1" name="button1" />
-                        </form></td>
+                    <td>quote</td>
+                    <td>possible edit button 2</td>
                 </tr>
             </tbody>
         </table>
 
+
+        <form name="whatevs" action="deleteComment" method="POST">
+            <input type="submit" value="Delete Post" name="button1" />
+        </form>
 
 
     </body>
