@@ -132,6 +132,7 @@ public class DBHandling {
                 String cmd =  " AND ";
                 switch (col) {
                     case 1:
+                        cmd += "";
                         break;
                     case 2:
                         break;
