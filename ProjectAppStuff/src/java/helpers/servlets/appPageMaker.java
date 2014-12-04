@@ -6,12 +6,14 @@
 package helpers.servlets;
 
 import com.App;
+import com.Comment;
 import com.Forum;
 import com.secure.userInfo.*;
 import helpers.SearchesInfo;
 import helpers.UserInfoDump;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -101,7 +103,8 @@ public class appPageMaker extends MamaServlet {
          * *an option to delete a comment will appear next to each comment for
          * Moderators and the additional ability to edit the comment will appear
          * when the Moderator id the one who made the comment*/
-        Forum forum = app.getForum();
+        // Forum forum = app.getForum();
+        ArrayList<Comment> forum = app.getForum();
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
