@@ -134,7 +134,7 @@ public class SearchHandling extends MamaServlet {
             //HERE
             out.println("<form name=\"stuff\" action=\"viewAppPage\" method=\"POST\">\n"
                     + "            <input type=\"hidden\" name=\"elementNumber\" value=\"" + j + "\"/>\n"
-                    + "            <input type=\"submit\" value=\"" + appList[j].getName() + "\" name=\"button1\" />\n"
+                    + "            <input type=\"submit\" class=\"button\" value=\"" + appList[j].getName() + "\" name=\"button1\" />\n"
                     + "        </form>");
             //TO HERE
         } else if (i == 1) {

@@ -40,6 +40,18 @@ public class App {
             this.accepted = false;
         }
         
+        public App(String name, String developer, String description, String[] platforms, String version, String link, boolean accepted) {
+            this.name = name;
+            this.developer = developer;
+            this.description = description;
+            this.platforms = platforms;
+            this.version = version;
+            this.link = link;
+            this.forum = new Forum();
+            this.rating = 0;
+            this.accepted = accepted;
+        }
+        
 	public String getName(){
 		return name;
 	}

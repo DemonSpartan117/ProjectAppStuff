@@ -6,6 +6,7 @@
 package helpers.servlets;
 
 import com.App;
+import com.Forum;
 import com.secure.userInfo.*;
 import helpers.SearchesInfo;
 import helpers.UserInfoDump;
@@ -67,9 +68,33 @@ public class appPageMaker extends MamaServlet {
     private void printAppPage(PrintWriter out) {
         App app = appInfo.getDesiredApp();
         out.println("<h1 style=\"text-align: center\">" + app.getName() + "</h1>");
+        
+        /* will need to alter this a bit */
+        out.println("<h2>This app's current rating: " + app.getRating() + "</h2>");
+        /* The rating needs to be determined by the method that calculates it
+        (once the method is created) instead of what there is now. Need to add
+        in the ability for users to rate the app (so add another rating to the
+        list of Ratings) or edit their existing rating (so this needs to check
+        to see if the user has already rated the app and if the user has, it
+        will allow them to change their Rating (may need to add another action
+        request type))*/
+        
         out.println("<p>" + app.getDescription() + "</p>");
+        
+        printForum(out, app);
+        
     }
 
+    private void printForum(PrintWriter out, App app) {
+        /*TODO: add in the logic to display all of the things on the Forum
+         * *option buttons will appear next to comments if the user was the one
+         *who posted the comment, allowing the user to change or delete the comment
+         * *an option to delete a comment will appear next to each comment for
+         * Moderators and the additional ability to edit the comment will appear
+         * when the Moderator id the one who made the comment*/
+        Forum forum = app.getForum();
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -26,10 +26,44 @@
             <div class="tfclear"></div>
         </div>
         <!-- end code for the search bar -->
+
+
+        <h1 style="text-align: center">Add an App to the Database</h1>
         
+        <form name="stuff" action="addTheApp">
+            <table style="text-align: right" border="1" cellpadding="10">
+                
+                <tbody>
+                    <tr>
+                        <td>App Name:</td>
+                        <td><input type="text" name="name" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>App Developer:</td>
+                        <td><input type="text" name="developer" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>App Description:</td>
+                        <td> <textarea name="description" rows="4" cols="20"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>App platforms:<br/>Separate the platforms with commas</td>
+                        <td><textarea name="platforms" rows="4" cols="20"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>App version:</td>
+                        <td><input type="text" name="version" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>App link:</td>
+                        <td><input type="text" name="link" size="25"/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" value="Add App" name="button 2" />
+        </form>
         
-        <h1 style="text-align: center"></h1>
-        
-        
+
+
     </body>
 </html>

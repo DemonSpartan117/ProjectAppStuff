@@ -61,8 +61,8 @@ public class UserAccountInfoManager extends MamaServlet {
                 try {
                     DBHandling.DeleteAccount(user);
                 } catch (Exception ex) {
-                    out.println("<p>The fatal error occured. Contact the programmer.\n" + 
-                            ex.getMessage() + Arrays.toString(ex.getStackTrace())+ "</p>");
+                    out.println("<p>The fatal error occured. Contact the programmer.\n"
+                            + ex.getMessage() + Arrays.toString(ex.getStackTrace()) + "</p>");
                 }
 
             } else if (userPath.compareTo("/changePasswordPage") == 0) {
@@ -106,7 +106,7 @@ public class UserAccountInfoManager extends MamaServlet {
                 creation.setPassPhrase(request.getParameter("type"));
                 creation.setPass(request.getParameter("pass"));
                 creation.setPassConfirm(request.getParameter("passConfirm"));
-                
+
                 try {
                     if (!creation.canMake()) {
                         out.println("<h1>The username is already taken or the passwords did not match. Please try again</h1>");
@@ -118,10 +118,9 @@ public class UserAccountInfoManager extends MamaServlet {
                         printInfoPage(out, user);
                     }
                 } catch (Exception ex) {
-                    out.println("<p>The fatal error occured. Contact the programmer.\n" + 
-                            ex.getMessage() + Arrays.toString(ex.getStackTrace())+ "</p>");
+                    out.println("<p>The fatal error occured. Contact the programmer.\n"
+                            + ex.getMessage() + Arrays.toString(ex.getStackTrace()) + "</p>");
                 }
-                
 
             }
 
@@ -150,6 +149,10 @@ public class UserAccountInfoManager extends MamaServlet {
             out.println("<form name=\"whatever\" action=\"adminAccountCreation\" method=\"POST\">\n"
                     + "            Create a new Administrator or Moderator account <input type=\"submit\" value=\"Create account\" name=\"button 1\" />\n"
                     + "        </form>");
+            out.println("<form name=\"whatever\" action=\"AdminAddAppPage\">\n"
+                    + "            Add a new app to the database <input type=\"submit\" value=\"Add App\" name=\"button 1\" />\n"
+                    + "        </form>");
+            //TODO: add in button that takes Admin to page that allows him or her to add new app to database
         }
     }
 

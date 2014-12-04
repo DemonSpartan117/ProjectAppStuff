@@ -16,6 +16,10 @@
         <servlet-name>UserAccountInfoManager</servlet-name>
         <servlet-class>helpers.servlets.UserAccountInfoManager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AppAddingManager</servlet-name>
+        <servlet-class>helpers.servlets.AppAddingManager</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>teLogin</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -48,8 +52,14 @@
         <url-pattern>/changeTheUsername</url-pattern>
         <url-pattern>/adminAccountCreation</url-pattern>
         <url-pattern>/addAccount</url-pattern>
-        
-        
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AppAddingManager</servlet-name>
+        <url-pattern>/AdminAddAppPage</url-pattern>
+        <url-pattern>/AdminViewApps</url-pattern>
+        <url-pattern>/UserRequestApp</url-pattern>
+        <url-pattern>/addTheApp</url-pattern>
+        <url-pattern>/requestTheApp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
